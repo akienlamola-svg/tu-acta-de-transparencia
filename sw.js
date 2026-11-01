@@ -1,6 +1,6 @@
 /* Tu acta de transparencia — funciona sin conexión una vez abierta. Cambia VERSION al publicar cambios. */
-const VERSION = 'tat-v3';
-const CORE = ['./', './index.html', './chart.umd.min.js', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+const VERSION = 'tat-v4';
+const CORE = ['./', './index.html', './chart.umd.min.js', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './emblema.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(VERSION).then((c) => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== VERSION).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', (e) => {

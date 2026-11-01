@@ -67,10 +67,14 @@ button { font: inherit; cursor: pointer; }
 
 .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--navy); color: #fff;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.topbar-in { max-width: 760px; margin: 0 auto; display: flex; align-items: center; gap: 12px; min-height: 56px; }
+.topbar-in { max-width: 760px; margin: 0 auto; display: flex; align-items: center; gap: 10px; min-height: 60px; }
 .brand { font-family: var(--display); font-weight: 700; font-size: clamp(.92rem, 3.8vw, 1.1rem); line-height: 1.15; flex: 1; min-width: 0; color: #fff; }
 :root[data-theme="dark"] .topbar, :root[data-theme="dark"] .brand { color: #0C1522; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .topbar, :root:not([data-theme="light"]) .brand { color: #0C1522; } }
+.corp { flex: none; max-width: 48%; display: grid; justify-items: end; text-align: right; gap: 1px; padding-block: 8px; line-height: 1.2; }
+.corp img { height: 52px; width: auto; max-width: 100%; margin-bottom: 4px; background: #fff; border-radius: 6px; padding: 3px; box-sizing: content-box; }
+.corp-name { font-family: var(--display); font-weight: 700; font-size: clamp(.66rem, 2.7vw, .86rem); letter-spacing: .01em; }
+.corp-sub { font-size: clamp(.6rem, 2.3vw, .74rem); text-transform: uppercase; letter-spacing: .1em; opacity: .85; }
 .iconbtn { flex: none; white-space: nowrap; background: transparent; border: 1px solid currentColor; color: inherit; border-radius: 999px; padding: 6px 14px; font-size: .9rem; font-weight: 600; }
 .iconbtn[hidden] { display: none; }
 
@@ -200,9 +204,13 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
 
 <header class="topbar">
   <div class="topbar-in">
-    <button class="iconbtn" id="backBtn" type="button" hidden>‹ Índice</button>
+    <button class="iconbtn" id="backBtn" type="button" aria-label="Volver al índice" hidden>‹ Índice</button>
     <div class="brand">Tu acta de transparencia</div>
-    <button class="iconbtn" id="editBtn" type="button" hidden>Mis datos</button>
+    <div class="corp">
+      <img src="emblema.png" alt="Emblema del Notariado">
+      <span class="corp-name">Roa Nonide &amp; González Granado</span>
+      <span class="corp-sub">Notarios asociados</span>
+    </div>
   </div>
 </header>
 
@@ -303,6 +311,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
     <h1>Las cosas claras</h1>
   </div>
   <div class="summary" id="summary"></div>
+  <div class="actions"><button class="btn ghost" id="editBtn" type="button" hidden>Cambiar mis datos</button></div>
   <div class="card install" id="installCard" hidden>
     <h3>Lleva esta app en tu móvil</h3>
     <p id="installTxt"></p>
