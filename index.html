@@ -556,6 +556,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
 <footer class="foot" id="foot">
   <p><b>Tu acta de transparencia</b> es una herramienta orientativa y gratuita ofrecida por la notaría de María Eugenia Roa Nonide y Javier González Granado. Las cifras vinculantes son las de tu FEIN y tu escritura.</p>
   <p>Todos los cálculos se hacen en tu dispositivo. No se recoge ni se envía ningún dato.</p>
+  <p>Versión 5 · noviembre de 2026</p>
 </footer>
 </main>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -1222,7 +1223,15 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', route);
 route();
 })();
 </script>
-<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}</script>
+<script>
+if ('serviceWorker' in navigator) {
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController && !reloaded) { reloaded = true; location.reload(); } });
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then((r) => r.update()).catch(() => {}));
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') navigator.serviceWorker.getRegistration().then((r) => r && r.update()).catch(() => {}); });
+}
+</script>
 
 </body>
 </html>
