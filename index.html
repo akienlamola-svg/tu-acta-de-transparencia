@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tu acta de transparencia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Entiende tu préstamo hipotecario antes, durante y después del acta de transparencia notarial.">
+<meta name="theme-color" content="#123E7C">
+<script>window.TAT_PWA = true;</script>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tu acta">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Concepto: carpeta de notaría — fichas claras sobre papel azulado, una columna, navegación por índice. */
+:root {
+  --navy: #123E7C;
+  --blue: #2563B8;
+  --sky: #DCEBFA;
+  --sky-2: #EEF5FC;
+  --paper: #FAFCFE;
+  --card: #FFFFFF;
+  --ink: #0E1622;
+  --muted: #4A5868;
+  --line: #CCDCEC;
+  --good: #1B8A55;
+  --good-bg: #E3F4EA;
+  --bad: #C2372E;
+  --bad-soft: #E8857E;
+  --bad-bg: #FBE7E5;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #9CC3F5; --blue: #6FA6EC; --sky: #1B3354; --sky-2: #14253D; --paper: #0C1522; --card: #12203A;
+    --ink: #EEF3F9; --muted: #A9B8CA; --line: #263E60; --good: #4FC98A; --good-bg: #123526;
+    --bad: #F0776D; --bad-soft: #B4544D; --bad-bg: #3A1A1A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --navy: #9CC3F5; --blue: #6FA6EC; --sky: #1B3354; --sky-2: #14253D; --paper: #0C1522; --card: #12203A;
+  --ink: #EEF3F9; --muted: #A9B8CA; --line: #263E60; --good: #4FC98A; --good-bg: #123526;
+  --bad: #F0776D; --bad-soft: #B4544D; --bad-bg: #3A1A1A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; -webkit-text-size-adjust: 100%; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--navy); }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.2; margin: 0; color: var(--ink); }
+h1 { font-size: 1.9rem; font-weight: 700; }
+h2 { font-size: 1.45rem; font-weight: 700; }
+h3 { font-size: 1.12rem; font-weight: 700; }
+p { margin: 0; }
+.num { font-variant-numeric: tabular-nums; }
+a { color: var(--blue); }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
+
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--navy); color: #fff;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.topbar-in { max-width: 760px; margin: 0 auto; display: flex; align-items: center; gap: 12px; min-height: 56px; }
+.brand { font-family: var(--display); font-weight: 700; font-size: clamp(.92rem, 3.8vw, 1.1rem); line-height: 1.15; flex: 1; min-width: 0; color: #fff; }
+:root[data-theme="dark"] .topbar, :root[data-theme="dark"] .brand { color: #0C1522; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .topbar, :root:not([data-theme="light"]) .brand { color: #0C1522; } }
+.iconbtn { flex: none; white-space: nowrap; background: transparent; border: 1px solid currentColor; color: inherit; border-radius: 999px; padding: 6px 14px; font-size: .9rem; font-weight: 600; }
+.iconbtn[hidden] { display: none; }
+
+main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 48px; }
+.screen { max-width: 760px; margin: 0 auto; display: grid; gap: 20px; }
+.lead { color: var(--muted); font-size: 1.05rem; max-width: 62ch; }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; font-weight: 700; color: var(--blue); }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; display: grid; gap: 14px; min-width: 0; }
+.note { background: var(--sky-2); border-left: 4px solid var(--blue); border-radius: 8px; padding: 12px 14px; font-size: .95rem; }
+.note.good { background: var(--good-bg); border-left-color: var(--good); }
+.note.bad { background: var(--bad-bg); border-left-color: var(--bad); }
+
+/* Idioma */
+.flags { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
+.flag { background: var(--card); border: 2px solid var(--line); border-radius: var(--r); padding: 16px 12px; display: grid; justify-items: center; gap: 10px; color: var(--ink); }
+.flag:hover { border-color: var(--blue); }
+.flag svg { width: 84px; height: 56px; border-radius: 4px; box-shadow: 0 0 0 1px var(--line); }
+.flag span { font-weight: 600; }
+.flag small { color: var(--muted); font-size: .78rem; }
+.flag.soon { opacity: .72; }
+
+/* Formularios */
+.field { display: grid; gap: 6px; }
+.field label, .legend { font-weight: 600; font-size: .95rem; }
+.hint { color: var(--muted); font-size: .85rem; }
+.inputwrap { display: flex; align-items: center; border: 1.5px solid var(--line); border-radius: 10px; background: var(--card); overflow: hidden; }
+.inputwrap:focus-within { border-color: var(--blue); box-shadow: 0 0 0 3px var(--sky); }
+.inputwrap input, .inputwrap select { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink); font: inherit; font-size: 1.05rem; padding: 12px; font-variant-numeric: tabular-nums; }
+.inputwrap input:focus, .inputwrap select:focus { outline: none; }
+.unit { padding: 0 12px; color: var(--muted); font-weight: 600; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+.seg { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label { border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; text-align: center; font-weight: 600; background: var(--card); cursor: pointer; font-size: .95rem; }
+.seg input:checked + label { background: var(--navy); border-color: var(--navy); color: var(--paper); }
+.seg input:focus-visible + label { outline: 3px solid var(--blue); outline-offset: 2px; }
+.err { color: var(--bad); font-weight: 600; font-size: .9rem; }
+
+.btn { background: var(--navy); color: var(--paper); border: 0; border-radius: 12px; padding: 14px 20px; font-weight: 700; font-size: 1.02rem; }
+.btn.ghost { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Índice */
+.summary { background: var(--navy); color: var(--paper); border-radius: var(--r); padding: 18px 20px; display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.summary div { display: grid; }
+.summary small { opacity: .85; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; }
+.summary b { font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.menu { display: grid; gap: 12px; }
+.menu a { display: grid; grid-template-columns: 48px 1fr auto; gap: 14px; align-items: center; text-decoration: none; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; }
+.menu a:hover { border-color: var(--blue); background: var(--sky-2); }
+.menu .n { width: 48px; height: 48px; border-radius: 50%; background: var(--sky); color: var(--navy); display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 1.3rem; }
+.menu b { font-size: 1.08rem; display: block; }
+.menu span.d { color: var(--muted); font-size: .9rem; }
+.menu .chev { color: var(--blue); font-size: 1.4rem; }
+
+/* Pestañas */
+.tabs { display: flex; gap: 6px; background: var(--sky); padding: 5px; border-radius: 12px; }
+.tabs button { flex: 1; border: 0; background: transparent; padding: 10px; border-radius: 9px; font-weight: 600; color: var(--navy); }
+.tabs button[aria-selected="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+
+.chartbox { position: relative; height: 320px; min-width: 0; }
+.legendrow { display: flex; flex-wrap: wrap; gap: 14px; font-size: .88rem; color: var(--muted); }
+.legendrow i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.slider { width: 100%; accent-color: var(--blue); }
+.readout { font-size: 1.05rem; }
+.readout b { font-variant-numeric: tabular-nums; }
+.split { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.split > span { display: grid; gap: 2px; background: var(--sky-2); border-radius: 10px; padding: 10px 12px; font-size: .85rem; color: var(--muted); }
+.split > span b { font-size: 1.08rem; color: var(--ink); }
+.split .g b { color: var(--good); } .split .r b { color: var(--bad); }
+@media (max-width: 400px) { .split { grid-template-columns: 1fr 1fr; } .split > span:first-child { grid-column: 1 / -1; } }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; }
+.stat small { color: var(--muted); font-size: .85rem; }
+.stat b { font-size: 1.4rem; font-variant-numeric: tabular-nums; font-family: var(--body); }
+.stat.good b { color: var(--good); } .stat.bad b { color: var(--bad); }
+
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: right; padding: 10px 6px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; white-space: normal; }
+@media (max-width: 480px) { table { font-size: .86rem; } }
+th { white-space: normal; vertical-align: bottom; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 700; }
+td.good { color: var(--good); font-weight: 700; } td.bad { color: var(--bad); font-weight: 700; }
+tr.best td:first-child { font-weight: 700; }
+
+.bases { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.base { border: 1px solid var(--line); border-radius: 12px; padding: 14px; background: var(--card); display: grid; gap: 6px; }
+.base code { font-family: var(--display); font-weight: 700; font-size: 1.15rem; color: var(--navy); }
+
+.prod { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 10px; align-items: end; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.prod > b { align-self: center; }
+@media (max-width: 520px) { .prod { grid-template-columns: 1fr 1fr; } .prod > b { grid-column: 1 / -1; } }
+
+details.doc { background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+details.doc summary { padding: 14px 16px; font-weight: 700; cursor: pointer; list-style: none; display: flex; gap: 12px; align-items: baseline; }
+details.doc summary::-webkit-details-marker { display: none; }
+details.doc summary::after { content: "+"; margin-left: auto; color: var(--blue); font-size: 1.3rem; line-height: 1; }
+details.doc[open] summary::after { content: "–"; }
+details.doc .abbr { font-family: var(--display); color: var(--navy); min-width: 4.2em; }
+details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--ink); }
+.timeline { display: grid; gap: 10px; }
+.pfzones { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.formula { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-variant-numeric: tabular-nums; }
+.formula span { background: var(--sky-2); border-radius: 10px; padding: 8px 12px; display: grid; font-size: .8rem; color: var(--muted); }
+.formula span b { font-size: 1.1rem; color: var(--ink); }
+.formula .op { background: none; padding: 0; font-size: 1.3rem; font-weight: 700; color: var(--muted); }
+.formula .cmp { flex-basis: 100%; margin: 0; font-weight: 500; }
+.formula .cmp.bad b { color: var(--bad); } .formula .cmp.good b { color: var(--good); }
+.formula .res.bad b { color: var(--bad); } .formula .res.good b { color: var(--good); }
+.install { background: var(--sky-2); border-color: var(--blue); }
+.checks { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.checks li { position: relative; padding-left: 30px; }
+.checks li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--sky); color: var(--navy); font-weight: 700; font-size: .8rem; display: grid; place-items: center; }
+.when { font-family: var(--display); font-weight: 700; color: var(--navy); font-size: 1.15rem; margin-top: 8px; }
+
+.foot { max-width: 760px; margin: 0 auto; color: var(--muted); font-size: .82rem; border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--paper); padding: 12px 18px; border-radius: 12px; font-weight: 600; z-index: 20; max-width: calc(100% - 32px); }
+@media (prefers-reduced-motion: no-preference) { .screen { animation: rise .25s ease-out; } @keyframes rise { from { transform: translateY(6px); } to { transform: none; } } }
+</style>
+</head>
+<body>
+
+
+<header class="topbar">
+  <div class="topbar-in">
+    <button class="iconbtn" id="backBtn" type="button" hidden>‹ Índice</button>
+    <div class="brand">Tu acta de transparencia</div>
+    <button class="iconbtn" id="editBtn" type="button" hidden>Mis datos</button>
+  </div>
+</header>
+
+<main>
+<!-- ============ IDIOMA ============ -->
+<section class="screen" data-view="idioma">
+  <div style="display:grid;gap:10px">
+    <p class="eyebrow">Bienvenida · Welcome · Benvinguda</p>
+    <h1>Elige tu idioma</h1>
+    <p class="lead">Toca la bandera de tu idioma. Esta herramienta te la ofrece la notaría de María Eugenia Roa Nonide y Javier González Granado para que entiendas tu préstamo hipotecario antes, durante y después del acta de transparencia.</p>
+  </div>
+  <div class="flags" id="flags"></div>
+</section>
+
+<!-- ============ DATOS ============ -->
+<section class="screen" data-view="datos" hidden>
+  <div style="display:grid;gap:10px">
+    <p class="eyebrow">Paso 1 · Tus datos</p>
+    <h1>Hola. Cuéntanos cómo es tu préstamo</h1>
+    <p class="lead">Encontrarás todos estos datos en tu <b>FEIN</b> (la ficha que te ha entregado el banco). Los números que ves son un ejemplo: cámbialos por los tuyos.</p>
+  </div>
+  <form class="card" id="formDatos" novalidate>
+    <div class="grid2">
+      <div class="field">
+        <label for="fC">Capital del préstamo</label>
+        <div class="inputwrap"><input id="fC" inputmode="decimal" autocomplete="off"><span class="unit">€</span></div>
+      </div>
+      <div class="field">
+        <label for="fN">Plazo</label>
+        <div class="inputwrap"><input id="fN" inputmode="numeric" autocomplete="off"><span class="unit">meses</span></div>
+        <span class="hint" id="fNhint"></span>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="legend">Tipo de interés</span>
+      <div class="seg" role="radiogroup" aria-label="Tipo de interés">
+        <input type="radio" name="tipo" id="tFijo" value="fijo"><label for="tFijo">Fijo</label>
+        <input type="radio" name="tipo" id="tVar" value="variable"><label for="tVar">Variable</label>
+      </div>
+    </div>
+
+    <div class="field" id="boxFijo">
+      <label for="fTin">Tipo de interés fijo (TIN anual)</label>
+      <div class="inputwrap"><input id="fTin" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
+      <span class="hint">Con dos decimales, por ejemplo 2,90.</span>
+    </div>
+
+    <div id="boxVar" class="grid2" hidden>
+      <div class="field">
+        <label for="fIni">Tipo inicial</label>
+        <div class="inputwrap"><input id="fIni" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
+      </div>
+      <div class="field">
+        <label for="fMesesIni">Tipo inicial durante</label>
+        <div class="inputwrap"><input id="fMesesIni" inputmode="numeric" autocomplete="off"><span class="unit">meses</span></div>
+      </div>
+      <div class="field">
+        <label for="fDif">Diferencial sobre el Euríbor</label>
+        <div class="inputwrap"><input id="fDif" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
+      </div>
+      <div class="field">
+        <label for="fEur">Euríbor para el cálculo</label>
+        <div class="inputwrap"><input id="fEur" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
+        <span class="hint">Euríbor a 12 meses de octubre de 2026: 3,303 %. Suponemos que se mantiene igual; puedes probar otros valores.</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="legend">¿Hay comisión de apertura?</span>
+      <div class="seg" role="radiogroup" aria-label="Comisión de apertura">
+        <input type="radio" name="apertura" id="aNo" value="no"><label for="aNo">No</label>
+        <input type="radio" name="apertura" id="aSi" value="si"><label for="aSi">Sí</label>
+      </div>
+    </div>
+    <div class="field" id="boxApertura" hidden>
+      <label for="fApert">Comisión de apertura</label>
+      <div class="inputwrap"><input id="fApert" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
+      <span class="hint" id="fApertHint"></span>
+    </div>
+
+    <div class="field">
+      <label for="fFecha">Fecha prevista de firma</label>
+      <div class="inputwrap"><input id="fFecha" type="date"></div>
+      <span class="hint">Solo se usa para contar los días reales de cada mes en «¿Cuántos días tiene un año?».</span>
+    </div>
+
+    <p class="err" id="formErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn" type="submit">Ver mi préstamo</button></div>
+  </form>
+  <p class="hint">Tus datos no salen de este dispositivo: no se envían a la notaría, al banco ni a nadie.</p>
+</section>
+
+<!-- ============ ÍNDICE ============ -->
+<section class="screen" data-view="indice" hidden>
+  <div style="display:grid;gap:10px">
+    <p class="eyebrow">Índice</p>
+    <h1>Las cosas claras</h1>
+  </div>
+  <div class="summary" id="summary"></div>
+  <div class="card install" id="installCard" hidden>
+    <h3>Lleva esta app en tu móvil</h3>
+    <p id="installTxt"></p>
+    <div class="actions"><button class="btn" id="installBtn" type="button" hidden>Instalar</button><button class="btn ghost" id="installClose" type="button">Ahora no</button></div>
+  </div>
+  <nav class="menu" aria-label="Apartados">
+    <a href="#prestamo"><span class="n">1</span><span><b>Mi préstamo</b><span class="d">De un vistazo y en cifras: cuota, intereses y cómo baja la deuda.</span></span><span class="chev">›</span></a>
+    <a href="#anticipos"><span class="n">2</span><span><b>Pagos anticipados</b><span class="d">Cuánto ahorras si adelantas dinero, y qué opción te conviene.</span></span><span class="chev">›</span></a>
+    <a href="#dias"><span class="n">3</span><span><b>¿Cuántos días tiene un año?</b><span class="d">Las bases de cálculo que usan los bancos y lo que cambian.</span></span><span class="chev">›</span></a>
+    <a href="#coste"><span class="n">4</span><span><b>Coste real</b><span class="d">TIN, TAE y lo que cuestan de verdad las bonificaciones.</span></span><span class="chev">›</span></a>
+    <a href="#documentacion"><span class="n">5</span><span><b>Documentación</b><span class="d">FEIN, FiAE, minuta… qué es cada papel y cuándo lo recibes.</span></span><span class="chev">›</span></a>
+  </nav>
+</section>
+
+<!-- ============ 1 MI PRÉSTAMO ============ -->
+<section class="screen" data-view="prestamo" hidden>
+  <div style="display:grid;gap:10px">
+    <h1>Mi préstamo</h1>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tabA" aria-selected="true" type="button">De un vistazo</button>
+    <button role="tab" id="tabB" aria-selected="false" type="button">En cifras</button>
+  </div>
+  <div id="paneA" class="card">
+    <h2>Mi préstamo de un vistazo</h2>
+    <p>Cada barra es un año. La parte <b style="color:var(--good)">verde</b> es lo que devuelves de tu deuda (capital); la <b style="color:var(--bad)">roja</b> son los intereses que cobra el banco. La línea azul muestra cuánto te queda por pagar: toca cualquier punto para verlo.</p>
+    <div class="legendrow"><span><i style="background:var(--good)"></i>Capital devuelto</span><span><i style="background:var(--bad)"></i>Intereses</span><span><i style="background:var(--blue)"></i>Capital pendiente</span></div>
+    <div class="chartbox"><canvas id="chA" aria-label="Gráfico anual de capital e intereses"></canvas></div>
+    <div class="field">
+      <label for="mesSlider">Elige un mes concreto</label>
+      <input type="range" class="slider" id="mesSlider" min="1">
+      <p class="readout" id="mesReadout"></p>
+    </div>
+  </div>
+  <div id="paneB" class="card" hidden>
+    <h2>Mi préstamo en cifras</h2>
+    <div class="stats" id="statsB"></div>
+    <div id="notesB" style="display:grid;gap:10px"></div>
+  </div>
+</section>
+
+<!-- ============ 2 ANTICIPOS ============ -->
+<section class="screen" data-view="anticipos" hidden>
+  <div style="display:grid;gap:10px">
+    <h1>Pagos anticipados</h1>
+    <p class="lead">Adelantar dinero al banco es una forma de ahorrar: cada euro que devuelves antes deja de generar intereses durante el resto del préstamo. Prueba con tus cifras.</p>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="antTab1" aria-selected="true" type="button">Calcular mi ahorro</button>
+    <button role="tab" id="antTab2" aria-selected="false" type="button">¿Siempre pago compensación?</button>
+  </div>
+  <div id="antPane1" style="display:grid;gap:20px">
+  <form class="card" id="formAnt" novalidate>
+    <div class="grid2">
+      <div class="field">
+        <label for="aImp">¿Cuánto quieres anticipar?</label>
+        <div class="inputwrap"><input id="aImp" inputmode="decimal" value="10.000"><span class="unit">€</span></div>
+      </div>
+      <div class="field">
+        <label for="aMes">¿En qué mes del préstamo?</label>
+        <div class="inputwrap"><input id="aMes" inputmode="numeric" value="24"><span class="unit">mes</span></div>
+        <span class="hint" id="aMesHint"></span>
+      </div>
+    </div>
+    <div class="field">
+      <span class="legend">¿Con qué frecuencia?</span>
+      <div class="seg">
+        <input type="radio" name="freq" id="fqU" value="una" checked><label for="fqU">Una sola vez</label>
+        <input type="radio" name="freq" id="fqA" value="anual"><label for="fqA">Cada año desde entonces</label>
+        <input type="radio" name="freq" id="fqM" value="mensual"><label for="fqM">Cada mes desde entonces</label>
+      </div>
+    </div>
+    <div class="field">
+      <span class="legend">¿Qué compensación cobra el banco?</span>
+      <div class="seg">
+        <input type="radio" name="comp" id="cpN" value="none" checked><label for="cpN">Sin compensación</label>
+        <input type="radio" name="comp" id="cpL" value="legal"><label for="cpL">2 % hasta el año 10, 1,5 % después</label>
+        <input type="radio" name="comp" id="cpO" value="otra"><label for="cpO">Otra</label>
+      </div>
+      <span class="hint">La compensación pactada figura en tu FEIN. Con tipo variable la ley permite como máximo un 0,25 % (primeros 3 años) o un 0,15 % (primeros 5 años); usa «Otra» en ese caso.</span>
+    </div>
+    <div class="field" id="boxOtra" hidden>
+      <label for="aOtra">Compensación pactada</label>
+      <div class="inputwrap"><input id="aOtra" inputmode="decimal" value="0,25"><span class="unit">%</span></div>
+    </div>
+    <p class="err" id="antErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn" type="submit">Calcular mi ahorro</button></div>
+  </form>
+
+  <div id="antRes" style="display:grid;gap:20px" hidden>
+    <div class="card">
+      <h2>a) ¿Cuánto ahorro en intereses?</h2>
+      <p>Comparamos tres caminos: no adelantar nada, usar el dinero para <b>pagar menos meses</b> (misma cuota, el préstamo acaba antes) o para <b>pagar menos cada mes</b> (mismo plazo, cuota más baja).</p>
+      <div class="legendrow"><span><i style="background:var(--bad)"></i>Intereses</span><span><i style="background:var(--bad-soft)"></i>Compensación al banco</span><span><i style="background:var(--good)"></i>Tu ahorro neto</span></div>
+      <div class="chartbox"><canvas id="chAntA" aria-label="Comparativa de intereses"></canvas></div>
+      <div class="stats" id="antStats"></div>
+    </div>
+    <div class="card">
+      <h2>b) ¿A qué tipo de interés equivale?</h2>
+      <p>El tipo de interés del contrato no cambia, pero al adelantar pagas menos intereses. Aquí lo traducimos a un <b>tipo equivalente</b>: el tipo que, con tu capital y tu plazo iniciales, te habría costado lo mismo (contando la compensación).</p>
+      <div class="chartbox" style="height:260px"><canvas id="chAntB" aria-label="Comparativa de tipo equivalente"></canvas></div>
+      <div id="antNote"></div>
+    </div>
+  </div>
+  </div>
+
+  <div id="antPane2" style="display:grid;gap:20px" hidden>
+    <div class="card">
+      <h2>¿Siempre hay que pagar la compensación?</h2>
+      <p>No. Aunque tu contrato prevea una compensación por pago anticipado, el banco <b>solo puede cobrártela si, en el momento en que pagas, sufre una pérdida financiera</b>. Y nunca puede cobrarte más que esa pérdida, ni más que el máximo pactado.</p>
+      <p>¿Qué es la pérdida financiera? Cuando adelantas dinero, el banco deja de cobrar los intereses que tenía pactados contigo por ese dinero. Tiene que volver a prestarlo a otra persona, y lo hará al precio que tenga el mercado ese día.</p>
+      <div class="note"><b>Independientemente del tipo de interés de tu préstamo, hay veces en que en el mercado los préstamos «están más caros» y otras en que «están más baratos».</b></div>
+      <div class="legendrow"><span><i style="background:var(--navy)"></i>El tipo de tu préstamo</span><span><i style="background:var(--blue)"></i>El tipo al que el banco puede volver a prestar</span></div>
+      <div class="chartbox" style="height:260px"><canvas id="chPF1" aria-label="Ejemplo de evolución del mercado frente a tu tipo"></canvas></div>
+      <p class="hint">Ejemplo ilustrativo: nadie sabe cómo se moverá el mercado.</p>
+      <div class="pfzones">
+        <div class="note bad"><b>Mercado más barato que tu préstamo</b><br>El banco recoloca tu dinero a un tipo más bajo y gana menos de lo pactado. Hay pérdida financiera: puede cobrarte compensación, como máximo esa pérdida.</div>
+        <div class="note good"><b>Mercado más caro que tu préstamo</b><br>El banco vuelve a prestar tu dinero a un tipo igual o mayor. No pierde nada, así que no puede cobrarte compensación.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>¿Cómo se sabe si hay pérdida? El diferencial</h2>
+      <p>La ley no deja la respuesta en manos del banco. El día de la firma se calcula la diferencia entre tu tipo de interés y un tipo oficial de mercado que publica el Banco de España: el <b>IRS</b>. Esa diferencia es el <b>diferencial</b>, y queda fijada en tu escritura.</p>
+      <p>El día que anticipes, se toma el IRS de ese momento y se le suma el mismo diferencial. El resultado es el tipo al que, según la ley, el banco puede volver a prestar tu dinero. Si es más bajo que tu tipo, hay pérdida. Si es igual o más alto, no la hay.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="pfDif">Diferencial de tu escritura</label>
+          <div class="inputwrap"><input id="pfDif" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
+          <span class="hint" id="pfDifHint"></span>
+        </div>
+        <div class="field">
+          <label for="pfIrs">IRS el día que anticipas</label>
+          <input type="range" class="slider" id="pfIrs" min="0" max="7" step="0.05">
+          <span class="hint">Mueve la barra para probar un mercado más caro o más barato.</span>
+        </div>
+      </div>
+      <div class="formula" id="pfFormula"></div>
+      <p id="pfCaso" class="hint"></p>
+      <div class="legendrow"><span><i style="background:var(--navy)"></i>Intereses pactados contigo</span><span><i style="background:var(--blue)"></i>Intereses al volver a prestarlo</span></div>
+      <div class="chartbox" style="height:200px"><canvas id="chPF2" aria-label="Intereses pactados frente a intereses de mercado"></canvas></div>
+      <div class="stats" id="pfStats"></div>
+      <div id="pfNote"></div>
+    </div>
+
+    <div class="card">
+      <h2>¿Dónde está la frontera?</h2>
+      <p>Esta línea muestra cuánto pagarías según el IRS que haya el día en que anticipes. La frontera es el IRS del día de tu firma: por debajo hay pérdida y puedes pagar compensación (<b style="color:var(--bad)">rojo</b>); por encima no pagas nada (<b style="color:var(--good)">verde</b>).</p>
+      <div class="legendrow"><span><i style="background:var(--bad)"></i>Compensación que pagarías</span><span><i style="background:var(--good)"></i>Sin compensación</span><span><i style="background:var(--muted)"></i>Pérdida financiera calculada</span><span><i style="background:var(--blue)"></i>Frontera y caso elegido</span></div>
+      <div class="chartbox" style="height:280px"><canvas id="chPF3" aria-label="Compensación según el IRS"></canvas></div>
+      <p class="hint">La pérdida financiera se calcula en valor actual: lo que el banco dejaría de cobrar en el futuro, traducido a euros de hoy. Por eso es algo menor que la simple diferencia de intereses.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 DÍAS ============ -->
+<section class="screen" data-view="dias" hidden>
+  <div style="display:grid;gap:10px">
+    <h1>¿Cuántos días tiene un año?</h1>
+    <p class="lead">Parece una pregunta de broma, pero no lo es. Para calcular los intereses de cada mes, el banco divide el tipo anual entre los días del año, y no todos los bancos cuentan igual. Tu escritura dice cuál se usa: busca la «base de cálculo».</p>
+  </div>
+  <div class="bases">
+    <div class="base"><code>30/360</code><b>Comercial</b><p>Todos los meses tienen 30 días y el año 360. Cada mes pagas exactamente 1/12 del tipo anual. Es la referencia más sencilla.</p></div>
+    <div class="base"><code>Real/365</code><b>Días reales sobre 365</b><p>Se cuentan los días reales de cada mes (28, 30 o 31) y se dividen entre 365, también en años bisiestos.</p></div>
+    <div class="base"><code>Real/Real</code><b>Días reales sobre días reales</b><p>Días reales del mes divididos entre los días reales del año: 365, o 366 si es bisiesto. Es la más exacta.</p></div>
+    <div class="base"><code>Real/360</code><b>Días reales sobre 360</b><p>Se cuentan los días reales pero el año se queda en 360. Así un año «paga» 365 días de intereses sobre 360: es la más cara para ti.</p></div>
+  </div>
+  <div class="card">
+    <h2>Lo que supone en tu préstamo</h2>
+    <p>Mismo capital, mismo tipo y misma cuota; solo cambia cómo se cuentan los días. La diferencia se ajusta en la última cuota.</p>
+    <div class="tablewrap"><table id="tblDias"></table></div>
+    <div id="diasNote"></div>
+  </div>
+</section>
+
+<!-- ============ 4 COSTE REAL ============ -->
+<section class="screen" data-view="coste" hidden>
+  <div style="display:grid;gap:10px">
+    <h1>Coste real</h1>
+  </div>
+  <div class="card">
+    <h2>TIN y TAE: dos números, dos preguntas</h2>
+    <p><b>TIN</b> (tipo de interés nominal) es el precio del dinero: el porcentaje con el que se calculan los intereses de cada cuota.</p>
+    <p><b>TAE</b> (tasa anual equivalente) responde a otra pregunta: ¿cuánto me cuesta de verdad, al año, todo junto? Suma al TIN la comisión de apertura y otros gastos obligatorios, y tiene en cuenta que pagas cada mes y no una vez al año. Sirve para comparar ofertas de bancos distintos.</p>
+    <div id="taeCalc" style="display:grid;gap:10px"></div>
+  </div>
+  <div class="card">
+    <h2>¿Realmente me bonifican las bonificaciones?</h2>
+    <p>Los bancos rebajan el tipo si contratas otros productos. Tu cuota baja, pero pagas esos productos cada mes. Indica qué rebaja te ofrecen por cada uno y cuánto cuesta al mes.</p>
+    <div class="field">
+      <span class="legend">El tipo que indicaste al principio…</span>
+      <div class="seg">
+        <input type="radio" name="tipoBon" id="tbSi" value="con" checked><label for="tbSi">ya incluye las bonificaciones</label>
+        <input type="radio" name="tipoBon" id="tbNo" value="sin"><label for="tbNo">es sin bonificar</label>
+      </div>
+    </div>
+    <div id="prods" style="display:grid;gap:12px"></div>
+    <div class="tablewrap"><table id="tblBon"></table></div>
+    <div id="bonNote"></div>
+  </div>
+</section>
+
+<!-- ============ 5 DOCUMENTACIÓN ============ -->
+<section class="screen" data-view="documentacion" hidden>
+  <div style="display:grid;gap:10px">
+    <h1>Documentación</h1>
+    <p class="lead">La Ley 5/2019, de contratos de crédito inmobiliario, obliga al banco a entregarte una serie de documentos antes de firmar, y al notario a comprobar que los tienes y que los entiendes. Toca cada uno para ver qué es.</p>
+  </div>
+  <div class="timeline">
+    <p class="when">Antes: al menos 10 días naturales antes de firmar</p>
+    <details class="doc"><summary><span class="abbr">FEIN</span>Ficha Europea de Información Normalizada</summary><div class="body">
+      <p>Es la «ficha técnica» de tu préstamo, con el mismo formato en toda la Unión Europea para que puedas comparar. Recoge el importe, el plazo, el tipo de interés, la TAE, la cuota, las comisiones y lo que cuesta amortizar anticipadamente.</p>
+      <p>Tiene valor de <b>oferta vinculante</b> durante el plazo que indique (al menos hasta la firma): el banco no puede cambiarte las condiciones a peor.</p></div></details>
+    <details class="doc"><summary><span class="abbr">FiAE</span>Ficha de Advertencias Estandarizadas</summary><div class="body">
+      <p>Te avisa de las cláusulas que más conviene entender: el índice de referencia si es variable, los límites a la variación del tipo, qué pasa si dejas de pagar (vencimiento anticipado) y cómo se reparten los gastos entre tú y el banco.</p></div></details>
+    <details class="doc"><summary><span class="abbr">Escenarios</span>Documento de cuotas en distintos escenarios</summary><div class="body">
+      <p>Solo si tu tipo es variable, total o parcialmente. Un documento separado muestra cuánto pagarías de cuota si el índice sube o baja, para que veas el riesgo antes de firmar.</p></div></details>
+    <details class="doc"><summary><span class="abbr">Minuta</span>Copia del proyecto de escritura</summary><div class="body">
+      <p>Es el borrador del contrato que vas a firmar ante notario. Puedes leerlo con calma y preguntar todo lo que no entiendas. Debe coincidir con la FEIN.</p></div></details>
+    <details class="doc"><summary><span class="abbr">Gastos</span>Información sobre la distribución de gastos</summary><div class="body">
+      <p>Explica quién paga cada gasto. Por ley, el banco paga la gestoría, la notaría de la escritura de préstamo, la inscripción en el Registro y el impuesto (AJD). Tú pagas la tasación y las copias de la escritura que pidas para ti.</p></div></details>
+    <details class="doc"><summary><span class="abbr">Seguros</span>Condiciones de los seguros y garantías</summary><div class="body">
+      <p>Si el banco exige un seguro de daños del inmueble o te ofrece otros con bonificación, debe informarte de sus condiciones. El seguro de daños es obligatorio, pero puedes contratarlo con la compañía que prefieras, sin que el banco pueda imponer la suya si la cobertura es equivalente.</p></div></details>
+    <details class="doc"><summary><span class="abbr">Aviso</span>Advertencia de que debes recibir asesoramiento notarial</summary><div class="body">
+      <p>El banco debe indicarte por escrito que tienes derecho a acudir a un notario de tu elección para que te asesore gratis sobre el préstamo.</p></div></details>
+
+    <p class="when">Durante: el acta de transparencia</p>
+    <details class="doc"><summary><span class="abbr">Acta</span>Acta notarial de transparencia</summary><div class="body">
+      <p>Es una reunión con el notario, como muy tarde el día anterior a la firma. El notario comprueba que has recibido toda la documentación a tiempo, resuelve tus dudas y te explica las cláusulas una a una. Es <b>gratuita</b> para ti y la eliges tú.</p>
+      <p>También respondes un breve test que sirve para confirmar que has entendido lo esencial. Si algo no cuadra, el notario no puede autorizar la escritura.</p></div></details>
+
+    <p class="when">Después de firmar</p>
+    <details class="doc"><summary><span class="abbr">Escritura</span>Copia de tu escritura de préstamo</summary><div class="body">
+      <p>Pide tu copia: es el contrato definitivo y la referencia para cualquier duda futura, como una revisión del tipo o una amortización anticipada.</p></div></details>
+    <details class="doc"><summary><span class="abbr">Registro</span>Inscripción en el Registro de la Propiedad</summary><div class="body">
+      <p>La hipoteca se inscribe en el Registro. Cuando termines de pagar, el préstamo se extingue, pero la hipoteca sigue apareciendo en el Registro hasta que se firma su cancelación.</p></div></details>
+    <details class="doc"><summary><span class="abbr">Derechos</span>Lo que puedes hacer más adelante</summary><div class="body">
+      <p>Amortizar anticipadamente (total o parcialmente), cambiar de banco (subrogación) o renegociar condiciones (novación). Vuelve al apartado 2 para calcular un anticipo.</p></div></details>
+  </div>
+</section>
+
+<footer class="foot" id="foot">
+  <p><b>Tu acta de transparencia</b> es una herramienta orientativa y gratuita ofrecida por la notaría de María Eugenia Roa Nonide y Javier González Granado. Las cifras vinculantes son las de tu FEIN y tu escritura.</p>
+  <p>Todos los cálculos se hacen en tu dispositivo. No se recoge ni se envía ningún dato.</p>
+</footer>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="chart.umd.min.js"></script>
+<script>
+/* Motor de cálculo — Tu acta de transparencia. Todo se calcula en el dispositivo. */
+const H = (() => {
+  const EPS = 0.005;
+
+  function cuota(P, r, n) {
+    if (n <= 0) return P;
+    if (Math.abs(r) < 1e-12) return P / n;
+    return P * r / (1 - Math.pow(1 + r, -n));
+  }
+
+  function nper(P, r, A) {
+    if (Math.abs(r) < 1e-12) return P / A;
+    const x = 1 - P * r / A;
+    if (x <= 0) return Infinity;
+    return -Math.log(x) / Math.log(1 + r);
+  }
+
+  /* Tipo nominal anual (decimal) aplicable a cada mes del préstamo */
+  function rates(d, extra = 0) {
+    const out = [];
+    for (let m = 1; m <= d.n; m++) {
+      let r;
+      if (d.tipo === 'fijo') r = d.tin;
+      else r = m <= d.mesesIni ? d.tipoIni : d.euribor + d.dif;
+      out.push(r + extra);
+    }
+    return out;
+  }
+
+  function addMonths(date, k) {
+    const x = new Date(date.getFullYear(), date.getMonth() + k, 1);
+    const last = new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate();
+    x.setDate(Math.min(date.getDate(), last));
+    return x;
+  }
+  function daysBetween(a, b) {
+    return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 864e5);
+  }
+  function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+
+  /* Fracción de año de un periodo mensual según la base de cálculo */
+  function yearFraction(basis, a, b) {
+    if (basis === '30/360') return 30 / 360;
+    const days = daysBetween(a, b);
+    if (basis === 'real/365') return days / 365;
+    if (basis === 'real/360') return days / 360;
+    // real/real (ISDA): cada tramo se divide por los días de su propio año
+    let f = 0, cur = a;
+    while (cur < b) {
+      const ny = new Date(cur.getFullYear() + 1, 0, 1);
+      const end = ny < b ? ny : b;
+      f += daysBetween(cur, end) / (isLeap(cur.getFullYear()) ? 366 : 365);
+      cur = end;
+    }
+    return f;
+  }
+
+  /* Simulación del cuadro de amortización (sistema francés)
+     opt.mode: 'none' | 'plazo' | 'cuota'
+     opt.amount, opt.start (mes), opt.freq: 'una' | 'anual' | 'mensual'
+     opt.comp: {type:'none'|'legal'|'otra', pct} ; opt.basis ; opt.start date ; opt.extraRate */
+  function simulate(d, opt = {}) {
+    const n = d.n;
+    const rs = rates(d, opt.extraRate || 0);
+    const basis = opt.basis || '30/360';
+    const firma = d.fecha || new Date();
+    const mode = opt.mode || 'none';
+    let bal = d.C, cuo = 0, rem = n, prevR = null;
+    const rows = [];
+    let totInt = 0, totComp = 0, totPre = 0;
+
+    const isPre = (m) => {
+      if (mode === 'none' || !(opt.amount > 0)) return false;
+      if (m === opt.start) return true;
+      if (opt.freq === 'anual') return m > opt.start && (m - opt.start) % 12 === 0;
+      if (opt.freq === 'mensual') return m > opt.start;
+      return false;
+    };
+    const pct = (m) => {
+      const c = opt.comp || { type: 'none' };
+      if (c.type === 'legal') return m <= 120 ? 0.02 : 0.015;
+      if (c.type === 'otra') return (c.pct || 0);
+      return 0;
+    };
+
+    for (let m = 1; m <= n && bal > EPS; m++) {
+      const rA = rs[m - 1];
+      const r = rA / 12;
+      if (rA !== prevR) { cuo = cuota(bal, r, rem); prevR = rA; }
+      const a = addMonths(firma, m - 1), b = addMonths(firma, m);
+      const intr = bal * rA * yearFraction(basis, a, b);
+      let princ = cuo - intr;
+      if (princ > bal || rem <= 1 || m === n) princ = bal;
+      const pago = princ + intr;
+      bal -= princ; rem--;
+      totInt += intr;
+      let pre = 0, comp = 0;
+      if (bal > EPS && isPre(m)) {
+        pre = Math.min(opt.amount, bal);
+        comp = pre * pct(m);
+        bal -= pre; totPre += pre; totComp += comp;
+        if (bal > EPS) {
+          if (mode === 'cuota') cuo = cuota(bal, r, rem);
+          else rem = Math.max(1, Math.ceil(nper(bal, r, cuo) - 1e-9));
+        }
+      }
+      rows.push({ m, rate: rA, pago, int: intr, princ, pre, comp, bal: Math.max(bal, 0) });
+    }
+    return { rows, totInt, totComp, totPre, meses: rows.length, cuotaInicial: rows[0] ? rows[0].pago : 0 };
+  }
+
+  /* TIR mensual de una serie de flujos (t = 0,1,2...) => tipo anual efectivo */
+  function irrAnnual(flows) {
+    const f = (i) => flows.reduce((s, c, t) => s + c / Math.pow(1 + i, t), 0);
+    let lo = -0.9, hi = 1;
+    let flo = f(lo);
+    for (let k = 0; k < 200; k++) {
+      const mid = (lo + hi) / 2, fm = f(mid);
+      if ((fm > 0) === (flo > 0)) { lo = mid; flo = fm; } else hi = mid;
+    }
+    const i = (lo + hi) / 2;
+    return Math.pow(1 + i, 12) - 1;
+  }
+
+  /* Tipo fijo equivalente: el tipo que, con el capital y plazo originales, generaría ese coste */
+  function equivRate(C, n, coste) {
+    const tot = (r) => cuota(C, r / 12, n) * n - C;
+    let lo = 0, hi = 0.5;
+    if (coste <= 0) return 0;
+    for (let k = 0; k < 100; k++) {
+      const mid = (lo + hi) / 2;
+      if (tot(mid) < coste) lo = mid; else hi = mid;
+    }
+    return (lo + hi) / 2;
+  }
+
+  /* Pérdida financiera (Ley 5/2019): anticipar A euros justo después de pagar la cuota del mes m.
+     Se valoran los pagos que el banco deja de recibir por esos A euros, hasta la próxima revisión
+     (variable) o el vencimiento (fijo), al tipo de actualización = IRS de mercado + diferencial pactado. */
+  function perdida(d, m, A, irs, dif) {
+    const r = rates(d)[Math.min(m, d.n - 1)];
+    const rem = d.n - m;
+    let h = rem;
+    if (d.tipo === 'variable') {
+      if (m < d.mesesIni) h = d.mesesIni - m;
+      else { const k = (m - d.mesesIni) % 12; h = 12 - k; }
+      h = Math.min(h, rem);
+    }
+    const dd = irs + dif;
+    const q = cuota(A, r / 12, rem);
+    let bal = A, pv = 0, intPact = 0, intMerc = 0;
+    for (let k = 1; k <= h; k++) {
+      const i = bal * r / 12;
+      intPact += i; intMerc += bal * dd / 12;
+      const pr = Math.min(q - i, bal);
+      bal -= pr;
+      pv += q / Math.pow(1 + dd / 12, k);
+    }
+    pv += bal / Math.pow(1 + dd / 12, h);
+    return { r, h, dd, valor: pv, perdida: Math.max(0, pv - A), intPact, intMerc };
+  }
+
+  return { cuota, nper, rates, simulate, irrAnnual, equivRate, addMonths, yearFraction, daysBetween, perdida };
+})();
+
+
+</script>
+<script>
+(() => {
+'use strict';
+const $ = (s) => document.querySelector(s);
+const eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: 'always' });
+const eur0 = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0, useGrouping: 'always' });
+const pctF = (x, dec = 2) => new Intl.NumberFormat('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: 'always' }).format(x * 100) + ' %';
+const numF = (x, dec = 2) => new Intl.NumberFormat('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: 'always' }).format(x);
+const parse = (s) => {
+  s = String(s || '').trim().replace(/\s|€|%/g, '');
+  if (s.includes(',')) s = s.replace(/\./g, '').replace(',', '.');
+  else if (/^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, '');
+  const v = parseFloat(s);
+  return isNaN(v) ? NaN : v;
+};
+const anyos = (m) => { const a = Math.floor(m / 12), r = m % 12; return [a ? a + (a === 1 ? ' año' : ' años') : '', r ? r + (r === 1 ? ' mes' : ' meses') : ''].filter(Boolean).join(' y ') || '0 meses'; };
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 2600); }
+
+/* ---------- Estado ---------- */
+const store = {
+  get(k) { try { return JSON.parse(localStorage.getItem('mhc_' + k)); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem('mhc_' + k, JSON.stringify(v)); } catch (e) {} }
+};
+const today = new Date();
+const EJEMPLO = { C: 200000, n: 300, tipo: 'fijo', tin: 0.029, tipoIni: 0.0225, mesesIni: 12, dif: 0.0075, euribor: 0.03303, apertura: 0, fecha: today.toISOString().slice(0, 10) };
+let D = store.get('datos');
+let lang = store.get('lang');
+const loan = () => ({ ...D, fecha: new Date(D.fecha + 'T12:00:00') });
+const tinInicial = () => D.tipo === 'fijo' ? D.tin : D.tipoIni;
+
+/* ---------- Banderas ---------- */
+const FLAGS = [
+  { code: 'es', name: 'Español', svg: '<svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg>' },
+  { code: 'ca', name: 'Català', svg: '<svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#FCDD09"/><g fill="#DA121A"><rect y=".667" width="9" height=".667"/><rect y="2" width="9" height=".667"/><rect y="3.333" width="9" height=".667"/><rect y="4.667" width="9" height=".667"/></g></svg>' },
+  { code: 'en', name: 'English', svg: '<svg viewBox="0 0 60 30"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>' },
+  { code: 'fr', name: 'Français', svg: '<svg viewBox="0 0 3 2"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>' },
+  { code: 'de', name: 'Deutsch', svg: '<svg viewBox="0 0 5 3"><rect width="5" height="1" fill="#000"/><rect y="1" width="5" height="1" fill="#DD0000"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg>' },
+  { code: 'it', name: 'Italiano', svg: '<svg viewBox="0 0 3 2"><rect width="1" height="2" fill="#009246"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#CE2B37"/></svg>' }
+];
+$('#flags').innerHTML = FLAGS.map(f => `<button class="flag${f.code === 'es' ? '' : ' soon'}" type="button" data-lang="${f.code}" aria-label="${f.name}">${f.svg}<span>${f.name}</span>${f.code === 'es' ? '' : '<small>Próximamente</small>'}</button>`).join('');
+$('#flags').addEventListener('click', (e) => {
+  const b = e.target.closest('.flag'); if (!b) return;
+  if (b.dataset.lang !== 'es') { toast('Este idioma estará disponible muy pronto. De momento, en español.'); return; }
+  lang = 'es'; store.set('lang', lang); location.hash = D ? 'indice' : 'datos';
+});
+
+/* ---------- Formulario de datos ---------- */
+function fillForm(d) {
+  $('#fC').value = numF(d.C, 0);
+  $('#fN').value = d.n;
+  $(d.tipo === 'fijo' ? '#tFijo' : '#tVar').checked = true;
+  $('#fTin').value = numF(d.tin * 100);
+  $('#fIni').value = numF(d.tipoIni * 100);
+  $('#fMesesIni').value = d.mesesIni;
+  $('#fDif').value = numF(d.dif * 100);
+  $('#fEur').value = numF(d.euribor * 100, 3);
+  $(d.apertura > 0 ? '#aSi' : '#aNo').checked = true;
+  $('#fApert').value = numF((d.apertura || 0.005) * 100);
+  $('#fFecha').value = d.fecha;
+  syncForm();
+}
+function syncForm() {
+  const v = $('#tVar').checked;
+  $('#boxVar').hidden = !v; $('#boxFijo').hidden = v;
+  $('#boxApertura').hidden = !$('#aSi').checked;
+  const n = parse($('#fN').value); $('#fNhint').textContent = n > 0 ? '= ' + anyos(n) : '';
+  const c = parse($('#fC').value), a = parse($('#fApert').value);
+  $('#fApertHint').textContent = c > 0 && a >= 0 ? 'Sobre el capital: ' + eur.format(c * a / 100) : '';
+}
+$('#formDatos').addEventListener('input', syncForm);
+$('#formDatos').addEventListener('change', syncForm);
+$('#formDatos').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const d = {
+    C: parse($('#fC').value), n: Math.round(parse($('#fN').value)),
+    tipo: $('#tVar').checked ? 'variable' : 'fijo',
+    tin: parse($('#fTin').value) / 100, tipoIni: parse($('#fIni').value) / 100,
+    mesesIni: Math.round(parse($('#fMesesIni').value)), dif: parse($('#fDif').value) / 100,
+    euribor: parse($('#fEur').value) / 100,
+    apertura: $('#aSi').checked ? parse($('#fApert').value) / 100 : 0,
+    fecha: $('#fFecha').value || EJEMPLO.fecha
+  };
+  const errs = [];
+  if (!(d.C >= 1000)) errs.push('el capital (mínimo 1.000 €)');
+  if (!(d.n >= 12 && d.n <= 600)) errs.push('el plazo (entre 12 y 600 meses)');
+  if (d.tipo === 'fijo' && !(d.tin >= 0 && d.tin < 0.3)) errs.push('el tipo de interés');
+  if (d.tipo === 'variable') {
+    if (!(d.tipoIni >= 0 && d.tipoIni < 0.3)) errs.push('el tipo inicial');
+    if (!(d.mesesIni >= 0 && d.mesesIni < d.n)) errs.push('los meses de tipo inicial (menos que el plazo)');
+    if (!(d.dif >= -0.05 && d.dif < 0.2)) errs.push('el diferencial');
+    if (!(d.euribor > -0.05 && d.euribor < 0.2)) errs.push('el Euríbor');
+  }
+  if (!(d.apertura >= 0 && d.apertura < 0.1)) errs.push('la comisión de apertura');
+  const er = $('#formErr');
+  if (errs.length) { er.textContent = 'Revisa ' + errs.join(', ') + '.'; er.hidden = false; return; }
+  er.hidden = true;
+  if (d.tipo === 'fijo') { d.tipoIni = EJEMPLO.tipoIni; d.mesesIni = EJEMPLO.mesesIni; d.dif = isNaN(d.dif) ? EJEMPLO.dif : d.dif; d.euribor = isNaN(d.euribor) ? EJEMPLO.euribor : d.euribor; }
+  else d.tin = isNaN(d.tin) ? EJEMPLO.tin : d.tin;
+  D = d; store.set('datos', D); location.hash = 'indice';
+});
+
+/* ---------- Charts ---------- */
+const charts = {};
+function mkChart(id, cfg) {
+  if (charts[id]) charts[id].destroy();
+  if (typeof Chart === 'undefined') { $('#' + id).parentElement.innerHTML = '<p class="hint">No se ha podido cargar el gráfico. Comprueba la conexión y vuelve a abrir la app.</p>'; return; }
+  Chart.defaults.font.family = css('--body').replace(/"/g, '');
+  Chart.defaults.color = css('--muted');
+  Chart.defaults.borderColor = css('--line');
+  charts[id] = new Chart($('#' + id), cfg);
+}
+
+/* ---------- Índice ---------- */
+function renderIndice() {
+  const s = H.simulate(loan());
+  $('#summary').innerHTML = `
+    <div><small>Capital</small><b>${eur0.format(D.C)}</b></div>
+    <div><small>Plazo</small><b>${anyos(D.n)}</b></div>
+    <div><small>Tipo ${D.tipo}</small><b>${D.tipo === 'fijo' ? pctF(D.tin) : pctF(D.tipoIni) + ' → Eur. + ' + pctF(D.dif)}</b></div>
+    <div><small>Cuota</small><b>${eur.format(s.cuotaInicial)}</b></div>`;
+}
+
+/* ---------- 1. Mi préstamo ---------- */
+let simBase = null;
+function renderPrestamo() {
+  simBase = H.simulate(loan());
+  const rows = simBase.rows;
+  const years = Math.ceil(rows.length / 12);
+  const cap = [], int = [], bal = [], labels = [];
+  for (let y = 0; y < years; y++) {
+    const ys = rows.slice(y * 12, y * 12 + 12);
+    labels.push('Año ' + (y + 1));
+    cap.push(ys.reduce((a, r) => a + r.princ, 0));
+    int.push(ys.reduce((a, r) => a + r.int, 0));
+    bal.push(ys[ys.length - 1].bal);
+  }
+  mkChart('chA', {
+    data: { labels, datasets: [
+      { type: 'line', label: 'Capital pendiente', data: bal, yAxisID: 'y2', borderColor: css('--blue'), backgroundColor: css('--blue'), pointRadius: 2, pointHoverRadius: 6, tension: .25, order: 0 },
+      { type: 'bar', label: 'Capital devuelto', data: cap, backgroundColor: css('--good'), stack: 's', order: 1 },
+      { type: 'bar', label: 'Intereses', data: int, backgroundColor: css('--bad'), stack: 's', order: 1 }
+    ] },
+    options: {
+      responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + eur0.format(c.parsed.y) } } },
+      scales: {
+        x: { stacked: true, ticks: { autoSkip: true, maxTicksLimit: 8, callback: (v, i) => i + 1 }, title: { display: true, text: 'Año del préstamo' }, grid: { display: false } },
+        y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Pagado en el año' }, ticks: { callback: (v) => eur0.format(v) } },
+        y2: { position: 'right', beginAtZero: true, grid: { display: false }, title: { display: true, text: 'Te queda por pagar' }, ticks: { callback: (v) => numF(v / 1000, 0) + ' mil €' } }
+      }
+    }
+  });
+  const sl = $('#mesSlider'); sl.max = rows.length; if (+sl.value > rows.length || !sl.dataset.init) { sl.value = Math.min(60, rows.length); sl.dataset.init = 1; }
+  updSlider();
+
+  // Pestaña B
+  const total = D.C + simBase.totInt;
+  const cruce = rows.find(r => r.princ > r.int);
+  const mid = Math.floor(rows.length / 2);
+  const amortMid = D.C - rows[mid - 1].bal;
+  const intMid = rows.slice(0, mid).reduce((a, r) => a + r.int, 0);
+  const cuotaTxt = D.tipo === 'variable'
+    ? `${eur.format(rows[0].pago)} <small>después: ${eur.format(rows[Math.min(D.mesesIni, rows.length - 1)].pago)}</small>`
+    : eur.format(rows[0].pago);
+  $('#statsB').innerHTML = `
+    <div class="stat"><small>Cuota mensual</small><b>${cuotaTxt}</b></div>
+    <div class="stat bad"><small>Intereses totales</small><b>${eur.format(simBase.totInt)}</b></div>
+    <div class="stat"><small>Total que pagarás al banco</small><b>${eur.format(total)}</b><small>capital + intereses, sin otros gastos</small></div>`;
+  $('#notesB').innerHTML = `
+    <div class="note">${cruce ? `A partir del <b>mes ${cruce.m}</b> (${anyos(cruce.m)}), la mayor parte de tu cuota ya es capital y no intereses. Hasta entonces, el banco cobra más de lo que tú devuelves de deuda.` : 'Durante todo el préstamo la mayor parte de la cuota se destina a intereses.'}</div>
+    <div class="note">A mitad de plazo (mes ${mid}) habrás devuelto <b>${eur.format(amortMid)}</b>, el <b>${pctF(amortMid / D.C, 1)}</b> del capital. En ese tiempo habrás pagado ${eur.format(intMid)} de intereses, el ${pctF(intMid / simBase.totInt, 0)} de todos los intereses del préstamo.</div>
+    ${D.tipo === 'variable' ? `<div class="note">Tipo variable: los primeros ${D.mesesIni} meses al ${pctF(D.tipoIni)}; después, Euríbor (${pctF(D.euribor, 3)}) + ${pctF(D.dif)} = ${pctF(D.euribor + D.dif, 3)}. Si el Euríbor cambia, cambiarán estas cifras.</div>` : ''}`;
+}
+function updSlider() {
+  if (!simBase) return;
+  const m = +$('#mesSlider').value, r = simBase.rows[m - 1];
+  $('#mesReadout').innerHTML = `Mes <b>${m}</b> (${anyos(m)}): te quedan <b>${eur.format(r.bal)}</b> por pagar.<span class="split"><span>Cuota total<b>${eur.format(r.pago)}</b></span><span class="g">Capital<b>${eur.format(r.princ)}</b></span><span class="r">Intereses<b>${eur.format(r.int)}</b></span></span>`;
+}
+$('#mesSlider').addEventListener('input', updSlider);
+$('#tabA').addEventListener('click', () => setTab('A'));
+$('#tabB').addEventListener('click', () => setTab('B'));
+function setTab(t) {
+  $('#tabA').setAttribute('aria-selected', t === 'A'); $('#tabB').setAttribute('aria-selected', t === 'B');
+  $('#paneA').hidden = t !== 'A'; $('#paneB').hidden = t !== 'B';
+}
+
+/* ---------- 2. Anticipos ---------- */
+function antInit() {
+  $('#aMes').max = D.n;
+  $('#aMesHint').textContent = `Entre 1 y ${D.n - 1}.`;
+}
+function syncAnt() { $('#boxOtra').hidden = !$('#cpO').checked; }
+$('#formAnt').addEventListener('change', syncAnt);
+$('#formAnt').addEventListener('submit', (e) => { e.preventDefault(); renderAnticipos(true); });
+function renderAnticipos(scroll) {
+  const amount = parse($('#aImp').value), start = Math.round(parse($('#aMes').value));
+  const freq = document.querySelector('input[name=freq]:checked').value;
+  const ct = document.querySelector('input[name=comp]:checked').value;
+  const comp = { type: ct, pct: parse($('#aOtra').value) / 100 };
+  const er = $('#antErr');
+  if (!(amount > 0) || !(start >= 1 && start < D.n) || (ct === 'otra' && !(comp.pct >= 0))) {
+    er.textContent = `Indica un importe mayor que cero y un mes entre 1 y ${D.n - 1}.`; er.hidden = false; return;
+  }
+  er.hidden = true;
+  const L = loan();
+  const base = H.simulate(L);
+  const opt = { amount, start, freq, comp };
+  const P = H.simulate(L, { ...opt, mode: 'plazo' });
+  const Q = H.simulate(L, { ...opt, mode: 'cuota' });
+  const sc = [
+    { name: 'Sin anticipar', int: base.totInt, comp: 0 },
+    { name: 'Menos meses', int: P.totInt, comp: P.totComp },
+    { name: 'Cuota más baja', int: Q.totInt, comp: Q.totComp }
+  ];
+  sc.forEach(s => s.ahorro = Math.max(0, base.totInt - s.int - s.comp));
+  mkChart('chAntA', {
+    type: 'bar',
+    data: { labels: sc.map(s => s.name), datasets: [
+      { label: 'Intereses', data: sc.map(s => s.int), backgroundColor: css('--bad'), stack: 's' },
+      { label: 'Compensación al banco', data: sc.map(s => s.comp), backgroundColor: css('--bad-soft'), stack: 's' },
+      { label: 'Tu ahorro neto', data: sc.map(s => s.ahorro), backgroundColor: css('--good'), stack: 's' }
+    ] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + eur0.format(c.parsed.y) } } },
+      scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, ticks: { callback: (v) => eur0.format(v) } } } }
+  });
+  const totPre = P.totPre;
+  const qAfter = Q.rows[Math.min(start, Q.rows.length - 1)];
+  $('#antStats').innerHTML = `
+    <div class="stat"><small>Total anticipado</small><b>${eur0.format(totPre)}</b><small>${freq === 'una' ? 'en el mes ' + start : freq === 'anual' ? 'cada 12 meses desde el mes ' + start : 'cada mes desde el mes ' + start}</small></div>
+    <div class="stat good"><small>Menos meses: ahorras</small><b>${eur0.format(sc[1].ahorro)}</b><small>terminas en ${anyos(P.meses)} en vez de ${anyos(base.meses)}</small></div>
+    <div class="stat good"><small>Cuota más baja: ahorras</small><b>${eur0.format(sc[2].ahorro)}</b><small>cuota tras el anticipo: ${eur.format(qAfter.pago)}</small></div>`;
+
+  const eqBase = H.equivRate(D.C, D.n, base.totInt);
+  const eqP = H.equivRate(D.C, D.n, P.totInt + P.totComp);
+  const eqQ = H.equivRate(D.C, D.n, Q.totInt + Q.totComp);
+  const eqs = [eqBase, eqP, eqQ];
+  mkChart('chAntB', {
+    type: 'bar',
+    data: { labels: [D.tipo === 'fijo' ? 'Tipo pactado' : 'Tipo medio pactado', 'Menos meses', 'Cuota más baja'], datasets: [
+      { label: 'Tipo equivalente', data: eqs.map(x => x * 100), backgroundColor: [css('--blue'), eqP < eqBase ? css('--good') : css('--bad'), eqQ < eqBase ? css('--good') : css('--bad')] }
+    ] },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + numF(c.parsed.x, 3) + ' %' } } },
+      scales: { x: { beginAtZero: true, ticks: { callback: (v) => numF(v, 2) + ' %' } }, y: { grid: { display: false } } } }
+  });
+  const best = sc[1].ahorro >= sc[2].ahorro ? 'reducir el número de cuotas' : 'reducir la cuota';
+  $('#antNote').innerHTML = `
+    <div class="note good">Tu préstamo al ${pctF(eqBase, 3)}${D.tipo === 'variable' ? ' (tipo fijo equivalente)' : ''} se comportaría como uno al <b>${pctF(eqP, 3)}</b> si reduces plazo, o al <b>${pctF(eqQ, 3)}</b> si reduces cuota. En tu caso ahorras más si eliges <b>${best}</b>.</div>
+    <p class="hint">Reducir plazo suele ahorrar más intereses; reducir cuota te deja más margen cada mes. Las dos opciones son válidas: depende de lo que necesites.</p>
+    ${ct !== 'none' ? '<div class="note">Hemos calculado con la compensación máxima pactada. Puede ser menor, o incluso cero: <a href="#" id="toPF">mira cuándo hay que pagarla</a>.</div>' : ''}`;
+  const toPF = $('#toPF'); if (toPF) toPF.addEventListener('click', (e) => { e.preventDefault(); setAntTab(2); });
+  $('#antRes').hidden = false;
+  if (scroll) $('#antRes').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
+
+function setAntTab(t) {
+  $('#antTab1').setAttribute('aria-selected', t === 1); $('#antTab2').setAttribute('aria-selected', t === 2);
+  $('#antPane1').hidden = t !== 1; $('#antPane2').hidden = t !== 2;
+  if (t === 2) renderPF();
+}
+$('#antTab1').addEventListener('click', () => setAntTab(1));
+$('#antTab2').addEventListener('click', () => setAntTab(2));
+
+/* IRS publicados por el Banco de España (BOE 12-10-2026, datos de septiembre de 2026), en años */
+const IRS = [[1, 3.129], [2, 3.409], [3, 3.438], [4, 3.445], [5, 3.450], [7, 3.470], [10, 3.525], [15, 3.595], [20, 3.590], [30, 3.457]];
+const irsNear = (months) => { const y = months / 12; return IRS.reduce((b, x) => Math.abs(x[0] - y) < Math.abs(b[0] - y) ? x : b); };
+const hexA = (hex, a) => { const h = hex.replace('#', ''); const n = parseInt(h.length === 3 ? h.split('').map(c => c + c).join('') : h, 16); return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`; };
+let pfKey = '';
+$('#pfDif').addEventListener('input', () => { $('#pfDif').dataset.user = 1; renderPF(); });
+$('#pfIrs').addEventListener('input', renderPF);
+
+function renderPF() {
+  if (!D) return;
+  const L = loan();
+  let amount = parse($('#aImp').value), start = Math.round(parse($('#aMes').value));
+  if (!(amount > 0)) amount = 10000;
+  if (!(start >= 1 && start < D.n)) start = Math.min(24, D.n - 1);
+  const ct = document.querySelector('input[name=comp]:checked').value;
+  const capPct = ct === 'legal' ? (start <= 120 ? 0.02 : 0.015) : ct === 'otra' ? (parse($('#aOtra').value) / 100 || 0) : 0;
+  const maxComp = amount * capPct;
+
+  // Diferencial por defecto: tipo de la firma menos el IRS del plazo más próximo
+  const r0 = D.tipo === 'fijo' ? D.tin : D.tipoIni;
+  const h0 = D.tipo === 'fijo' ? D.n : (D.mesesIni || 12);
+  const ref = irsNear(h0);
+  const key = JSON.stringify([D.tipo, D.tin, D.tipoIni, D.mesesIni, D.n]);
+  if (key !== pfKey) {
+    pfKey = key;
+    if (!$('#pfDif').dataset.user) $('#pfDif').value = numF((r0 * 100 - ref[1]), 2);
+    $('#pfIrs').value = Math.max(0.25, Math.round((ref[1] - 1) * 20) / 20);
+  }
+  $('#pfDifHint').textContent = `Si no lo tienes a mano, lo hemos calculado como tu tipo inicial (${pctF(r0)}) menos el IRS a ${ref[0]} ${ref[0] === 1 ? 'año' : 'años'} de septiembre de 2026 (${numF(ref[1], 3)} %). Puede ser negativo.`;
+  const dif = (parse($('#pfDif').value) || 0) / 100;
+  const irs = parse($('#pfIrs').value) / 100;
+  const p = H.perdida(L, start, amount, irs, dif);
+  const loss = p.perdida > 0.005;
+  const pay = Math.min(p.perdida, maxComp);
+
+  $('#pfFormula').innerHTML = `
+    <span>IRS al anticipar<b>${numF(irs * 100, 2)} %</b></span><span class="op">+</span>
+    <span>Diferencial<b>${numF(dif * 100, 2)} %</b></span><span class="op">=</span>
+    <span class="res ${loss ? 'bad' : 'good'}">Puede volver a prestar al<b>${numF(p.dd * 100, 2)} %</b></span>
+    <p class="cmp ${loss ? 'bad' : 'good'}">${numF(p.dd * 100, 2)} % ${loss ? 'es menor que' : 'no es menor que'} tu tipo del ${numF(p.r * 100, 2)} %: <b>${loss ? 'hay pérdida financiera' : 'no hay pérdida financiera'}</b>.</p>`;
+  $('#pfCaso').textContent = `Usamos lo que indicaste en «Calcular mi ahorro»: ${eur0.format(amount)} en el mes ${start}. ${D.tipo === 'variable' ? `Como tu tipo es variable, la pérdida solo se cuenta hasta la próxima revisión del tipo (${p.h} ${p.h === 1 ? 'mes' : 'meses'}).` : `La pérdida se cuenta hasta el final del préstamo (${anyos(p.h)}).`}`;
+
+  mkChart('chPF2', {
+    type: 'bar',
+    data: { labels: ['Pactados contigo', 'Al volver a prestarlo'], datasets: [{ data: [p.intPact, p.intMerc], backgroundColor: [css('--navy'), css('--blue')] }] },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + eur0.format(c.parsed.x) } } },
+      scales: { x: { beginAtZero: true, ticks: { callback: (v) => eur0.format(v) } }, y: { grid: { display: false } } } }
+  });
+  $('#pfStats').innerHTML = `
+    <div class="stat ${loss ? 'bad' : 'good'}"><small>Pérdida financiera del banco</small><b>${eur.format(p.perdida)}</b></div>
+    <div class="stat"><small>Compensación máxima de tu contrato</small><b>${eur.format(maxComp)}</b><small>${ct === 'none' ? 'tu contrato no prevé compensación' : pctF(capPct) + ' de lo que anticipas'}</small></div>
+    <div class="stat ${pay > 0.005 ? 'bad' : 'good'}"><small>Lo que pagarías</small><b>${eur.format(pay)}</b><small>la menor de las dos cifras</small></div>`;
+  $('#pfNote').innerHTML = !loss
+    ? `<div class="note good">Con un IRS del ${numF(irs * 100, 2)} %, el mercado está igual o más caro que cuando firmaste. El banco no pierde nada y <b>no puede cobrarte compensación</b>.</div>`
+    : ct === 'none'
+      ? `<div class="note good">El banco tendría una pérdida, pero tu contrato no prevé compensación: <b>no pagas nada</b>.</div>`
+      : pay < maxComp - 0.005
+        ? `<div class="note bad">Hay pérdida, pero es menor que el máximo pactado. El banco solo puede cobrarte <b>${eur.format(pay)}</b>, no los ${eur.format(maxComp)} del contrato.</div>`
+        : `<div class="note bad">La pérdida supera el máximo pactado, así que pagarías el máximo: <b>${eur.format(pay)}</b>.</div>`;
+
+  // Gráfico 1: ejemplo ilustrativo de mercado frente a tu tipo
+  const off = [0, -.3, -.7, -1, -1.1, -.8, -.3, .3, .8, 1.1, 1.2, .9, .4, -.2, -.6, -.7, -.4, .1, .6, .9, 1];
+  const yrs = off.map((_, i) => i === 0 ? 'Firma' : 'Año ' + i);
+  mkChart('chPF1', {
+    type: 'line',
+    data: { labels: yrs, datasets: [
+      { label: 'El banco puede volver a prestar al', data: off.map(o => r0 * 100 + o), borderColor: css('--blue'), backgroundColor: css('--blue'), tension: .4, pointRadius: 0,
+        fill: { target: 1, above: hexA(css('--good'), .28), below: hexA(css('--bad'), .28) } },
+      { label: 'Tu tipo', data: off.map(() => r0 * 100), borderColor: css('--navy'), borderWidth: 2.5, pointRadius: 0 }
+    ] },
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + numF(c.parsed.y, 2) + ' %' } } },
+      scales: { x: { grid: { display: false }, ticks: { maxTicksLimit: 6 } }, y: { ticks: { callback: (v) => numF(v, 1) + ' %' } } } }
+  });
+
+  // Gráfico 3: frontera
+  const pts = [], comp = [];
+  let ymax = 0;
+  for (let x = 0; x <= 7.001; x += 0.1) {
+    const q = H.perdida(L, start, amount, x / 100, dif).perdida;
+    pts.push({ x, y: q }); comp.push({ x, y: Math.min(q, maxComp) }); ymax = Math.max(ymax, q);
+  }
+  const thr = (p.r - dif) * 100;
+  const top = maxComp > 0 ? Math.max(maxComp * 2.5, 50) : Math.max(ymax, 1) * 1.08;
+  mkChart('chPF3', {
+    type: 'line',
+    data: { datasets: [
+      { label: 'Compensación que pagarías', data: comp, borderWidth: 3, pointRadius: 0, fill: 'origin', backgroundColor: hexA(css('--bad'), .15),
+        segment: { borderColor: (c) => c.p0.parsed.y > 0.5 || c.p1.parsed.y > 0.5 ? css('--bad') : css('--good') } },
+      { label: 'Pérdida financiera', data: pts, borderColor: css('--muted'), borderDash: [5, 4], borderWidth: 1.5, pointRadius: 0 },
+      { label: 'Frontera (IRS de la firma)', data: [{ x: thr, y: 0 }, { x: thr, y: top }], borderColor: css('--blue'), borderDash: [3, 3], borderWidth: 1.5, pointRadius: 0 },
+      { label: 'Tu caso', data: [{ x: irs * 100, y: pay }], borderColor: css('--blue'), backgroundColor: css('--blue'), pointRadius: 7, showLine: false }
+    ] },
+    options: { responsive: true, maintainAspectRatio: false, parsing: false, clip: 4,
+      plugins: { legend: { display: false }, tooltip: { filter: (c) => c.datasetIndex !== 2, callbacks: { title: (c) => 'IRS ' + numF(c[0].parsed.x, 2) + ' %', label: (c) => ' ' + c.dataset.label + ': ' + eur0.format(c.parsed.y) } } },
+      scales: { x: { type: 'linear', min: 0, max: 7, title: { display: true, text: 'IRS el día que anticipas' }, ticks: { callback: (v) => numF(v, 0) + ' %' } },
+        y: { min: 0, max: top, ticks: { callback: (v) => eur0.format(v) } } } }
+  });
+}
+
+/* ---------- Instalación en el móvil ---------- */
+let deferredInstall = null;
+const ua = navigator.userAgent;
+const isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const isAndroid = /android/i.test(ua);
+const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+function updInstall() {
+  const card = $('#installCard');
+  if (!window.TAT_PWA || isStandalone() || store.get('noInstall')) { card.hidden = true; return; }
+  let t;
+  if (isIOS) t = 'En iPhone o iPad: pulsa el botón <b>Compartir</b> (el cuadrado con una flecha hacia arriba) y elige <b>«Añadir a pantalla de inicio»</b>. Si no lo ves, abre esta página en Safari.';
+  else if (deferredInstall) t = 'Pulsa <b>Instalar</b> y la tendrás junto a tus otras apps. Funciona también sin conexión.';
+  else if (isAndroid) t = 'En Android: abre el menú <b>⋮</b> del navegador y elige <b>«Instalar aplicación»</b> o <b>«Añadir a pantalla de inicio»</b>.';
+  else t = 'Abre esta página en tu móvil. <b>iPhone:</b> Compartir → «Añadir a pantalla de inicio». <b>Android:</b> menú ⋮ → «Instalar aplicación».';
+  $('#installTxt').innerHTML = t;
+  $('#installBtn').hidden = !deferredInstall;
+  card.hidden = false;
+}
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstall = e; updInstall(); });
+window.addEventListener('appinstalled', () => { deferredInstall = null; $('#installCard').hidden = true; });
+$('#installBtn').addEventListener('click', async () => { if (!deferredInstall) return; deferredInstall.prompt(); try { await deferredInstall.userChoice; } catch (e) {} deferredInstall = null; updInstall(); });
+$('#installClose').addEventListener('click', () => { store.set('noInstall', true); $('#installCard').hidden = true; });
+
+/* ---------- 3. Días ---------- */
+function renderDias() {
+  const L = loan();
+  const bases = ['30/360', 'real/365', 'real/real', 'real/360'];
+  const names = { '30/360': '30/360 comercial', 'real/365': 'Real/365', 'real/real': 'Real/Real', 'real/360': 'Real/360' };
+  const res = bases.map(b => { const s = H.simulate(L, { basis: b }); return { b, int: s.totInt, eff: H.irrAnnual([-D.C, ...s.rows.map(r => r.pago)]) }; });
+  const min = Math.min(...res.map(r => r.int));
+  $('#tblDias').innerHTML = `<thead><tr><th>Base de cálculo</th><th>Intereses totales</th><th>Diferencia</th><th>Tipo efectivo</th></tr></thead><tbody>${
+    res.map(r => { const dif = r.int - min; return `<tr class="${dif < 0.005 ? 'best' : ''}"><td>${names[r.b]}</td><td>${eur.format(r.int)}</td><td class="${dif < 0.005 ? 'good' : 'bad'}">${dif < 0.005 ? 'mínimo' : '+' + eur.format(dif)}</td><td>${numF(r.eff * 100, 4)} %</td></tr>`; }).join('')}</tbody>`;
+  const r360 = res[3], r30 = res[0];
+  $('#diasNote').innerHTML = `<div class="note bad">Con la base Real/360 pagarías <b>${eur.format(r360.int - r30.int)}</b> más de intereses que con la 30/360, por el mismo préstamo y el mismo tipo nominal.</div>
+    <p class="hint">El tipo efectivo es el coste anual real de capital e intereses, sin comisiones, con cuatro decimales. Usamos los días de cada mes a partir de la fecha de firma que indicaste.</p>`;
+}
+
+/* ---------- 4. Coste real ---------- */
+const PRODS = [
+  { k: 'cuenta', name: 'Mantenimiento de la cuenta' },
+  { k: 'hogar', name: 'Seguro del inmueble' },
+  { k: 'salud', name: 'Seguro médico' },
+  { k: 'vida', name: 'Seguro de vida' },
+  { k: 'otros', name: 'Otros' }
+];
+const PROD_EJ = { cuenta: [0.10, 0], hogar: [0.10, 25], salud: [0, 0], vida: [0.20, 30], otros: [0, 0] };
+let prodVals = store.get('prods') || PROD_EJ;
+$('#prods').innerHTML = `<p class="hint">Valores de ejemplo: cámbialos por los de tu oferta. Deja a 0 lo que no tengas.</p>` + PRODS.map(p => `
+  <div class="prod"><b>${p.name}</b>
+    <div class="field"><label for="pb_${p.k}">Rebaja del tipo</label><div class="inputwrap"><input id="pb_${p.k}" inputmode="decimal" value="${numF(prodVals[p.k][0])}"><span class="unit">%</span></div></div>
+    <div class="field"><label for="pc_${p.k}">Coste al mes</label><div class="inputwrap"><input id="pc_${p.k}" inputmode="decimal" value="${numF(prodVals[p.k][1])}"><span class="unit">€</span></div></div>
+  </div>`).join('');
+$('#prods').addEventListener('input', renderCoste);
+document.querySelectorAll('input[name=tipoBon]').forEach(i => i.addEventListener('change', renderCoste));
+
+function renderCoste() {
+  if (!D) return;
+  const L = loan();
+  const ap = D.C * (D.apertura || 0);
+  $('#taeCalc').innerHTML = `
+    <div class="note"><b>Tu TAE es la que figura en tu FEIN.</b> Para calcularla, además del tipo de interés, la ley obliga al banco a tener en cuenta:</div>
+    <ul class="checks">
+      <li><b>Las comisiones</b> que cobra el banco por el préstamo, como la de apertura${ap > 0 ? ` (en tu caso, ${eur.format(ap)})` : ''}.</li>
+      <li><b>La tasación</b> del inmueble, cuando es necesaria para conceder el préstamo.</li>
+      <li><b>El seguro de daños del inmueble</b>, que es obligatorio.</li>
+      <li><b>Los demás seguros, como el de vida, solo si son condición del préstamo.</b> Si el banco no lo exige, el seguro de vida no entra en la TAE. Si lo pide para rebajarte el tipo, su coste se incluye en la <b>TAE bonificada</b> (la que se calcula con los productos contratados), pero no en la TAE sin bonificar.</li>
+      <li><b>Otros productos y servicios obligatorios</b> ligados al préstamo, como el mantenimiento de la cuenta donde se cargan las cuotas o una tarjeta.</li>
+      <li><b>Cualquier otro gasto</b> que tengas que pagar tú por el préstamo y que el banco conozca.</li>
+      <li><b>El calendario de pagos:</b> cuánto pagas y cuándo. No cuesta lo mismo pagar cada mes que una vez al año.</li>
+    </ul>
+    <p><b>No se incluyen</b> los gastos de notaría, la inscripción de la compra de la vivienda en el Registro de la Propiedad ni lo que tendrías que pagar si no cumples el contrato (por ejemplo, intereses de demora).</p>
+    ${D.tipo === 'variable' ? '<p class="hint">Como tu préstamo es variable, la TAE supone que el Euríbor se queda igual durante toda la vida del préstamo. Si el Euríbor cambia, tu coste real también cambiará.</p>' : ''}`;
+
+  // Bonificaciones
+  const vals = {}; let bonif = 0, costeMes = 0;
+  PRODS.forEach(p => { const b = parse($('#pb_' + p.k).value) / 100 || 0, c = parse($('#pc_' + p.k).value) || 0; vals[p.k] = [b * 100, c]; bonif += b; costeMes += c; });
+  store.set('prods', vals);
+  const incluye = $('#tbSi').checked;
+  const sinB = H.simulate(L, { extraRate: incluye ? bonif : 0 });
+  const conB = H.simulate(L, { extraRate: incluye ? 0 : -bonif });
+  const totSin = sinB.rows.reduce((a, r) => a + r.pago, 0);
+  const totCon = conB.rows.reduce((a, r) => a + r.pago, 0) + costeMes * conB.meses;
+  const anualSin = sinB.rows.slice(0, 12).reduce((a, r) => a + r.pago, 0);
+  const anualCon = conB.rows.slice(0, 12).reduce((a, r) => a + r.pago, 0) + costeMes * 12;
+  const mesSin = sinB.rows[0].pago, mesCon = conB.rows[0].pago + costeMes;
+  const cls = (a, b) => a < b - 0.005 ? 'good' : a > b + 0.005 ? 'bad' : '';
+  const tipoTxt = (extra) => D.tipo === 'fijo' ? pctF(D.tin + extra) : pctF(D.tipoIni + extra) + ' / ' + pctF(D.euribor + D.dif + extra, 3);
+  $('#tblBon').innerHTML = `<thead><tr><th></th><th>Sin productos</th><th>Con productos</th></tr></thead><tbody>
+    <tr><td>Tipo de interés</td><td>${tipoTxt(incluye ? bonif : 0)}</td><td class="good">${tipoTxt(incluye ? 0 : -bonif)}</td></tr>
+    <tr><td>Cuota del préstamo</td><td>${eur.format(sinB.rows[0].pago)}</td><td class="good">${eur.format(conB.rows[0].pago)}</td></tr>
+    <tr><td>Coste de los productos al mes</td><td>${eur.format(0)}</td><td class="bad">+${eur.format(costeMes)}</td></tr>
+    <tr><td><b>Pago total al mes</b></td><td class="${cls(mesSin, mesCon)}">${eur.format(mesSin)}</td><td class="${cls(mesCon, mesSin)}">${eur.format(mesCon)}</td></tr>
+    <tr><td><b>Pago total al año</b></td><td class="${cls(anualSin, anualCon)}">${eur.format(anualSin)}</td><td class="${cls(anualCon, anualSin)}">${eur.format(anualCon)}</td></tr>
+    <tr><td>Total en todo el préstamo</td><td class="${cls(totSin, totCon)}">${eur0.format(totSin)}</td><td class="${cls(totCon, totSin)}">${eur0.format(totCon)}</td></tr>
+  </tbody>`;
+  const dif = totCon - totSin;
+  $('#bonNote').innerHTML = bonif === 0 && costeMes === 0 ? '<p class="hint">Introduce las rebajas y costes de tu oferta para ver la comparación.</p>'
+    : dif > 0 ? `<div class="note bad">Con estos datos, las bonificaciones <b>no te compensan</b>: bajan tu cuota ${eur.format(sinB.rows[0].pago - conB.rows[0].pago)} al mes, pero los productos cuestan ${eur.format(costeMes)}. En total pagarías <b>${eur0.format(dif)}</b> más.</div>`
+    : `<div class="note good">Con estos datos, las bonificaciones <b>te compensan</b>: ahorras <b>${eur0.format(-dif)}</b> en todo el préstamo.</div>`;
+  $('#bonNote').innerHTML += '<p class="hint">Suponemos que mantienes los productos y su precio durante todo el préstamo. Ojo: el precio de algunos seguros sube con la edad.</p>';
+}
+
+/* ---------- Router ---------- */
+const VIEWS = ['idioma', 'datos', 'indice', 'prestamo', 'anticipos', 'dias', 'coste', 'documentacion'];
+function route() {
+  let v = location.hash.replace('#', '');
+  if (!VIEWS.includes(v)) v = !lang ? 'idioma' : D ? 'indice' : 'datos';
+  if (!['idioma', 'datos', 'documentacion'].includes(v) && !D) v = 'datos';
+  document.querySelectorAll('[data-view]').forEach(s => s.hidden = s.dataset.view !== v);
+  $('#backBtn').hidden = ['idioma', 'datos', 'indice'].includes(v) || (v === 'documentacion' && !D);
+  $('#editBtn').hidden = !D || ['idioma', 'datos'].includes(v);
+  if (v === 'datos') fillForm(D || EJEMPLO);
+  if (v === 'indice') { renderIndice(); updInstall(); }
+  if (v === 'prestamo') renderPrestamo();
+  if (v === 'anticipos') { antInit(); syncAnt(); renderAnticipos(false); if (!$('#antPane2').hidden) renderPF(); }
+  if (v === 'dias') renderDias();
+  if (v === 'coste') renderCoste();
+  window.scrollTo(0, 0);
+}
+$('#backBtn').addEventListener('click', () => location.hash = 'indice');
+$('#editBtn').addEventListener('click', () => location.hash = 'datos');
+window.addEventListener('hashchange', route);
+let rT; window.addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => Object.values(charts).forEach(c => c.resize()), 150); });
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', route);
+route();
+})();
+</script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}</script>
+
+</body>
+</html>

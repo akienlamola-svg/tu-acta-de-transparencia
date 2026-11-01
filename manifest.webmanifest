@@ -1,0 +1,17 @@
+{
+  "name": "Tu acta de transparencia",
+  "short_name": "Tu acta",
+  "description": "Entiende tu préstamo hipotecario antes, durante y después del acta de transparencia.",
+  "lang": "es",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FAFCFE",
+  "theme_color": "#123E7C",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
