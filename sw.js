@@ -1,6 +1,6 @@
 /* Tu acta de transparencia — primero busca la versión de internet; sin conexión, usa la copia guardada.
    Cambia VERSION cada vez que publiques cambios. */
-const VERSION = 'tat-v6';
+const VERSION = 'tat-v7';
 const CORE = ['./', './index.html', './chart.umd.min.js', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './emblema.png'];
 
 self.addEventListener('install', (e) => {

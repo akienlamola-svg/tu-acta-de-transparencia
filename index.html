@@ -194,6 +194,14 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
 .checks li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--sky); color: var(--navy); font-weight: 700; font-size: .8rem; display: grid; place-items: center; }
 .when { font-family: var(--display); font-weight: 700; color: var(--navy); font-size: 1.15rem; margin-top: 8px; }
 
+.eurbox { border-color: var(--blue); }
+.eurbox details.doc { background: var(--sky-2); }
+.decide { font-family: var(--display); font-weight: 700; font-size: 1.08rem; color: var(--navy); }
+ul.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
+tr.mine td { background: var(--sky-2); }
+.pill { display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; background: var(--navy); color: var(--paper); border-radius: 999px; padding: 2px 8px; margin-left: 6px; vertical-align: 1px; }
+select { appearance: auto; }
+b.neg { color: var(--bad); } b.pos { color: var(--good); }
 .foot { max-width: 760px; margin: 0 auto; color: var(--muted); font-size: .82rem; border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; }
 .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--paper); padding: 12px 18px; border-radius: 12px; font-weight: 600; z-index: 20; max-width: calc(100% - 32px); }
 @media (prefers-reduced-motion: no-preference) { .screen { animation: rise .25s ease-out; } @keyframes rise { from { transform: translateY(6px); } to { transform: none; } } }
@@ -220,7 +228,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
   <div style="display:grid;gap:10px">
     <p class="eyebrow">Bienvenida · Benvinguda · Welcome · Bienvenue · Willkommen · Benvenuti</p>
     <h1 data-t="lang.title">Elige tu idioma</h1>
-    <p class="lead" data-t="lang.lead">Toca la bandera de tu idioma. Esta herramienta te la ofrece la notaría de María Eugenia Roa Nonide y Javier González Granado para que entiendas tu préstamo hipotecario antes, durante y después del acta de transparencia.</p>
+    <p class="lead" data-t="lang.lead">Toca la bandera de tu idioma. <b>Tu acta de transparencia</b> es una herramienta que te ofrecemos María Eugenia Roa Nonide y Javier González Granado, notarios de Eivissa, para ayudarte a comprender las condiciones de tu préstamo antes, durante y después de la firma del acta de transparencia. Gracias por confiar en nosotros.</p>
   </div>
   <div class="flags" id="flags"></div>
 </section>
@@ -229,7 +237,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
 <section class="screen" data-view="datos" hidden>
   <div style="display:grid;gap:10px">
     <p class="eyebrow" data-t="d.eyebrow">Paso 1 · Tus datos</p>
-    <h1 data-t="d.title">Hola. Cuéntanos cómo es tu préstamo</h1>
+    <h1 data-t="d.title">Cuéntanos cómo es tu préstamo</h1>
     <p class="lead" data-t="d.lead">Encontrarás todos estos datos en tu <b>FEIN</b> (la ficha que te ha entregado el banco). Los números que ves son un ejemplo: cámbialos por los tuyos.</p>
   </div>
   <form class="card" id="formDatos" novalidate>
@@ -275,7 +283,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
       <div class="field">
         <label for="fEur" data-t="d.euribor">Euríbor para el cálculo</label>
         <div class="inputwrap"><input id="fEur" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
-        <span class="hint" data-t="d.euriborHint">Euríbor a 12 meses de octubre de 2026: 3,303 %. Suponemos que se mantiene igual; puedes probar otros valores.</span>
+        <span class="hint" data-t="d.euriborHint">Euríbor a 12 meses de octubre de 2026: 3,239 % (Banco de España). Suponemos que se mantiene igual; puedes probar otros valores.</span>
       </div>
     </div>
 
@@ -295,7 +303,33 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
     <div class="field">
       <label for="fFecha" data-t="d.date">Fecha prevista de firma</label>
       <div class="inputwrap"><input id="fFecha" type="date"></div>
-      <span class="hint" data-t="d.dateHint">Solo se usa para contar los días reales de cada mes en «¿Cuántos días tiene un año?».</span>
+      <span class="hint" data-t="d.dateHint">Se usa para calcular la carencia técnica y para contar los días reales de cada mes.</span>
+    </div>
+
+    <div class="field">
+      <label for="fBase" data-t="d.base">Base de cálculo de tu préstamo</label>
+      <div class="inputwrap"><select id="fBase">
+        <option value="30/360" data-t="d.b30">30/360 (comercial)</option>
+        <option value="real/365" data-t="d.b365">Real/365</option>
+        <option value="real/real" data-t="d.bRR">Real/Real</option>
+        <option value="real/360" data-t="d.b360">Real/360</option>
+      </select></div>
+      <span class="hint" data-t="d.baseHint">La encontrarás en tu FEIN o en el proyecto de escritura. Si no la sabes, deja 30/360. En «¿Cuántos días tiene un año?» te explicamos qué significa cada una.</span>
+    </div>
+
+    <div class="field">
+      <span class="legend" data-t="d.carQ">¿Tu préstamo tiene carencia técnica?</span>
+      <div class="note" data-t="d.carExpl">Las cuotas de un préstamo se cuentan por meses completos, normalmente a partir del día 1 del mes siguiente a la firma. Por eso, <b>seguramente el primer mes de tu préstamo solo pagarás los intereses por los días que falten desde el día de la firma hasta el fin de ese primer mes</b>. Es lo que se llama carencia técnica: durante esos días no devuelves capital, solo pagas intereses. Lo verás en tu FEIN.</div>
+      <div class="seg" role="radiogroup" data-ta="d.carQ" aria-label="¿Tu préstamo tiene carencia técnica?">
+        <input type="radio" name="carencia" id="cNo" value="no"><label for="cNo" data-t="w.no">No</label>
+        <input type="radio" name="carencia" id="cSi" value="si"><label for="cSi" data-t="w.yes">Sí</label>
+      </div>
+    </div>
+    <div class="field" id="boxCar" hidden>
+      <label for="fCarFin" data-t="d.carEnd">Fin de la carencia (inicio de las cuotas ordinarias)</label>
+      <div class="inputwrap"><input id="fCarFin" type="date"></div>
+      <span class="hint" data-t="d.carEndHint">Normalmente, el último día del mes de la firma. Cámbialo solo si tu FEIN dice otra cosa.</span>
+      <span class="hint" id="fCarHint"></span>
     </div>
 
     <p class="err" id="formErr" role="alert" hidden></p>
@@ -308,7 +342,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
 <section class="screen" data-view="indice" hidden>
   <div style="display:grid;gap:10px">
     <p class="eyebrow" data-t="i.eyebrow">Índice</p>
-    <h1 data-t="i.title">Las cosas claras</h1>
+    <h1 data-t="i.title">Las cuentas claras</h1>
   </div>
   <div class="summary" id="summary"></div>
   <div class="actions"><button class="btn ghost" id="editBtn" type="button" data-t="i.edit" hidden>Cambiar mis datos</button></div>
@@ -322,7 +356,8 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
     <a href="#anticipos"><span class="n">2</span><span><b data-t="m2.t">Pagos anticipados</b><span class="d" data-t="m2.d">Cuánto ahorras si adelantas dinero, y qué opción te conviene.</span></span><span class="chev">›</span></a>
     <a href="#dias"><span class="n">3</span><span><b data-t="m3.t">¿Cuántos días tiene un año?</b><span class="d" data-t="m3.d">Las bases de cálculo que usan los bancos y lo que cambian.</span></span><span class="chev">›</span></a>
     <a href="#coste"><span class="n">4</span><span><b data-t="m4.t">Coste real</b><span class="d" data-t="m4.d">TIN, TAE y lo que cuestan de verdad las bonificaciones.</span></span><span class="chev">›</span></a>
-    <a href="#documentacion"><span class="n">5</span><span><b data-t="m5.t">Documentación</b><span class="d" data-t="m5.d">FEIN, FiAE, minuta… qué es cada papel y cuándo lo recibes.</span></span><span class="chev">›</span></a>
+    <a href="#fijovariable"><span class="n">5</span><span><b data-t="m6.t">¿Fijo o variable?</b><span class="d" data-t="m6.d">Qué significa cada uno, qué es de verdad el Euríbor y qué pasaría con tu cuota si sube.</span></span><span class="chev">›</span></a>
+    <a href="#documentacion"><span class="n">6</span><span><b data-t="m5.t">Documentación</b><span class="d" data-t="m5.d">FEIN, FiAE, minuta… qué es cada papel y cuándo lo recibes.</span></span><span class="chev">›</span></a>
   </nav>
 </section>
 
@@ -357,7 +392,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
 <section class="screen" data-view="anticipos" hidden>
   <div style="display:grid;gap:10px">
     <h1 data-t="m2.t">Pagos anticipados</h1>
-    <p class="lead" data-t="a.lead">Adelantar dinero al banco es una forma de ahorrar: cada euro que devuelves antes deja de generar intereses durante el resto del préstamo. Prueba con tus cifras.</p>
+    <p class="lead" data-t="a.lead">Adelantar dinero al banco es una forma de ahorrar: cada euro que devuelves antes deja de generar intereses durante el resto del préstamo. Puedes verlo como una inversión en la que la rentabilidad es el mismo tipo de interés que pagas por tu préstamo. Prueba con tus cifras.</p>
   </div>
   <div class="tabs" role="tablist">
     <button role="tab" id="antTab1" aria-selected="true" type="button" data-t="a.tab1">Calcular mi ahorro</button>
@@ -484,6 +519,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
     <p data-t="dy.p">Mismo capital, mismo tipo y misma cuota; solo cambia cómo se cuentan los días. La diferencia se ajusta en la última cuota.</p>
     <div class="tablewrap"><table id="tblDias"></table></div>
     <div id="diasNote"></div>
+    <p class="note" data-t="dy.courts">Existen sentencias que han declarado abusivas algunas de estas prácticas bancarias. Te lo explicaremos en la notaría.</p>
   </div>
 </section>
 
@@ -491,12 +527,6 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
 <section class="screen" data-view="coste" hidden>
   <div style="display:grid;gap:10px">
     <h1 data-t="m4.t">Coste real</h1>
-  </div>
-  <div class="card">
-    <h2 data-t="c.h1">TIN y TAE: dos números, dos preguntas</h2>
-    <p data-t="c.tin"><b>TIN</b> (tipo de interés nominal) es el precio del dinero: el porcentaje con el que se calculan los intereses de cada cuota.</p>
-    <p data-t="c.tae"><b>TAE</b> (tasa anual equivalente) responde a otra pregunta: ¿cuánto me cuesta de verdad, al año, todo junto? Suma al TIN la comisión de apertura y otros gastos obligatorios, y tiene en cuenta que pagas cada mes y no una vez al año. Sirve para comparar ofertas de bancos distintos.</p>
-    <div id="taeCalc" style="display:grid;gap:10px"></div>
   </div>
   <div class="card">
     <h2 data-t="c.h2">¿Realmente me bonifican las bonificaciones?</h2>
@@ -512,13 +542,103 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
     <div class="tablewrap"><table id="tblBon"></table></div>
     <div id="bonNote"></div>
   </div>
+  <div class="card">
+    <h2 data-t="c.h1">TIN y TAE: dos números, dos preguntas</h2>
+    <p data-t="c.tin"><b>TIN</b> (tipo de interés nominal) es el precio del dinero: el porcentaje con el que se calculan los intereses de cada cuota.</p>
+    <p data-t="c.tae"><b>TAE</b> (tasa anual equivalente) responde a otra pregunta: ¿cuánto me cuesta de verdad, al año, todo junto? Suma al TIN la comisión de apertura y otros gastos obligatorios, y tiene en cuenta que pagas cada mes y no una vez al año. Sirve para comparar ofertas de bancos distintos.</p>
+    <div id="taeCalc" style="display:grid;gap:10px"></div>
+  </div>
 </section>
 
-<!-- ============ 5 DOCUMENTACIÓN ============ -->
+<!-- ============ 5 ¿FIJO O VARIABLE? ============ -->
+<section class="screen" data-view="fijovariable" hidden>
+  <div style="display:grid;gap:10px">
+    <h1 data-t="m6.t">¿Fijo o variable?</h1>
+    <p class="lead" data-t="fv.lead">Elegir entre tipo fijo y variable es una de las decisiones más importantes de tu préstamo. La decisión es tuya, pero nuestro deber como notarios es ayudarte a tomarla sabiendo bien a qué te expones. Por eso te mostramos, con tus propias cifras, qué pasaría si las cosas van bien y, sobre todo, si van mal.</p>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="fvTabA" aria-selected="true" type="button" data-t="fv.tabA">Qué es cada uno</button>
+    <button role="tab" id="fvTabB" aria-selected="false" type="button" data-t="fv.tabB">¿Y si cambia el Euríbor?</button>
+  </div>
+
+  <div id="fvPaneA" style="display:grid;gap:20px">
+    <div class="bases">
+      <div class="base"><code data-t="fv.fixT">Fijo</code><p data-t="fv.fixD">Pagas el mismo tipo durante toda la vida del préstamo, y tu cuota no cambia pase lo que pase en el mercado. A cambio, el tipo suele ser más alto que el inicial de un variable, y si los tipos bajan no te beneficias. Pagas por la tranquilidad.</p></div>
+      <div class="base"><code data-t="fv.varT">Variable</code><p data-t="fv.varD">Tu tipo es un índice, casi siempre el Euríbor, más un diferencial que no cambia. Se revisa cada cierto tiempo (normalmente cada 6 o 12 meses): si el Euríbor sube, sube tu cuota; si baja, baja. El riesgo de que los tipos suban lo asumes tú.</p></div>
+      <div class="base"><code data-t="fv.mixT">Mixto</code><p data-t="fv.mixD">Un tipo fijo durante los primeros años y variable después. Te da tranquilidad al principio y te deja la incertidumbre para más adelante.</p></div>
+    </div>
+
+    <div class="note bad" data-t="fv.trap"><b>Cuidado con las comparaciones engañosas.</b> El tipo inicial de un préstamo variable o mixto suele ser bajo durante unos meses o años. No compares solo la primera cuota: compara lo que pagarías durante todo el préstamo si el Euríbor sube.</div>
+
+    <div class="card">
+      <h2 data-t="fv.qT">Preguntas que te pueden ayudar</h2>
+      <ul class="checks">
+        <li data-t="fv.q1">¿Tus ingresos son estables o pueden cambiar?</li>
+        <li data-t="fv.q2">¿Podrías seguir pagando si tu cuota subiera 200 € al mes?</li>
+        <li data-t="fv.q3">¿Cuántos años dura tu préstamo? Cuanto más largo, más incertidumbre.</li>
+        <li data-t="fv.q4">¿Prefieres pagar algo más a cambio de saber siempre lo que vas a pagar?</li>
+      </ul>
+    </div>
+
+    <div class="card eurbox">
+      <h2 data-t="fv.eurT">¿Qué es realmente el Euríbor?</h2>
+      <p data-t="fv.eur1">El Euríbor parece un dato sencillo, pero no lo es. Refleja lo que le cuesta a un grupo reducido de grandes bancos europeos, llamado «panel», conseguir dinero en los mercados financieros, y tanto su definición legal como su forma de cálculo han cambiado con los años. Hasta 2019 no se calculaba con operaciones reales, sino con las estimaciones que comunicaban esos mismos bancos. Hoy se basa en operaciones, pero completadas con interpolaciones y ajustes cuando no hay suficientes, y eso ocurre con mucha frecuencia.</p>
+      <details class="doc"><summary><span data-t="fv.exT">Ejemplos de cómo se calcula</span></summary><div class="body" data-t="fv.exB">
+        <ul class="plain"><li>En enero de 2026, en el Euríbor a 12 meses, el que se usa en casi todas las hipotecas, <b>solo el 20 %</b> de las aportaciones de los bancos procedía de operaciones reales a ese plazo. <b>El 73 %</b> se calculó a partir de datos de días anteriores, ajustados.</li>
+        <li>Ese mismo mes, en el Euríbor a 3 meses, las operaciones reales fueron <b>solo el 15 %</b>.</li>
+        <li>En enero de 2024, casi <b>la mitad</b> de las aportaciones al Euríbor a 12 meses (el 44,5 %) no salía de operaciones, sino de los <b>modelos internos de cada banco</b>.</li></ul>
+        <p>Son datos publicados por la propia entidad que calcula el Euríbor, el European Money Markets Institute (<a href="https://www.emmi-benchmarks.eu/benchmarks/euribor/transparency/transparency-indicator-reports/" target="_blank" rel="noopener">EMMI</a>).</p>
+      </div></details>
+      <details class="doc"><summary><span data-t="fv.manT">¿Se ha manipulado el Euríbor?</span></summary><div class="body"><p data-t="fv.manB">Ese sistema permitió manipularlo. Entre 2005 y 2008, varios bancos del panel se concertaron para alterarlo. La Comisión Europea los sancionó en 2013 y 2016, y los tribunales de la Unión Europea confirmaron las sanciones. En el Reino Unido y en Estados Unidos se impusieron multas millonarias y hubo condenas a operadores. En Italia, los clientes afectados han llevado el asunto hasta su Tribunal Supremo, que está pendiente de lo que diga el Tribunal de Justicia de la UE. En España, en cambio, los tribunales no han admitido en general las reclamaciones de los consumidores, aunque la cuestión sigue abierta en los juzgados. <b>Que la manipulación existió está demostrado; lo difícil ha sido probar cuánto afectó a cada préstamo concreto.</b></p></div></details>
+      <details class="doc"><summary><span data-t="fv.mktT">Un índice de los mercados financieros</span></summary><div class="body"><p data-t="fv.mktB">El Euríbor no sirve solo para las hipotecas. Es la referencia de un mercado muchísimo mayor: fondos de inversión, futuros, permutas de tipos de interés (swaps) y otros productos financieros muy complejos, en los que se mueve mucho más dinero que en todos los préstamos a consumidores. Por eso, más que un simple tipo de interés, un préstamo variable puede verse como un instrumento financiero complejo, cuyo precio depende de mercados que no controlas y que no están pensados para ti.</p></div></details>
+      <p class="decide" data-t="fv.decide">Con todo esto sobre la mesa, la decisión es tuya. Nuestro trabajo es que la tomes sabiendo lo que firmas.</p>
+    </div>
+
+    <div class="note" data-t="fv.conv"><b>Si eliges variable, no es para siempre.</b> Más adelante podrás pasarte a tipo fijo, con tu banco (novación) o con otro banco (subrogación). La ley limita lo que pueden cobrarte por ese cambio: durante los tres primeros años, como máximo el 0,15 % del capital pendiente y nunca más que la pérdida financiera del banco; después, nada.</div>
+  </div>
+
+  <div id="fvPaneB" style="display:grid;gap:20px" hidden>
+    <div class="card">
+      <h2 data-t="fv.simT">Tu cuota si cambia el Euríbor</h2>
+      <p data-t="fv.simP">Compara las dos ofertas con tus cifras: el tipo fijo que te ofrecen y el diferencial que te sumarían al Euríbor si eliges variable. Usamos el capital y el plazo que indicaste.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="fvFix" data-t="fv.fixLabel">Tipo fijo que te ofrecen</label>
+          <div class="inputwrap"><input id="fvFix" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
+        </div>
+        <div class="field">
+          <label for="fvDif" data-t="fv.difLabel">Diferencial del variable que te ofrecen</label>
+          <div class="inputwrap"><input id="fvDif" inputmode="decimal" autocomplete="off"><span class="unit">%</span></div>
+        </div>
+      </div>
+      <p class="hint" data-t="fv.offHint">Si solo tienes una de las dos ofertas, pide la otra a tu banco o prueba con valores orientativos.</p>
+      <div class="legendrow"><span><i style="background:var(--navy)"></i><span data-t="fv.lgFix">Cuota con tipo fijo</span></span><span><i style="background:var(--good)"></i><span data-t="fv.lgVarLo">Variable: pagarías menos</span></span><span><i style="background:var(--bad)"></i><span data-t="fv.lgVarHi">Variable: pagarías más</span></span></div>
+      <div class="chartbox" style="height:300px"><canvas id="chFV1" data-ta="fv.ch1Aria" aria-label="Cuota según distintos niveles del Euríbor"></canvas></div>
+      <div id="fvWarn"></div>
+      <div class="field">
+        <label for="fvEur" data-t="fv.tryLabel">Prueba otro Euríbor</label>
+        <input type="range" class="slider" id="fvEur" min="-1" max="7" step="0.05">
+        <p class="readout" id="fvEurOut"></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-t="fv.histT">El Euríbor desde el año 2000</h2>
+      <p data-t="fv.histP">Así se ha movido el Euríbor a 12 meses, mes a mes. La línea discontinua es tu «Euríbor de equilibrio»: cuando el Euríbor está por encima, el variable te cuesta más que el fijo (<b style="color:var(--bad)">rojo</b>); cuando está por debajo, menos (<b style="color:var(--good)">verde</b>).</p>
+      <div class="chartbox" style="height:300px"><canvas id="chFV2" data-ta="fv.ch2Aria" aria-label="Evolución mensual del Euríbor desde 2000"></canvas></div>
+      <div id="fvEq"></div>
+      <h3 data-t="fv.peaksT">Cuándo estuvo más caro</h3>
+      <div class="tablewrap"><table id="fvPeaks"></table></div>
+      <p class="hint" data-t="fv.histSrc">Medias mensuales del Euríbor a 12 meses publicadas por el Banco de España, desde enero de 2000 hasta octubre de 2026 (3,239 %). Lo que pasó en el pasado no garantiza lo que pasará en el futuro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 DOCUMENTACIÓN ============ -->
 <section class="screen" data-view="documentacion" hidden>
   <div style="display:grid;gap:10px">
     <h1 data-t="m5.t">Documentación</h1>
-    <p class="lead" data-t="doc.lead">La Ley 5/2019, de contratos de crédito inmobiliario, obliga al banco a entregarte una serie de documentos antes de firmar, y al notario a comprobar que los tienes y que los entiendes. Toca cada uno para ver qué es.</p>
+    <p class="lead" data-t="doc.lead">La Ley 5/2019, de contratos de crédito inmobiliario, obliga al banco a entregarte una serie de documentos antes de firmar. En la notaría vamos a comprobar que los tienes y que los entiendes. Si hay algo que no tengas claro, durante la firma del acta de transparencia te lo explicaremos. Toca cada uno para ver qué es.</p>
   </div>
   <div class="timeline">
     <p class="when" data-t="doc.before">Antes: al menos 10 días naturales antes de firmar</p>
@@ -536,12 +656,12 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
     <details class="doc"><summary><span class="abbr" data-t="doc.seg.a">Seguros</span><span data-t="doc.seg.t">Condiciones de los seguros y garantías</span></summary><div class="body">
       <p data-t="doc.seg.p1">Si el banco exige un seguro de daños del inmueble o te ofrece otros con bonificación, debe informarte de sus condiciones. El seguro de daños es obligatorio, pero puedes contratarlo con la compañía que prefieras, sin que el banco pueda imponer la suya si la cobertura es equivalente.</p></div></details>
     <details class="doc"><summary><span class="abbr" data-t="doc.avi.a">Aviso</span><span data-t="doc.avi.t">Advertencia de que debes recibir asesoramiento notarial</span></summary><div class="body">
-      <p data-t="doc.avi.p1">El banco debe indicarte por escrito que tienes derecho a acudir a un notario de tu elección para que te asesore gratis sobre el préstamo.</p></div></details>
+      <p data-t="doc.avi.p1">El banco debe indicarte por escrito que tienes derecho a acudir a un notario de tu elección para que te asesore gratis sobre el préstamo. No permitas que te impongan ni te sugieran un notario determinado. Es tu decisión.</p></div></details>
 
     <p class="when" data-t="doc.during">Durante: el acta de transparencia</p>
     <details class="doc"><summary><span class="abbr" data-t="doc.acta.a">Acta</span><span data-t="doc.acta.t">Acta notarial de transparencia</span></summary><div class="body">
-      <p data-t="doc.acta.p1">Es una reunión con el notario, como muy tarde el día anterior a la firma. El notario comprueba que has recibido toda la documentación a tiempo, resuelve tus dudas y te explica las cláusulas una a una. Es <b>gratuita</b> para ti y la eliges tú.</p>
-      <p data-t="doc.acta.p2">También respondes un breve test que sirve para confirmar que has entendido lo esencial. Si algo no cuadra, el notario no puede autorizar la escritura.</p></div></details>
+      <p data-t="doc.acta.p1">Es una reunión con el notario, como muy tarde el día anterior a la firma. Es una actuación <b>totalmente gratuita</b> para ti y tú eliges con qué notario quieres hacerlo. El banco no puede imponerte ni sugerirte a otro. Gracias por elegirnos.</p>
+      <p data-t="doc.acta.p2">Uno de nosotros, María Eugenia Roa Nonide o Javier González Granado, comprobará que has recibido toda la documentación a tiempo, resolverá tus dudas y te explicará las cláusulas una a una. Después de eso responderás a un breve test que sirve para confirmar que has entendido lo esencial.</p></div></details>
 
     <p class="when" data-t="doc.after">Después de firmar</p>
     <details class="doc"><summary><span class="abbr" data-t="doc.escr.a">Escritura</span><span data-t="doc.escr.t">Copia de tu escritura de préstamo</span></summary><div class="body">
@@ -557,7 +677,7 @@ details.doc .body { padding: 0 16px 16px; display: grid; gap: 8px; color: var(--
   <p data-t="f.p1"><b>Tu acta de transparencia</b> es una herramienta orientativa y gratuita ofrecida por la notaría de María Eugenia Roa Nonide y Javier González Granado. Las cifras vinculantes son las de tu FEIN y tu escritura.</p>
   <p data-t="f.p2">Todos los cálculos se hacen en tu dispositivo. No se recoge ni se envía ningún dato.</p>
   <p><a href="#idioma" id="langLink"><span data-t="f.lang">Cambiar idioma</span> · <span id="langName">Español</span></a></p>
-  <p id="version">Versión 6 · noviembre de 2026</p>
+  <p><span id="version">Versión 7 · noviembre de 2026</span> · <span data-t="f.credit">Idea, diseño y desarrollo de Javier González Granado con Claude.</span></p>
 </footer>
 </main>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -621,6 +741,28 @@ const H = (() => {
     return f;
   }
 
+  /* Fracción de año entre dos fechas cualesquiera (para la carencia técnica) */
+  function dayFraction(basis, a, b) {
+    if (!(b > a)) return 0;
+    if (basis === '30/360') {
+      const d1 = Math.min(a.getDate(), 30), d2 = Math.min(b.getDate(), 30);
+      const days = (b.getFullYear() - a.getFullYear()) * 360 + (b.getMonth() - a.getMonth()) * 30 + (d2 - d1);
+      return Math.max(0, days) / 360;
+    }
+    return yearFraction(basis, a, b);
+  }
+  function days360(a, b) { return Math.round(dayFraction('30/360', a, b) * 360); }
+
+  /* Intereses de la carencia técnica: capital × tipo inicial × fracción de año, desde la firma hasta el fin de la carencia */
+  function carencia(d, extra = 0) {
+    if (!d.carencia || !d.firma || !d.carFin) return { int: 0, days: 0 };
+    const r = (d.tipo === 'fijo' ? d.tin : d.tipoIni) + extra;
+    const basis = d.base || '30/360';
+    const f = dayFraction(basis, d.firma, d.carFin);
+    const days = basis === '30/360' ? days360(d.firma, d.carFin) : daysBetween(d.firma, d.carFin);
+    return { int: d.C * r * f, days };
+  }
+
   /* Simulación del cuadro de amortización (sistema francés)
      opt.mode: 'none' | 'plazo' | 'cuota'
      opt.amount, opt.start (mes), opt.freq: 'una' | 'anual' | 'mensual'
@@ -628,7 +770,7 @@ const H = (() => {
   function simulate(d, opt = {}) {
     const n = d.n;
     const rs = rates(d, opt.extraRate || 0);
-    const basis = opt.basis || '30/360';
+    const basis = opt.basis || d.base || '30/360';
     const firma = d.fecha || new Date();
     const mode = opt.mode || 'none';
     let bal = d.C, cuo = 0, rem = n, prevR = null;
@@ -726,7 +868,7 @@ const H = (() => {
     return { r, h, dd, valor: pv, perdida: Math.max(0, pv - A), intPact, intMerc };
   }
 
-  return { cuota, nper, rates, simulate, irrAnnual, equivRate, addMonths, yearFraction, daysBetween, perdida };
+  return { cuota, nper, rates, simulate, carencia, dayFraction, irrAnnual, equivRate, addMonths, yearFraction, daysBetween, perdida };
 })();
 
 
@@ -735,7 +877,7 @@ const H = (() => {
 const I18N = {es:{}, ca:{}, en:{}, fr:{}, de:{}, it:{}};
 I18N.es = {
   'pct': ' %', 'yr1': 'año', 'yrN': 'años', 'mo1': 'mes', 'moN': 'meses', 'and': 'y',
-  'f.ver': 'Versión 6 · noviembre de 2026',
+  'f.ver': 'Versión 7 · noviembre de 2026',
   'yearN': 'Año {n}', 'kEur': '{n} mil €',
   'chartErr': 'No se ha podido cargar el gráfico. Comprueba la conexión y vuelve a abrir la app.',
   'd.feeOn': 'Sobre el capital: {x}',
@@ -802,6 +944,21 @@ I18N.es = {
   'c.empty': 'Introduce las rebajas y costes de tu oferta para ver la comparación.',
   'c.noPay': 'Con estos datos, las bonificaciones <b>no te compensan</b>: bajan tu cuota {a} al mes, pero los productos cuestan {b}. En total pagarías <b>{c}</b> más.',
   'c.pays': 'Con estos datos, las bonificaciones <b>te compensan</b>: ahorras <b>{x}</b> en todo el préstamo.',
+  's.car': 'Carencia técnica (1.er pago)',
+  'b.car': 'Carencia técnica (primer pago)', 'b.carSub': 'solo intereses, por {d} días', 'b.intCar': 'incluye {x} de la carencia técnica',
+  'd.carCalc': 'Pagarás unos <b>{x}</b> de intereses por {d} días de carencia.',
+  'e.car': 'la fecha de fin de la carencia (posterior a la firma y como máximo tres meses después)',
+  'dy.yours': 'la tuya',
+  'fv.lgVar': 'Cuota con tipo variable',
+  'fv.sMin': 'Mínimo', 'fv.sNow': 'Actual', 'fv.sPlus': 'Actual +{n} p.', 'fv.sMax': 'Máximo',
+  'fv.warn': 'Si el Euríbor volviera al máximo de {d} ({e}), tu cuota variable sería <b>{x}</b>: <b>{y} más al mes</b> que con el fijo. Antes de elegir variable, asegúrate de que podrías pagarla.',
+  'fv.warnNo': 'Con estas ofertas, incluso con el Euríbor de {d} el variable no superaría la cuota fija. Revisa que el tipo fijo y el diferencial sean correctos.',
+  'fv.tryOut': 'Con el Euríbor al <b>{e}</b>, tu cuota variable sería <b>{v}</b> (fija: {f}).',
+  'fv.more': '{x} más al mes', 'fv.less': '{x} menos al mes',
+  'fv.eqLabel': 'Tu Euríbor de equilibrio',
+  'fv.eqNote': 'Tu <b>Euríbor de equilibrio</b> es el <b>{e}</b> (tipo fijo menos diferencial). Si el Euríbor medio durante tu préstamo se queda por debajo, el variable te saldrá más barato; si lo supera, el fijo. Desde el año 2000, el Euríbor ha estado por encima de ese nivel el <b>{p}</b> del tiempo. Su media ha sido {a}, y la de los últimos diez años, {b}.',
+  'fv.thWhen': 'Cuándo', 'fv.thPay': 'Tu cuota variable', 'fv.thVsFix': 'Frente al fijo',
+  'fv.pk2000': 'Máximo de la burbuja tecnológica', 'fv.pk2008': 'Máximo histórico, antes de la crisis financiera', 'fv.pk2023': 'Subida tras la inflación de 2022',
   'c.assume': 'Suponemos que mantienes los productos y su precio durante todo el préstamo. Ojo: el precio de algunos seguros sube con la edad.'
 };
 
@@ -987,6 +1144,74 @@ I18N.ca = {
   'c.assume': "Suposem que mantens els productes i el seu preu durant tot el préstec. Compte: el preu d'algunes assegurances puja amb l'edat."
 };
 
+/* ---- Versió 7 ---- */
+Object.assign(I18N.ca, {
+  'lang.lead': "Toca la bandera de la teva llengua. <b>La teva acta de transparència</b> és una eina que t'oferim María Eugenia Roa Nonide i Javier González Granado, notaris d'Eivissa, per ajudar-te a entendre les condicions del teu préstec abans, durant i després de la signatura de l'acta de transparència. Gràcies per confiar en nosaltres.",
+  'd.title': "Explica'ns com és el teu préstec",
+  'd.euriborHint': "Euríbor a 12 mesos d'octubre de 2026: 3,239 % (Banc d'Espanya). Suposem que es manté igual; pots provar altres valors.",
+  'd.dateHint': 'Serveix per calcular la carència tècnica i per comptar els dies reals de cada mes.',
+  'i.title': 'Els comptes clars',
+  'a.lead': "Avançar diners al banc és una manera d'estalviar: cada euro que retornes abans deixa de generar interessos durant la resta del préstec. Pots veure-ho com una inversió en què la rendibilitat és el mateix tipus d'interès que pagues pel teu préstec. Prova-ho amb les teves xifres.",
+  'doc.lead': "La Llei 5/2019, de contractes de crèdit immobiliari, obliga el banc a lliurar-te una sèrie de documents abans de signar. A la notaria comprovarem que els tens i que els entens. Si hi ha alguna cosa que no tinguis clara, durant la signatura de l'acta de transparència te l'explicarem. Toca'ls per veure què és cadascun.",
+  'doc.acta.p1': "És una reunió amb el notari, com a molt tard el dia abans de la signatura. És una actuació <b>totalment gratuïta</b> per a tu i tu tries amb quin notari la vols fer. El banc no et pot imposar ni suggerir-ne un altre. Gràcies per triar-nos.",
+  'doc.acta.p2': "Un de nosaltres, María Eugenia Roa Nonide o Javier González Granado, comprovarà que has rebut tota la documentació a temps, resoldrà els teus dubtes i t'explicarà les clàusules una per una. Després respondràs un breu test que serveix per confirmar que has entès l'essencial.",
+  'doc.avi.p1': "El banc t'ha d'indicar per escrit que tens dret a anar a un notari de la teva elecció perquè t'assessori gratuïtament sobre el préstec. No permetis que t'imposin ni et suggereixin un notari determinat. És decisió teva.",
+  'f.ver': 'Versió 7 · novembre de 2026',
+  'f.credit': 'Idea, disseny i desenvolupament de Javier González Granado amb Claude.',
+  'd.base': 'Base de càlcul del teu préstec', 'd.b30': '30/360 (comercial)', 'd.b365': 'Real/365', 'd.bRR': 'Real/Real', 'd.b360': 'Real/360',
+  'd.baseHint': "La trobaràs a la teva FEIN o al projecte d'escriptura. Si no la saps, deixa 30/360. A «Quants dies té un any?» t'expliquem què vol dir cadascuna.",
+  'd.carQ': 'El teu préstec té carència tècnica?', 'aria.d.carQ': 'El teu préstec té carència tècnica?',
+  'd.carExpl': "Les quotes d'un préstec es compten per mesos sencers, normalment a partir del dia 1 del mes següent a la signatura. Per això, <b>segurament el primer mes del teu préstec només pagaràs els interessos dels dies que faltin des del dia de la signatura fins a la fi d'aquell primer mes</b>. És el que s'anomena carència tècnica: durant aquests dies no retornes capital, només pagues interessos. Ho veuràs a la teva FEIN.",
+  'd.carEnd': 'Fi de la carència (inici de les quotes ordinàries)',
+  'd.carEndHint': "Normalment, l'últim dia del mes de la signatura. Canvia-ho només si la teva FEIN diu una altra cosa.",
+  'd.carCalc': "Pagaràs uns <b>{x}</b> d'interessos per {d} dies de carència.",
+  'e.car': 'la data de fi de la carència (posterior a la signatura i com a màxim tres mesos després)',
+  's.car': 'Carència tècnica (1r pagament)',
+  'b.car': 'Carència tècnica (primer pagament)', 'b.carSub': 'només interessos, per {d} dies', 'b.intCar': 'inclou {x} de la carència tècnica',
+  'm6.t': 'Fix o variable?', 'm6.d': "Què vol dir cadascun, què és de debò l'Euríbor i què passaria amb la teva quota si puja.",
+  'dy.courts': 'Hi ha sentències que han declarat abusives algunes d’aquestes pràctiques bancàries. Te ho explicarem a la notaria.',
+  'dy.yours': 'la teva',
+  'fv.lead': "Triar entre tipus fix i variable és una de les decisions més importants del teu préstec. La decisió és teva, però el nostre deure com a notaris és ajudar-te a prendre-la sabent bé a què t'exposes. Per això et mostrem, amb les teves pròpies xifres, què passaria si les coses van bé i, sobretot, si van malament.",
+  'fv.tabA': 'Què és cadascun', 'fv.tabB': "I si canvia l'Euríbor?",
+  'fv.fixT': 'Fix', 'fv.fixD': "Pagues el mateix tipus durant tota la vida del préstec, i la teva quota no canvia passi el que passi al mercat. A canvi, el tipus sol ser més alt que l'inicial d'un variable, i si els tipus baixen no te'n beneficies. Pagues per la tranquil·litat.",
+  'fv.varT': 'Variable', 'fv.varD': "El teu tipus és un índex, gairebé sempre l'Euríbor, més un diferencial que no canvia. Es revisa cada cert temps (normalment cada 6 o 12 mesos): si l'Euríbor puja, puja la teva quota; si baixa, baixa. El risc que els tipus pugin l'assumeixes tu.",
+  'fv.mixT': 'Mixt', 'fv.mixD': 'Un tipus fix durant els primers anys i variable després. Et dona tranquil·litat al principi i et deixa la incertesa per a més endavant.',
+  'fv.trap': "<b>Compte amb les comparacions enganyoses.</b> El tipus inicial d'un préstec variable o mixt sol ser baix durant uns mesos o anys. No comparis només la primera quota: compara el que pagaries durant tot el préstec si l'Euríbor puja.",
+  'fv.qT': "Preguntes que et poden ajudar",
+  'fv.q1': 'Els teus ingressos són estables o poden canviar?', 'fv.q2': 'Podries continuar pagant si la teva quota pugés 200 € al mes?',
+  'fv.q3': 'Quants anys dura el teu préstec? Com més llarg, més incertesa.', 'fv.q4': 'Prefereixes pagar una mica més a canvi de saber sempre el que pagaràs?',
+  'fv.eurT': "Què és realment l'Euríbor?",
+  'fv.eur1': "L'Euríbor sembla una dada senzilla, però no ho és. Reflecteix el que li costa a un grup reduït de grans bancs europeus, anomenat «panel», aconseguir diners als mercats financers, i tant la seva definició legal com la seva manera de calcular-lo han canviat amb els anys. Fins al 2019 no es calculava amb operacions reals, sinó amb les estimacions que comunicaven aquests mateixos bancs. Avui es basa en operacions, però completades amb interpolacions i ajustos quan no n'hi ha prou, i això passa molt sovint.",
+  'fv.exT': 'Exemples de com es calcula',
+  'fv.exB': '<ul class="plain"><li>El gener de 2026, a l\'Euríbor a 12 mesos, el que es fa servir en gairebé totes les hipoteques, <b>només el 20 %</b> de les aportacions dels bancs provenia d\'operacions reals a aquest termini. <b>El 73 %</b> es va calcular a partir de dades de dies anteriors, ajustades.</li><li>Aquell mateix mes, a l\'Euríbor a 3 mesos, les operacions reals van ser <b>només el 15 %</b>.</li><li>El gener de 2024, gairebé <b>la meitat</b> de les aportacions a l\'Euríbor a 12 mesos (el 44,5 %) no sortia d\'operacions, sinó dels <b>models interns de cada banc</b>.</li></ul><p>Són dades publicades per la mateixa entitat que calcula l\'Euríbor, l\'European Money Markets Institute (<a href="https://www.emmi-benchmarks.eu/benchmarks/euribor/transparency/transparency-indicator-reports/" target="_blank" rel="noopener">EMMI</a>).</p>',
+  'fv.manT': "S'ha manipulat l'Euríbor?",
+  'fv.manB': "Aquest sistema va permetre manipular-lo. Entre 2005 i 2008, diversos bancs del panel es van concertar per alterar-lo. La Comissió Europea els va sancionar el 2013 i el 2016, i els tribunals de la Unió Europea van confirmar les sancions. Al Regne Unit i als Estats Units es van imposar multes milionàries i hi va haver condemnes a operadors. A Itàlia, els clients afectats han portat l'assumpte fins al seu Tribunal Suprem, que està pendent del que digui el Tribunal de Justícia de la UE. A Espanya, en canvi, els tribunals no han admès en general les reclamacions dels consumidors, tot i que la qüestió continua oberta als jutjats. <b>Que la manipulació va existir està demostrat; el difícil ha estat provar quant va afectar cada préstec concret.</b>",
+  'fv.mktT': 'Un índex dels mercats financers',
+  'fv.mktB': "L'Euríbor no serveix només per a les hipoteques. És la referència d'un mercat moltíssim més gran: fons d'inversió, futurs, permutes de tipus d'interès (swaps) i altres productes financers molt complexos, en què es mouen molts més diners que en tots els préstecs a consumidors. Per això, més que un simple tipus d'interès, un préstec variable es pot veure com un instrument financer complex, el preu del qual depèn de mercats que no controles i que no estan pensats per a tu.",
+  'fv.decide': "Amb tot això sobre la taula, la decisió és teva. La nostra feina és que la prenguis sabent el que signes.",
+  'fv.conv': "<b>Si tries variable, no és per sempre.</b> Més endavant podràs passar a tipus fix, amb el teu banc (novació) o amb un altre banc (subrogació). La llei limita el que et poden cobrar per aquest canvi: durant els tres primers anys, com a màxim el 0,15 % del capital pendent i mai més que la pèrdua financera del banc; després, res.",
+  'fv.simT': "La teva quota si canvia l'Euríbor",
+  'fv.simP': "Compara les dues ofertes amb les teves xifres: el tipus fix que t'ofereixen i el diferencial que et sumarien a l'Euríbor si tries variable. Fem servir el capital i el termini que vas indicar.",
+  'fv.fixLabel': "Tipus fix que t'ofereixen", 'fv.difLabel': "Diferencial del variable que t'ofereixen",
+  'fv.offHint': "Si només tens una de les dues ofertes, demana l'altra al teu banc o prova amb valors orientatius.",
+  'fv.lgFix': 'Quota amb tipus fix', 'fv.lgVarLo': 'Variable: pagaries menys', 'fv.lgVarHi': 'Variable: pagaries més', 'fv.lgVar': 'Quota amb tipus variable',
+  'aria.fv.ch1Aria': "Quota segons diferents nivells de l'Euríbor", 'aria.fv.ch2Aria': "Evolució mensual de l'Euríbor des del 2000",
+  'fv.tryLabel': 'Prova un altre Euríbor',
+  'fv.histT': "L'Euríbor des de l'any 2000",
+  'fv.histP': 'Així s\'ha mogut l\'Euríbor a 12 mesos, mes a mes. La línia discontínua és el teu «Euríbor d\'equilibri»: quan l\'Euríbor és per sobre, el variable et costa més que el fix (<b style="color:var(--bad)">vermell</b>); quan és per sota, menys (<b style="color:var(--good)">verd</b>).',
+  'fv.peaksT': 'Quan va estar més car',
+  'fv.histSrc': "Mitjanes mensuals de l'Euríbor a 12 mesos publicades pel Banc d'Espanya, des de gener de 2000 fins a octubre de 2026 (3,239 %). El que va passar en el passat no garanteix el que passarà en el futur.",
+  'fv.sMin': 'Mínim', 'fv.sNow': 'Actual', 'fv.sPlus': 'Actual +{n} p.', 'fv.sMax': 'Màxim',
+  'fv.warn': "Si l'Euríbor tornés al màxim de {d} ({e}), la teva quota variable seria <b>{x}</b>: <b>{y} més al mes</b> que amb el fix. Abans de triar variable, assegura't que la podries pagar.",
+  'fv.warnNo': "Amb aquestes ofertes, fins i tot amb l'Euríbor de {d} el variable no superaria la quota fixa. Revisa que el tipus fix i el diferencial siguin correctes.",
+  'fv.tryOut': "Amb l'Euríbor al <b>{e}</b>, la teva quota variable seria <b>{v}</b> (fixa: {f}).",
+  'fv.more': '{x} més al mes', 'fv.less': '{x} menys al mes',
+  'fv.eqLabel': "El teu Euríbor d'equilibri",
+  'fv.eqNote': "El teu <b>Euríbor d'equilibri</b> és el <b>{e}</b> (tipus fix menys diferencial). Si l'Euríbor mitjà durant el teu préstec queda per sota, el variable et sortirà més barat; si el supera, el fix. Des de l'any 2000, l'Euríbor ha estat per sobre d'aquest nivell el <b>{p}</b> del temps. La seva mitjana ha estat {a}, i la dels últims deu anys, {b}.",
+  'fv.thWhen': 'Quan', 'fv.thPay': 'La teva quota variable', 'fv.thVsFix': 'Davant el fix',
+  'fv.pk2000': 'Màxim de la bombolla tecnològica', 'fv.pk2008': 'Màxim històric, abans de la crisi financera', 'fv.pk2023': 'Pujada després de la inflació de 2022'
+});
+
 I18N.en = {
   /* ---- Static texts ---- */
   'nav.back': '‹ Contents', 'aria.nav.backAria': 'Back to contents',
@@ -1168,6 +1393,74 @@ I18N.en = {
   'c.pays': 'With these figures, the discounts <b>pay off</b>: you save <b>{x}</b> over the whole loan.',
   'c.assume': 'We assume you keep the products, at the same price, for the whole loan. Note: some insurance premiums go up with age.'
 };
+
+/* ---- Version 7 ---- */
+Object.assign(I18N.en, {
+  'lang.lead': 'Tap the flag for your language. <b>Your Transparency Record</b> is a tool offered to you by María Eugenia Roa Nonide and Javier González Granado, notaries in Eivissa (Ibiza), to help you understand the terms of your loan before, during and after signing the notarial transparency record (<i>acta de transparencia</i>). Thank you for placing your trust in us.',
+  'd.title': 'Tell us about your loan',
+  'd.euriborHint': '12-month Euribor, October 2026: 3.239% (Bank of Spain). We assume it stays the same; you can try other values.',
+  'd.dateHint': 'Used to calculate the broken-period interest and to count the actual days in each month.',
+  'i.title': 'Clear figures',
+  'a.lead': 'Paying money back early is a way of saving: every euro you repay sooner stops earning interest for the rest of the loan. You can see it as an investment whose return is the same interest rate you pay on your loan. Try it with your own figures.',
+  'doc.lead': 'Spanish Law 5/2019 on real estate credit agreements requires the bank to give you a set of documents before signing. At the notary office we will check that you have them and understand them. If anything is unclear, we will explain it to you when you sign the transparency record. Tap each one to see what it is.',
+  'doc.acta.p1': 'It is a meeting with the notary, at the latest the day before signing. It is <b>completely free</b> for you, and you choose which notary to do it with. The bank cannot impose or suggest another one. Thank you for choosing us.',
+  'doc.acta.p2': 'One of us, María Eugenia Roa Nonide or Javier González Granado, will check that you received all the documents in time, answer your questions and explain the clauses one by one. Afterwards you will answer a short test to confirm you have understood the essentials.',
+  'doc.avi.p1': 'The bank must tell you in writing that you are entitled to go to a notary of your choice for free advice on the loan. Do not let anyone impose or suggest a particular notary. It is your decision.',
+  'f.ver': 'Version 7 · November 2026',
+  'f.credit': 'Idea, design and development by Javier González Granado with Claude.',
+  'd.base': 'Day-count basis of your loan', 'd.b30': '30/360 (commercial)', 'd.b365': 'Actual/365', 'd.bRR': 'Actual/Actual', 'd.b360': 'Actual/360',
+  'd.baseHint': 'You will find it in your FEIN or in the draft deed. If you don’t know it, leave 30/360. “How many days are there in a year?” explains what each one means.',
+  'd.carQ': 'Does your loan have broken-period interest (<i>carencia técnica</i>)?', 'aria.d.carQ': 'Does your loan have broken-period interest?',
+  'd.carExpl': 'Loan payments are counted in whole months, usually from the 1st of the month after signing. So <b>in the first month of your loan you will most likely pay only the interest for the days from the signing date to the end of that first month</b>. This is called broken-period interest (<i>carencia técnica</i>): during those days you repay no capital, you only pay interest. You will see it in your FEIN.',
+  'd.carEnd': 'End of the broken period (start of regular payments)',
+  'd.carEndHint': 'Usually the last day of the month of signing. Change it only if your FEIN says otherwise.',
+  'd.carCalc': 'You will pay about <b>{x}</b> in interest for {d} days of broken period.',
+  'e.car': 'the end date of the broken period (after signing and at most three months later)',
+  's.car': 'Broken period (1st payment)',
+  'b.car': 'Broken-period interest (first payment)', 'b.carSub': 'interest only, for {d} days', 'b.intCar': 'includes {x} of broken-period interest',
+  'm6.t': 'Fixed or variable?', 'm6.d': 'What each one means, what Euribor really is and what would happen to your payment if it rises.',
+  'dy.courts': 'Some court rulings have declared some of these banking practices unfair. We will explain it to you at the notary office.',
+  'dy.yours': 'yours',
+  'fv.lead': 'Choosing between a fixed and a variable rate is one of the most important decisions about your loan. The decision is yours, but our duty as notaries is to help you make it knowing exactly what you are exposed to. That is why we show you, with your own figures, what would happen if things go well and, above all, if they go badly.',
+  'fv.tabA': 'What each one is', 'fv.tabB': 'What if Euribor changes?',
+  'fv.fixT': 'Fixed', 'fv.fixD': 'You pay the same rate for the whole life of the loan, and your payment does not change whatever happens in the market. In exchange, the rate is usually higher than the initial rate of a variable loan, and if rates fall you do not benefit. You pay for peace of mind.',
+  'fv.varT': 'Variable', 'fv.varD': 'Your rate is an index, almost always Euribor, plus a margin that does not change. It is reviewed periodically (usually every 6 or 12 months): if Euribor rises, your payment rises; if it falls, it falls. You bear the risk of rates going up.',
+  'fv.mixT': 'Mixed', 'fv.mixD': 'A fixed rate for the first years and variable afterwards. It gives you peace of mind at the start and leaves the uncertainty for later.',
+  'fv.trap': '<b>Beware of misleading comparisons.</b> The initial rate of a variable or mixed loan is often low for a few months or years. Do not compare only the first payment: compare what you would pay over the whole loan if Euribor rises.',
+  'fv.qT': 'Questions that can help you',
+  'fv.q1': 'Is your income stable, or could it change?', 'fv.q2': 'Could you keep paying if your payment went up by €200 a month?',
+  'fv.q3': 'How many years does your loan last? The longer it is, the more uncertainty.', 'fv.q4': 'Would you rather pay a little more in exchange for always knowing what you will pay?',
+  'fv.eurT': 'What is Euribor, really?',
+  'fv.eur1': 'Euribor looks like a simple figure, but it isn’t. It reflects what it costs a small group of large European banks, known as the “panel”, to raise money in the financial markets, and both its legal definition and the way it is calculated have changed over the years. Until 2019 it was not calculated from real transactions, but from estimates submitted by those same banks. Today it is based on transactions, but supplemented with interpolations and adjustments when there are not enough of them, and that happens very often.',
+  'fv.exT': 'Examples of how it is calculated',
+  'fv.exB': '<ul class="plain"><li>In January 2026, for 12-month Euribor, the one used in almost all mortgages, <b>only 20%</b> of the banks’ contributions came from real transactions at that maturity. <b>73%</b> were calculated from previous days’ data, adjusted.</li><li>That same month, for 3-month Euribor, real transactions accounted for <b>only 15%</b>.</li><li>In January 2024, almost <b>half</b> of the contributions to 12-month Euribor (44.5%) did not come from transactions but from <b>each bank’s internal models</b>.</li></ul><p>These figures are published by the very body that calculates Euribor, the European Money Markets Institute (<a href="https://www.emmi-benchmarks.eu/benchmarks/euribor/transparency/transparency-indicator-reports/" target="_blank" rel="noopener">EMMI</a>).</p>',
+  'fv.manT': 'Has Euribor been manipulated?',
+  'fv.manB': 'That system made it possible to manipulate it. Between 2005 and 2008, several panel banks colluded to alter it. The European Commission fined them in 2013 and 2016, and the EU courts upheld the fines. In the United Kingdom and the United States, fines running into millions were imposed and traders were convicted. In Italy, affected customers have taken the matter to the Supreme Court, which is awaiting a ruling from the EU Court of Justice. In Spain, by contrast, the courts have generally not upheld consumers’ claims, although the question remains open. <b>That the manipulation happened has been proven; what has been difficult is proving how much it affected each individual loan.</b>',
+  'fv.mktT': 'An index of the financial markets',
+  'fv.mktB': 'Euribor is not used only for mortgages. It is the benchmark for a far larger market: investment funds, futures, interest rate swaps and other very complex financial products, in which much more money changes hands than in all consumer loans put together. So, rather than a simple interest rate, a variable-rate loan can be seen as a complex financial instrument whose price depends on markets you do not control and that were not designed for you.',
+  'fv.decide': 'With all this on the table, the decision is yours. Our job is to make sure you take it knowing what you are signing.',
+  'fv.conv': '<b>If you choose variable, it is not forever.</b> Later you can switch to a fixed rate, with your bank (novation) or with another bank (subrogation). The law limits what you can be charged for the switch: during the first three years, at most 0.15% of the outstanding capital and never more than the bank’s financial loss; after that, nothing.',
+  'fv.simT': 'Your payment if Euribor changes',
+  'fv.simP': 'Compare both offers with your own figures: the fixed rate you are offered and the margin that would be added to Euribor if you choose variable. We use the loan amount and term you entered.',
+  'fv.fixLabel': 'Fixed rate you are offered', 'fv.difLabel': 'Variable-rate margin you are offered',
+  'fv.offHint': 'If you only have one of the two offers, ask your bank for the other or try approximate values.',
+  'fv.lgFix': 'Payment at fixed rate', 'fv.lgVarLo': 'Variable: you would pay less', 'fv.lgVarHi': 'Variable: you would pay more', 'fv.lgVar': 'Payment at variable rate',
+  'aria.fv.ch1Aria': 'Payment at different Euribor levels', 'aria.fv.ch2Aria': 'Monthly Euribor since 2000',
+  'fv.tryLabel': 'Try another Euribor',
+  'fv.histT': 'Euribor since 2000',
+  'fv.histP': 'This is how 12-month Euribor has moved, month by month. The dashed line is your “break-even Euribor”: when Euribor is above it, variable costs you more than fixed (<b style="color:var(--bad)">red</b>); when it is below, less (<b style="color:var(--good)">green</b>).',
+  'fv.peaksT': 'When it was most expensive',
+  'fv.histSrc': 'Monthly averages of 12-month Euribor published by the Bank of Spain, from January 2000 to October 2026 (3.239%). Past performance is no guarantee of what will happen in the future.',
+  'fv.sMin': 'Lowest', 'fv.sNow': 'Current', 'fv.sPlus': 'Current +{n} pt', 'fv.sMax': 'Highest',
+  'fv.warn': 'If Euribor returned to its {d} peak ({e}), your variable payment would be <b>{x}</b>: <b>{y} more a month</b> than with the fixed rate. Before choosing variable, make sure you could afford it.',
+  'fv.warnNo': 'With these offers, even with Euribor at its {d} level the variable payment would not exceed the fixed one. Check that the fixed rate and the margin are correct.',
+  'fv.tryOut': 'With Euribor at <b>{e}</b>, your variable payment would be <b>{v}</b> (fixed: {f}).',
+  'fv.more': '{x} more a month', 'fv.less': '{x} less a month',
+  'fv.eqLabel': 'Your break-even Euribor',
+  'fv.eqNote': 'Your <b>break-even Euribor</b> is <b>{e}</b> (fixed rate minus margin). If average Euribor over your loan stays below it, variable will turn out cheaper; if it goes above, fixed will. Since 2000, Euribor has been above that level <b>{p}</b> of the time. Its average has been {a}, and over the last ten years, {b}.',
+  'fv.thWhen': 'When', 'fv.thPay': 'Your variable payment', 'fv.thVsFix': 'Versus fixed',
+  'fv.pk2000': 'Peak of the dot-com bubble', 'fv.pk2008': 'All-time high, before the financial crisis', 'fv.pk2023': 'Rise after the 2022 inflation'
+});
 
 I18N.fr = {
   /* ---- Textes fixes ---- */
@@ -1351,6 +1644,74 @@ I18N.fr = {
   'c.assume': 'Nous supposons que vous gardez les produits, au même prix, pendant toute la durée du prêt. Attention : le prix de certaines assurances augmente avec l’âge.'
 };
 
+/* ---- Version 7 ---- */
+Object.assign(I18N.fr, {
+  'lang.lead': 'Touchez le drapeau de votre langue. <b>Votre acte de transparence</b> est un outil que nous vous offrons, María Eugenia Roa Nonide et Javier González Granado, notaires à Eivissa (Ibiza), pour vous aider à comprendre les conditions de votre prêt avant, pendant et après la signature de l’acte notarié de transparence (<i>acta de transparencia</i>). Merci de votre confiance.',
+  'd.title': 'Parlez-nous de votre prêt',
+  'd.euriborHint': 'Euribor 12 mois d’octobre 2026 : 3,239 % (Banque d’Espagne). Nous supposons qu’il reste stable ; vous pouvez essayer d’autres valeurs.',
+  'd.dateHint': 'Sert à calculer les intérêts intercalaires et à compter les jours réels de chaque mois.',
+  'i.title': 'Des comptes clairs',
+  'a.lead': 'Rembourser par anticipation est une façon d’économiser : chaque euro remboursé plus tôt cesse de produire des intérêts pour le reste du prêt. Vous pouvez le voir comme un placement dont le rendement est le taux d’intérêt même de votre prêt. Essayez avec vos chiffres.',
+  'doc.lead': 'La loi espagnole 5/2019 sur les contrats de crédit immobilier oblige la banque à vous remettre une série de documents avant la signature. À l’étude notariale, nous vérifierons que vous les avez et que vous les comprenez. Si quelque chose n’est pas clair, nous vous l’expliquerons lors de la signature de l’acte de transparence. Touchez chacun pour voir de quoi il s’agit.',
+  'doc.acta.p1': 'C’est un rendez-vous avec le notaire, au plus tard la veille de la signature. Il est <b>entièrement gratuit</b> pour vous et c’est vous qui choisissez le notaire. La banque ne peut ni vous en imposer ni vous en suggérer un autre. Merci de nous avoir choisis.',
+  'doc.acta.p2': 'L’un de nous, María Eugenia Roa Nonide ou Javier González Granado, vérifiera que vous avez reçu tous les documents à temps, répondra à vos questions et vous expliquera les clauses une par une. Vous répondrez ensuite à un court questionnaire pour confirmer que vous avez compris l’essentiel.',
+  'doc.avi.p1': 'La banque doit vous indiquer par écrit que vous avez le droit de consulter gratuitement le notaire de votre choix au sujet du prêt. Ne laissez personne vous imposer ou vous suggérer un notaire en particulier. C’est votre décision.',
+  'f.ver': 'Version 7 · novembre 2026',
+  'f.credit': 'Idée, conception et développement : Javier González Granado avec Claude.',
+  'd.base': 'Base de calcul de votre prêt', 'd.b30': '30/360 (commerciale)', 'd.b365': 'Réel/365', 'd.bRR': 'Réel/Réel', 'd.b360': 'Réel/360',
+  'd.baseHint': 'Vous la trouverez dans votre FEIN ou dans le projet d’acte. Si vous ne la connaissez pas, laissez 30/360. « Combien de jours compte une année ? » explique ce que signifie chacune.',
+  'd.carQ': 'Votre prêt comporte-t-il des intérêts intercalaires (<i>carencia técnica</i>) ?', 'aria.d.carQ': 'Votre prêt comporte-t-il des intérêts intercalaires ?',
+  'd.carExpl': 'Les mensualités d’un prêt se comptent par mois entiers, généralement à partir du 1er du mois suivant la signature. C’est pourquoi, <b>le premier mois de votre prêt, vous ne paierez sans doute que les intérêts des jours compris entre la signature et la fin de ce premier mois</b>. Ce sont les intérêts intercalaires (<i>carencia técnica</i>) : pendant ces jours, vous ne remboursez pas de capital, vous payez seulement des intérêts. Vous le verrez dans votre FEIN.',
+  'd.carEnd': 'Fin de la période intercalaire (début des mensualités ordinaires)',
+  'd.carEndHint': 'En général, le dernier jour du mois de la signature. Ne le modifiez que si votre FEIN indique autre chose.',
+  'd.carCalc': 'Vous paierez environ <b>{x}</b> d’intérêts pour {d} jours de période intercalaire.',
+  'e.car': 'la date de fin de la période intercalaire (après la signature et au plus tard trois mois après)',
+  's.car': 'Intérêts intercalaires (1er paiement)',
+  'b.car': 'Intérêts intercalaires (premier paiement)', 'b.carSub': 'intérêts seuls, pour {d} jours', 'b.intCar': 'dont {x} d’intérêts intercalaires',
+  'm6.t': 'Fixe ou variable ?', 'm6.d': 'Ce que signifie chacun, ce qu’est vraiment l’Euribor et ce que deviendrait votre mensualité s’il monte.',
+  'dy.courts': 'Des décisions de justice ont déclaré abusives certaines de ces pratiques bancaires. Nous vous l’expliquerons à l’étude notariale.',
+  'dy.yours': 'la vôtre',
+  'fv.lead': 'Choisir entre un taux fixe et un taux variable est l’une des décisions les plus importantes de votre prêt. La décision vous appartient, mais notre devoir de notaires est de vous aider à la prendre en sachant bien à quoi vous vous exposez. C’est pourquoi nous vous montrons, avec vos propres chiffres, ce qui se passerait si tout va bien et, surtout, si les choses tournent mal.',
+  'fv.tabA': 'Ce qu’est chacun', 'fv.tabB': 'Et si l’Euribor change ?',
+  'fv.fixT': 'Fixe', 'fv.fixD': 'Vous payez le même taux pendant toute la durée du prêt, et votre mensualité ne change pas, quoi qu’il arrive sur le marché. En contrepartie, le taux est généralement plus élevé que le taux initial d’un prêt variable, et si les taux baissent vous n’en profitez pas. Vous payez pour la tranquillité.',
+  'fv.varT': 'Variable', 'fv.varD': 'Votre taux est un indice, presque toujours l’Euribor, plus une marge qui ne change pas. Il est révisé périodiquement (généralement tous les 6 ou 12 mois) : si l’Euribor monte, votre mensualité monte ; s’il baisse, elle baisse. Le risque de hausse des taux est pour vous.',
+  'fv.mixT': 'Mixte', 'fv.mixD': 'Un taux fixe pendant les premières années, puis variable. Il vous donne de la tranquillité au début et reporte l’incertitude à plus tard.',
+  'fv.trap': '<b>Attention aux comparaisons trompeuses.</b> Le taux initial d’un prêt variable ou mixte est souvent bas pendant quelques mois ou années. Ne comparez pas seulement la première mensualité : comparez ce que vous paieriez sur toute la durée du prêt si l’Euribor monte.',
+  'fv.qT': 'Des questions qui peuvent vous aider',
+  'fv.q1': 'Vos revenus sont-ils stables ou peuvent-ils changer ?', 'fv.q2': 'Pourriez-vous continuer à payer si votre mensualité augmentait de 200 € par mois ?',
+  'fv.q3': 'Combien d’années dure votre prêt ? Plus il est long, plus l’incertitude est grande.', 'fv.q4': 'Préférez-vous payer un peu plus pour savoir toujours ce que vous paierez ?',
+  'fv.eurT': 'Qu’est-ce que l’Euribor, vraiment ?',
+  'fv.eur1': 'L’Euribor semble être une donnée simple, mais ce n’est pas le cas. Il reflète ce que coûte à un petit groupe de grandes banques européennes, appelé « panel », le fait de se procurer de l’argent sur les marchés financiers, et sa définition juridique comme son mode de calcul ont changé au fil des ans. Jusqu’en 2019, il n’était pas calculé à partir d’opérations réelles, mais des estimations communiquées par ces mêmes banques. Aujourd’hui, il repose sur des opérations, mais complétées par des interpolations et des ajustements lorsqu’elles sont insuffisantes, ce qui arrive très souvent.',
+  'fv.exT': 'Exemples de calcul',
+  'fv.exB': '<ul class="plain"><li>En janvier 2026, pour l’Euribor 12 mois, celui de presque tous les prêts immobiliers, <b>seulement 20 %</b> des contributions des banques provenaient d’opérations réelles à cette échéance. <b>73 %</b> ont été calculées à partir de données des jours précédents, ajustées.</li><li>Le même mois, pour l’Euribor 3 mois, les opérations réelles n’ont représenté que <b>15 %</b>.</li><li>En janvier 2024, près de <b>la moitié</b> des contributions à l’Euribor 12 mois (44,5 %) ne provenaient pas d’opérations, mais des <b>modèles internes de chaque banque</b>.</li></ul><p>Ces données sont publiées par l’organisme même qui calcule l’Euribor, l’European Money Markets Institute (<a href="https://www.emmi-benchmarks.eu/benchmarks/euribor/transparency/transparency-indicator-reports/" target="_blank" rel="noopener">EMMI</a>).</p>',
+  'fv.manT': 'L’Euribor a-t-il été manipulé ?',
+  'fv.manB': 'Ce système a permis de le manipuler. Entre 2005 et 2008, plusieurs banques du panel se sont entendues pour l’altérer. La Commission européenne les a sanctionnées en 2013 et en 2016, et les juridictions de l’Union européenne ont confirmé ces sanctions. Au Royaume-Uni et aux États-Unis, des amendes de plusieurs millions ont été infligées et des opérateurs ont été condamnés. En Italie, les clients concernés ont porté l’affaire jusqu’à la Cour de cassation, qui attend l’arrêt de la Cour de justice de l’UE. En Espagne, en revanche, les tribunaux n’ont en général pas fait droit aux réclamations des consommateurs, même si la question reste ouverte devant les juridictions. <b>L’existence de la manipulation est prouvée ; le plus difficile a été de prouver dans quelle mesure elle a affecté chaque prêt.</b>',
+  'fv.mktT': 'Un indice des marchés financiers',
+  'fv.mktB': 'L’Euribor ne sert pas qu’aux prêts immobiliers. C’est la référence d’un marché bien plus vaste : fonds d’investissement, contrats à terme, swaps de taux d’intérêt et autres produits financiers très complexes, où circule beaucoup plus d’argent que dans l’ensemble des prêts aux consommateurs. C’est pourquoi, plus qu’un simple taux d’intérêt, un prêt à taux variable peut être vu comme un instrument financier complexe, dont le prix dépend de marchés que vous ne contrôlez pas et qui ne sont pas conçus pour vous.',
+  'fv.decide': 'Avec tous ces éléments en main, la décision vous appartient. Notre rôle est que vous la preniez en sachant ce que vous signez.',
+  'fv.conv': '<b>Si vous choisissez le variable, ce n’est pas pour toujours.</b> Plus tard, vous pourrez passer à un taux fixe, avec votre banque (novation) ou avec une autre (subrogation). La loi limite ce qu’on peut vous facturer pour ce changement : pendant les trois premières années, au maximum 0,15 % du capital restant dû et jamais plus que la perte financière de la banque ; ensuite, rien.',
+  'fv.simT': 'Votre mensualité si l’Euribor change',
+  'fv.simP': 'Comparez les deux offres avec vos chiffres : le taux fixe que l’on vous propose et la marge qui s’ajouterait à l’Euribor si vous choisissez le variable. Nous utilisons le montant et la durée que vous avez indiqués.',
+  'fv.fixLabel': 'Taux fixe proposé', 'fv.difLabel': 'Marge du variable proposée',
+  'fv.offHint': 'Si vous n’avez qu’une des deux offres, demandez l’autre à votre banque ou essayez des valeurs indicatives.',
+  'fv.lgFix': 'Mensualité à taux fixe', 'fv.lgVarLo': 'Variable : vous paieriez moins', 'fv.lgVarHi': 'Variable : vous paieriez plus', 'fv.lgVar': 'Mensualité à taux variable',
+  'aria.fv.ch1Aria': 'Mensualité selon différents niveaux de l’Euribor', 'aria.fv.ch2Aria': 'Évolution mensuelle de l’Euribor depuis 2000',
+  'fv.tryLabel': 'Essayez un autre Euribor',
+  'fv.histT': 'L’Euribor depuis 2000',
+  'fv.histP': 'Voici l’évolution de l’Euribor 12 mois, mois par mois. La ligne en pointillés est votre « Euribor d’équilibre » : quand l’Euribor est au-dessus, le variable vous coûte plus cher que le fixe (<b style="color:var(--bad)">rouge</b>) ; quand il est en dessous, moins cher (<b style="color:var(--good)">vert</b>).',
+  'fv.peaksT': 'Quand il a été le plus cher',
+  'fv.histSrc': 'Moyennes mensuelles de l’Euribor 12 mois publiées par la Banque d’Espagne, de janvier 2000 à octobre 2026 (3,239 %). Le passé ne garantit pas ce qui se passera à l’avenir.',
+  'fv.sMin': 'Minimum', 'fv.sNow': 'Actuel', 'fv.sPlus': 'Actuel +{n} pt', 'fv.sMax': 'Maximum',
+  'fv.warn': 'Si l’Euribor revenait à son maximum de {d} ({e}), votre mensualité variable serait de <b>{x}</b> : <b>{y} de plus par mois</b> qu’avec le fixe. Avant de choisir le variable, assurez-vous que vous pourriez la payer.',
+  'fv.warnNo': 'Avec ces offres, même avec l’Euribor de {d}, la mensualité variable ne dépasserait pas la mensualité fixe. Vérifiez que le taux fixe et la marge sont corrects.',
+  'fv.tryOut': 'Avec l’Euribor à <b>{e}</b>, votre mensualité variable serait de <b>{v}</b> (fixe : {f}).',
+  'fv.more': '{x} de plus par mois', 'fv.less': '{x} de moins par mois',
+  'fv.eqLabel': 'Votre Euribor d’équilibre',
+  'fv.eqNote': 'Votre <b>Euribor d’équilibre</b> est de <b>{e}</b> (taux fixe moins marge). Si l’Euribor moyen pendant votre prêt reste en dessous, le variable vous reviendra moins cher ; s’il le dépasse, ce sera le fixe. Depuis 2000, l’Euribor a été au-dessus de ce niveau <b>{p}</b> du temps. Sa moyenne a été de {a}, et sur les dix dernières années, de {b}.',
+  'fv.thWhen': 'Quand', 'fv.thPay': 'Votre mensualité variable', 'fv.thVsFix': 'Par rapport au fixe',
+  'fv.pk2000': 'Sommet de la bulle Internet', 'fv.pk2008': 'Record historique, avant la crise financière', 'fv.pk2023': 'Hausse après l’inflation de 2022'
+});
+
 I18N.de = {
   /* ---- Feste Texte ---- */
   'nav.back': '‹ Übersicht', 'aria.nav.backAria': 'Zurück zur Übersicht',
@@ -1532,6 +1893,74 @@ I18N.de = {
   'c.pays': 'Mit diesen Zahlen <b>lohnen sich die Rabatte</b>: Sie sparen <b>{x}</b> über die ganze Laufzeit.',
   'c.assume': 'Wir gehen davon aus, dass Sie die Produkte zum gleichen Preis über die ganze Laufzeit behalten. Achtung: Manche Versicherungen werden mit dem Alter teurer.'
 };
+
+/* ---- Version 7 ---- */
+Object.assign(I18N.de, {
+  'lang.lead': 'Tippen Sie auf die Flagge Ihrer Sprache. <b>Ihr Transparenzprotokoll</b> ist ein Werkzeug, das wir, María Eugenia Roa Nonide und Javier González Granado, Notare in Eivissa (Ibiza), Ihnen anbieten, damit Sie die Bedingungen Ihres Darlehens vor, während und nach der Unterzeichnung des notariellen Transparenzprotokolls (<i>acta de transparencia</i>) verstehen. Vielen Dank für Ihr Vertrauen.',
+  'd.title': 'Erzählen Sie uns von Ihrem Darlehen',
+  'd.euriborHint': '12-Monats-Euribor im Oktober 2026: 3,239 % (Banco de España). Wir nehmen an, dass er gleich bleibt; Sie können andere Werte ausprobieren.',
+  'd.dateHint': 'Dient zur Berechnung der Zinsen für den ersten Teilmonat und zum Zählen der tatsächlichen Tage jedes Monats.',
+  'i.title': 'Klare Zahlen',
+  'a.lead': 'Vorzeitig zurückzuzahlen ist eine Form des Sparens: Jeder Euro, den Sie früher tilgen, verursacht für den Rest der Laufzeit keine Zinsen mehr. Sie können es wie eine Geldanlage sehen, deren Rendite genau dem Zinssatz Ihres Darlehens entspricht. Probieren Sie es mit Ihren Zahlen aus.',
+  'doc.lead': 'Das spanische Gesetz 5/2019 über Immobiliarkreditverträge verpflichtet die Bank, Ihnen vor der Unterzeichnung eine Reihe von Unterlagen auszuhändigen. Im Notariat prüfen wir, dass Sie diese haben und verstehen. Ist Ihnen etwas unklar, erklären wir es Ihnen bei der Unterzeichnung des Transparenzprotokolls. Tippen Sie auf jedes Dokument, um zu sehen, was es ist.',
+  'doc.acta.p1': 'Es ist ein Termin beim Notar, spätestens am Tag vor der Unterzeichnung. Er ist für Sie <b>völlig kostenlos</b>, und Sie entscheiden, bei welchem Notar Sie ihn wahrnehmen. Die Bank darf Ihnen keinen anderen vorschreiben oder vorschlagen. Vielen Dank, dass Sie sich für uns entschieden haben.',
+  'doc.acta.p2': 'Einer von uns, María Eugenia Roa Nonide oder Javier González Granado, prüft, dass Sie alle Unterlagen rechtzeitig erhalten haben, beantwortet Ihre Fragen und erklärt Ihnen die Klauseln einzeln. Danach beantworten Sie einen kurzen Test, der bestätigt, dass Sie das Wesentliche verstanden haben.',
+  'doc.avi.p1': 'Die Bank muss Ihnen schriftlich mitteilen, dass Sie das Recht haben, sich von einem Notar Ihrer Wahl kostenlos zum Darlehen beraten zu lassen. Lassen Sie sich keinen bestimmten Notar vorschreiben oder vorschlagen. Es ist Ihre Entscheidung.',
+  'f.ver': 'Version 7 · November 2026',
+  'f.credit': 'Idee, Gestaltung und Entwicklung: Javier González Granado mit Claude.',
+  'd.base': 'Zinsberechnungsmethode Ihres Darlehens', 'd.b30': '30/360 (kaufmännisch)', 'd.b365': 'Act/365', 'd.bRR': 'Act/Act', 'd.b360': 'Act/360',
+  'd.baseHint': 'Sie finden sie in Ihrer FEIN oder im Urkundenentwurf. Wenn Sie sie nicht kennen, lassen Sie 30/360 stehen. In „Wie viele Tage hat ein Jahr?“ erklären wir, was jede bedeutet.',
+  'd.carQ': 'Hat Ihr Darlehen einen tilgungsfreien ersten Teilmonat (<i>carencia técnica</i>)?', 'aria.d.carQ': 'Hat Ihr Darlehen einen tilgungsfreien ersten Teilmonat?',
+  'd.carExpl': 'Darlehensraten werden in ganzen Monaten gezählt, meist ab dem 1. des Monats nach der Unterzeichnung. Deshalb <b>zahlen Sie im ersten Monat Ihres Darlehens wahrscheinlich nur die Zinsen für die Tage vom Unterzeichnungstag bis zum Ende dieses ersten Monats</b>. Das nennt man <i>carencia técnica</i>: In diesen Tagen tilgen Sie kein Kapital, Sie zahlen nur Zinsen. Sie sehen es in Ihrer FEIN.',
+  'd.carEnd': 'Ende des Teilmonats (Beginn der regulären Raten)',
+  'd.carEndHint': 'Meist der letzte Tag des Unterzeichnungsmonats. Ändern Sie ihn nur, wenn Ihre FEIN etwas anderes angibt.',
+  'd.carCalc': 'Sie zahlen etwa <b>{x}</b> Zinsen für {d} Tage.',
+  'e.car': 'das Ende des Teilmonats (nach der Unterzeichnung und höchstens drei Monate später)',
+  's.car': 'Zinsen erster Teilmonat',
+  'b.car': 'Zinsen erster Teilmonat (erste Zahlung)', 'b.carSub': 'nur Zinsen, für {d} Tage', 'b.intCar': 'davon {x} für den ersten Teilmonat',
+  'm6.t': 'Fest oder variabel?', 'm6.d': 'Was beides bedeutet, was der Euribor wirklich ist und was mit Ihrer Rate geschähe, wenn er steigt.',
+  'dy.courts': 'Gerichte haben einige dieser Bankpraktiken für missbräuchlich erklärt. Wir erklären es Ihnen im Notariat.',
+  'dy.yours': 'Ihre',
+  'fv.lead': 'Die Wahl zwischen festem und variablem Zins ist eine der wichtigsten Entscheidungen bei Ihrem Darlehen. Die Entscheidung liegt bei Ihnen, aber unsere Pflicht als Notare ist es, Ihnen zu helfen, sie in voller Kenntnis der Risiken zu treffen. Deshalb zeigen wir Ihnen mit Ihren eigenen Zahlen, was passieren würde, wenn alles gut läuft, und vor allem, wenn es schlecht läuft.',
+  'fv.tabA': 'Was beides ist', 'fv.tabB': 'Und wenn sich der Euribor ändert?',
+  'fv.fixT': 'Fest', 'fv.fixD': 'Sie zahlen während der gesamten Laufzeit denselben Zins, und Ihre Rate ändert sich nicht, was auch immer am Markt geschieht. Dafür ist der Zins meist höher als der Anfangszins eines variablen Darlehens, und wenn die Zinsen fallen, profitieren Sie nicht. Sie bezahlen für Ihre Ruhe.',
+  'fv.varT': 'Variabel', 'fv.varD': 'Ihr Zins ist ein Index, fast immer der Euribor, plus ein Aufschlag, der sich nicht ändert. Er wird regelmäßig angepasst (meist alle 6 oder 12 Monate): Steigt der Euribor, steigt Ihre Rate; fällt er, sinkt sie. Das Risiko steigender Zinsen tragen Sie.',
+  'fv.mixT': 'Gemischt', 'fv.mixD': 'Ein fester Zins in den ersten Jahren und danach variabel. Am Anfang haben Sie Ruhe, die Unsicherheit kommt später.',
+  'fv.trap': '<b>Vorsicht vor irreführenden Vergleichen.</b> Der Anfangszins eines variablen oder gemischten Darlehens ist oft für einige Monate oder Jahre niedrig. Vergleichen Sie nicht nur die erste Rate: Vergleichen Sie, was Sie über die ganze Laufzeit zahlen würden, wenn der Euribor steigt.',
+  'fv.qT': 'Fragen, die Ihnen helfen können',
+  'fv.q1': 'Ist Ihr Einkommen stabil, oder kann es sich ändern?', 'fv.q2': 'Könnten Sie weiterzahlen, wenn Ihre Rate um 200 € im Monat stiege?',
+  'fv.q3': 'Wie viele Jahre läuft Ihr Darlehen? Je länger, desto größer die Unsicherheit.', 'fv.q4': 'Zahlen Sie lieber etwas mehr, um immer zu wissen, was auf Sie zukommt?',
+  'fv.eurT': 'Was ist der Euribor wirklich?',
+  'fv.eur1': 'Der Euribor wirkt wie eine einfache Zahl, ist es aber nicht. Er spiegelt wider, was es eine kleine Gruppe großer europäischer Banken, das sogenannte „Panel“, kostet, sich Geld an den Finanzmärkten zu beschaffen, und sowohl seine rechtliche Definition als auch seine Berechnung haben sich im Laufe der Jahre geändert. Bis 2019 wurde er nicht aus echten Geschäften berechnet, sondern aus Schätzungen, die diese Banken selbst meldeten. Heute beruht er auf Geschäften, die aber durch Interpolationen und Anpassungen ergänzt werden, wenn es nicht genug davon gibt, und das kommt sehr häufig vor.',
+  'fv.exT': 'Beispiele für die Berechnung',
+  'fv.exB': '<ul class="plain"><li>Im Januar 2026 stammten beim 12-Monats-Euribor, dem fast aller Hypotheken, <b>nur 20 %</b> der Meldungen der Banken aus echten Geschäften mit dieser Laufzeit. <b>73 %</b> wurden aus angepassten Daten früherer Tage berechnet.</li><li>Im selben Monat machten beim 3-Monats-Euribor echte Geschäfte <b>nur 15 %</b> aus.</li><li>Im Januar 2024 stammte fast <b>die Hälfte</b> der Meldungen zum 12-Monats-Euribor (44,5 %) nicht aus Geschäften, sondern aus den <b>internen Modellen jeder Bank</b>.</li></ul><p>Diese Daten veröffentlicht die Stelle, die den Euribor selbst berechnet: das European Money Markets Institute (<a href="https://www.emmi-benchmarks.eu/benchmarks/euribor/transparency/transparency-indicator-reports/" target="_blank" rel="noopener">EMMI</a>).</p>',
+  'fv.manT': 'Wurde der Euribor manipuliert?',
+  'fv.manB': 'Dieses System machte seine Manipulation möglich. Zwischen 2005 und 2008 sprachen sich mehrere Panel-Banken ab, um ihn zu verändern. Die Europäische Kommission verhängte 2013 und 2016 Geldbußen, und die Gerichte der Europäischen Union bestätigten sie. Im Vereinigten Königreich und in den USA wurden Millionenstrafen verhängt und Händler verurteilt. In Italien haben betroffene Kunden die Frage bis vor den Obersten Gerichtshof gebracht, der auf die Entscheidung des Gerichtshofs der EU wartet. In Spanien haben die Gerichte die Klagen von Verbrauchern dagegen meist abgewiesen, die Frage ist aber vor den Gerichten weiter offen. <b>Dass es die Manipulation gab, ist erwiesen; schwierig war der Nachweis, wie stark sie sich auf jedes einzelne Darlehen ausgewirkt hat.</b>',
+  'fv.mktT': 'Ein Index der Finanzmärkte',
+  'fv.mktB': 'Der Euribor dient nicht nur für Hypotheken. Er ist die Referenz eines weit größeren Marktes: Investmentfonds, Terminkontrakte, Zinsswaps und andere sehr komplexe Finanzprodukte, in denen viel mehr Geld bewegt wird als in allen Verbraucherkrediten zusammen. Deshalb kann ein variables Darlehen eher als komplexes Finanzinstrument gesehen werden denn als einfacher Zinssatz – sein Preis hängt von Märkten ab, die Sie nicht kontrollieren und die nicht für Sie gemacht sind.',
+  'fv.decide': 'Mit all dem auf dem Tisch liegt die Entscheidung bei Ihnen. Unsere Aufgabe ist, dass Sie sie treffen und wissen, was Sie unterschreiben.',
+  'fv.conv': '<b>Wenn Sie variabel wählen, ist das nicht für immer.</b> Später können Sie zu einem Festzins wechseln, bei Ihrer Bank (Novation) oder bei einer anderen (Subrogation). Das Gesetz begrenzt, was Ihnen dafür berechnet werden darf: in den ersten drei Jahren höchstens 0,15 % der Restschuld und nie mehr als der finanzielle Verlust der Bank; danach nichts.',
+  'fv.simT': 'Ihre Rate, wenn sich der Euribor ändert',
+  'fv.simP': 'Vergleichen Sie beide Angebote mit Ihren Zahlen: den angebotenen Festzins und den Aufschlag, der bei variabler Wahl auf den Euribor käme. Wir verwenden den Betrag und die Laufzeit, die Sie angegeben haben.',
+  'fv.fixLabel': 'Angebotener Festzins', 'fv.difLabel': 'Angebotener Aufschlag beim variablen Zins',
+  'fv.offHint': 'Wenn Sie nur eines der beiden Angebote haben, fragen Sie Ihre Bank nach dem anderen oder probieren Sie Richtwerte aus.',
+  'fv.lgFix': 'Rate mit Festzins', 'fv.lgVarLo': 'Variabel: Sie zahlen weniger', 'fv.lgVarHi': 'Variabel: Sie zahlen mehr', 'fv.lgVar': 'Rate mit variablem Zins',
+  'aria.fv.ch1Aria': 'Rate bei verschiedenen Euribor-Ständen', 'aria.fv.ch2Aria': 'Monatlicher Euribor seit 2000',
+  'fv.tryLabel': 'Probieren Sie einen anderen Euribor aus',
+  'fv.histT': 'Der Euribor seit dem Jahr 2000',
+  'fv.histP': 'So hat sich der 12-Monats-Euribor Monat für Monat bewegt. Die gestrichelte Linie ist Ihr „Gleichgewichts-Euribor“: Liegt der Euribor darüber, kostet Sie variabel mehr als fest (<b style="color:var(--bad)">rot</b>); liegt er darunter, weniger (<b style="color:var(--good)">grün</b>).',
+  'fv.peaksT': 'Wann er am teuersten war',
+  'fv.histSrc': 'Monatsdurchschnitte des 12-Monats-Euribor, veröffentlicht von der Banco de España, von Januar 2000 bis Oktober 2026 (3,239 %). Die Vergangenheit ist keine Garantie für die Zukunft.',
+  'fv.sMin': 'Tiefststand', 'fv.sNow': 'Aktuell', 'fv.sPlus': 'Aktuell +{n} Pkt.', 'fv.sMax': 'Höchststand',
+  'fv.warn': 'Kehrte der Euribor auf seinen Höchststand von {d} ({e}) zurück, läge Ihre variable Rate bei <b>{x}</b>: <b>{y} mehr im Monat</b> als mit Festzins. Bevor Sie variabel wählen, vergewissern Sie sich, dass Sie sie zahlen könnten.',
+  'fv.warnNo': 'Mit diesen Angeboten läge die variable Rate selbst beim Euribor von {d} nicht über der festen. Prüfen Sie, ob Festzins und Aufschlag richtig sind.',
+  'fv.tryOut': 'Bei einem Euribor von <b>{e}</b> läge Ihre variable Rate bei <b>{v}</b> (fest: {f}).',
+  'fv.more': '{x} mehr im Monat', 'fv.less': '{x} weniger im Monat',
+  'fv.eqLabel': 'Ihr Gleichgewichts-Euribor',
+  'fv.eqNote': 'Ihr <b>Gleichgewichts-Euribor</b> liegt bei <b>{e}</b> (Festzins minus Aufschlag). Bleibt der durchschnittliche Euribor während Ihres Darlehens darunter, ist variabel günstiger; liegt er darüber, fest. Seit 2000 lag der Euribor <b>{p}</b> der Zeit über diesem Niveau. Sein Durchschnitt lag bei {a}, in den letzten zehn Jahren bei {b}.',
+  'fv.thWhen': 'Wann', 'fv.thPay': 'Ihre variable Rate', 'fv.thVsFix': 'Gegenüber fest',
+  'fv.pk2000': 'Höhepunkt der Dotcom-Blase', 'fv.pk2008': 'Allzeithoch vor der Finanzkrise', 'fv.pk2023': 'Anstieg nach der Inflation 2022'
+});
 
 I18N.it = {
   /* ---- Testi fissi ---- */
@@ -1715,6 +2144,74 @@ I18N.it = {
   'c.assume': 'Supponiamo che tu mantenga i prodotti, allo stesso prezzo, per tutta la durata del mutuo. Attenzione: il prezzo di alcune assicurazioni aumenta con l’età.'
 };
 
+/* ---- Versione 7 ---- */
+Object.assign(I18N.it, {
+  'lang.lead': 'Tocca la bandiera della tua lingua. <b>Il tuo atto di trasparenza</b> è uno strumento che ti offriamo noi, María Eugenia Roa Nonide e Javier González Granado, notai a Eivissa (Ibiza), per aiutarti a capire le condizioni del tuo mutuo prima, durante e dopo la firma dell’atto notarile di trasparenza (<i>acta de transparencia</i>). Grazie per la fiducia.',
+  'd.title': 'Raccontaci com’è il tuo mutuo',
+  'd.euriborHint': 'Euribor a 12 mesi di ottobre 2026: 3,239 % (Banco de España). Supponiamo che resti invariato; puoi provare altri valori.',
+  'd.dateHint': 'Serve a calcolare il preammortamento tecnico e a contare i giorni effettivi di ogni mese.',
+  'i.title': 'Conti chiari',
+  'a.lead': 'Anticipare denaro alla banca è un modo di risparmiare: ogni euro che restituisci prima smette di produrre interessi per il resto del mutuo. Puoi vederlo come un investimento il cui rendimento è lo stesso tasso di interesse che paghi sul tuo mutuo. Prova con le tue cifre.',
+  'doc.lead': 'La legge spagnola 5/2019 sui contratti di credito immobiliare obbliga la banca a consegnarti una serie di documenti prima della firma. Nello studio notarile verificheremo che tu li abbia e li comprenda. Se qualcosa non ti è chiaro, te lo spiegheremo durante la firma dell’atto di trasparenza. Tocca ciascuno per vedere di cosa si tratta.',
+  'doc.acta.p1': 'È un incontro con il notaio, al più tardi il giorno prima della firma. È un servizio <b>completamente gratuito</b> per te e sei tu a scegliere con quale notaio farlo. La banca non può imporne né suggerirne un altro. Grazie per averci scelto.',
+  'doc.acta.p2': 'Uno di noi, María Eugenia Roa Nonide o Javier González Granado, verificherà che tu abbia ricevuto tutta la documentazione in tempo, risolverà i tuoi dubbi e ti spiegherà le clausole una per una. Dopodiché risponderai a un breve test che serve a confermare che hai capito l’essenziale.',
+  'doc.avi.p1': 'La banca deve indicarti per iscritto che hai diritto a rivolgerti gratuitamente a un notaio di tua scelta per una consulenza sul mutuo. Non permettere che ti impongano o ti suggeriscano un notaio in particolare. È una tua decisione.',
+  'f.ver': 'Versione 7 · novembre 2026',
+  'f.credit': 'Idea, design e sviluppo di Javier González Granado con Claude.',
+  'd.base': 'Base di calcolo del tuo mutuo', 'd.b30': '30/360 (commerciale)', 'd.b365': 'Reale/365', 'd.bRR': 'Reale/Reale', 'd.b360': 'Reale/360',
+  'd.baseHint': 'La trovi nella tua FEIN o nella bozza dell’atto. Se non la conosci, lascia 30/360. In «Quanti giorni ha un anno?» ti spieghiamo cosa significa ciascuna.',
+  'd.carQ': 'Il tuo mutuo prevede un preammortamento tecnico (<i>carencia técnica</i>)?', 'aria.d.carQ': 'Il tuo mutuo prevede un preammortamento tecnico?',
+  'd.carExpl': 'Le rate di un mutuo si contano per mesi interi, di solito dal giorno 1 del mese successivo alla firma. Per questo, <b>probabilmente nel primo mese del tuo mutuo pagherai solo gli interessi per i giorni che vanno dalla firma alla fine di quel primo mese</b>. È il cosiddetto preammortamento tecnico (<i>carencia técnica</i>): in quei giorni non restituisci capitale, paghi solo interessi. Lo vedrai nella tua FEIN.',
+  'd.carEnd': 'Fine del preammortamento (inizio delle rate ordinarie)',
+  'd.carEndHint': 'Di solito l’ultimo giorno del mese della firma. Cambialo solo se la tua FEIN dice diversamente.',
+  'd.carCalc': 'Pagherai circa <b>{x}</b> di interessi per {d} giorni di preammortamento.',
+  'e.car': 'la data di fine del preammortamento (successiva alla firma e al massimo tre mesi dopo)',
+  's.car': 'Preammortamento (1° pagamento)',
+  'b.car': 'Preammortamento tecnico (primo pagamento)', 'b.carSub': 'solo interessi, per {d} giorni', 'b.intCar': 'di cui {x} di preammortamento tecnico',
+  'm6.t': 'Fisso o variabile?', 'm6.d': 'Cosa significa ciascuno, cos’è davvero l’Euribor e cosa succederebbe alla tua rata se salisse.',
+  'dy.courts': 'Alcune sentenze hanno dichiarato abusive alcune di queste pratiche bancarie. Te lo spiegheremo nello studio notarile.',
+  'dy.yours': 'la tua',
+  'fv.lead': 'Scegliere tra tasso fisso e variabile è una delle decisioni più importanti del tuo mutuo. La decisione è tua, ma il nostro dovere di notai è aiutarti a prenderla sapendo bene a cosa ti esponi. Per questo ti mostriamo, con le tue cifre, cosa succederebbe se le cose vanno bene e, soprattutto, se vanno male.',
+  'fv.tabA': 'Cos’è ciascuno', 'fv.tabB': 'E se cambia l’Euribor?',
+  'fv.fixT': 'Fisso', 'fv.fixD': 'Paghi lo stesso tasso per tutta la durata del mutuo, e la tua rata non cambia qualunque cosa accada sul mercato. In cambio, il tasso è di solito più alto di quello iniziale di un variabile, e se i tassi scendono non ne approfitti. Paghi per la tranquillità.',
+  'fv.varT': 'Variabile', 'fv.varD': 'Il tuo tasso è un indice, quasi sempre l’Euribor, più uno spread che non cambia. Viene rivisto periodicamente (di solito ogni 6 o 12 mesi): se l’Euribor sale, sale la tua rata; se scende, scende. Il rischio che i tassi salgano è tuo.',
+  'fv.mixT': 'Misto', 'fv.mixD': 'Un tasso fisso per i primi anni e poi variabile. Ti dà tranquillità all’inizio e rimanda l’incertezza a più avanti.',
+  'fv.trap': '<b>Attenzione ai confronti ingannevoli.</b> Il tasso iniziale di un mutuo variabile o misto è spesso basso per alcuni mesi o anni. Non confrontare solo la prima rata: confronta quanto pagheresti per tutta la durata del mutuo se l’Euribor sale.',
+  'fv.qT': 'Domande che possono aiutarti',
+  'fv.q1': 'Il tuo reddito è stabile o può cambiare?', 'fv.q2': 'Potresti continuare a pagare se la tua rata salisse di 200 € al mese?',
+  'fv.q3': 'Quanti anni dura il tuo mutuo? Più è lungo, più c’è incertezza.', 'fv.q4': 'Preferisci pagare un po’ di più per sapere sempre quanto pagherai?',
+  'fv.eurT': 'Che cos’è davvero l’Euribor?',
+  'fv.eur1': 'L’Euribor sembra un dato semplice, ma non lo è. Riflette quanto costa a un piccolo gruppo di grandi banche europee, chiamato «panel», procurarsi denaro sui mercati finanziari, e sia la sua definizione giuridica sia il suo metodo di calcolo sono cambiati negli anni. Fino al 2019 non si calcolava con operazioni reali, ma con le stime comunicate da quelle stesse banche. Oggi si basa su operazioni, ma integrate con interpolazioni e aggiustamenti quando non sono sufficienti, e questo accade molto spesso.',
+  'fv.exT': 'Esempi di come si calcola',
+  'fv.exB': '<ul class="plain"><li>A gennaio 2026, per l’Euribor a 12 mesi, quello usato in quasi tutti i mutui, <b>solo il 20 %</b> dei contributi delle banche proveniva da operazioni reali a quella scadenza. <b>Il 73 %</b> è stato calcolato a partire da dati dei giorni precedenti, rettificati.</li><li>Nello stesso mese, per l’Euribor a 3 mesi, le operazioni reali sono state <b>solo il 15 %</b>.</li><li>A gennaio 2024, quasi <b>la metà</b> dei contributi all’Euribor a 12 mesi (il 44,5 %) non proveniva da operazioni, ma dai <b>modelli interni di ciascuna banca</b>.</li></ul><p>Sono dati pubblicati dallo stesso ente che calcola l’Euribor, l’European Money Markets Institute (<a href="https://www.emmi-benchmarks.eu/benchmarks/euribor/transparency/transparency-indicator-reports/" target="_blank" rel="noopener">EMMI</a>).</p>',
+  'fv.manT': 'L’Euribor è stato manipolato?',
+  'fv.manB': 'Quel sistema ha permesso di manipolarlo. Tra il 2005 e il 2008 diverse banche del panel si sono accordate per alterarlo. La Commissione europea le ha sanzionate nel 2013 e nel 2016, e i tribunali dell’Unione europea hanno confermato le sanzioni. Nel Regno Unito e negli Stati Uniti sono state inflitte multe milionarie e ci sono state condanne di operatori. In Italia, i clienti coinvolti hanno portato la questione fino alla Corte di Cassazione, che attende la pronuncia della Corte di giustizia dell’UE. In Spagna, invece, i tribunali in generale non hanno accolto le domande dei consumatori, anche se la questione resta aperta nei tribunali. <b>Che la manipolazione ci sia stata è dimostrato; il difficile è stato provare quanto abbia inciso su ciascun mutuo.</b>',
+  'fv.mktT': 'Un indice dei mercati finanziari',
+  'fv.mktB': 'L’Euribor non serve solo per i mutui. È il riferimento di un mercato molto più grande: fondi di investimento, future, swap su tassi di interesse e altri prodotti finanziari molto complessi, in cui si muove molto più denaro che in tutti i prestiti ai consumatori. Per questo, più che un semplice tasso di interesse, un mutuo variabile può essere visto come uno strumento finanziario complesso, il cui prezzo dipende da mercati che non controlli e che non sono pensati per te.',
+  'fv.decide': 'Con tutto questo sul tavolo, la decisione è tua. Il nostro compito è che tu la prenda sapendo cosa firmi.',
+  'fv.conv': '<b>Se scegli il variabile, non è per sempre.</b> Più avanti potrai passare a tasso fisso, con la tua banca (novazione) o con un’altra (surroga). La legge limita quanto possono chiederti per questo cambio: nei primi tre anni, al massimo lo 0,15 % del capitale residuo e mai più della perdita finanziaria della banca; dopo, niente.',
+  'fv.simT': 'La tua rata se cambia l’Euribor',
+  'fv.simP': 'Confronta le due offerte con le tue cifre: il tasso fisso che ti offrono e lo spread che si aggiungerebbe all’Euribor se scegli il variabile. Usiamo l’importo e la durata che hai indicato.',
+  'fv.fixLabel': 'Tasso fisso offerto', 'fv.difLabel': 'Spread del variabile offerto',
+  'fv.offHint': 'Se hai solo una delle due offerte, chiedi l’altra alla tua banca o prova con valori indicativi.',
+  'fv.lgFix': 'Rata a tasso fisso', 'fv.lgVarLo': 'Variabile: pagheresti meno', 'fv.lgVarHi': 'Variabile: pagheresti di più', 'fv.lgVar': 'Rata a tasso variabile',
+  'aria.fv.ch1Aria': 'Rata a diversi livelli dell’Euribor', 'aria.fv.ch2Aria': 'Andamento mensile dell’Euribor dal 2000',
+  'fv.tryLabel': 'Prova un altro Euribor',
+  'fv.histT': 'L’Euribor dal 2000',
+  'fv.histP': 'Ecco come si è mosso l’Euribor a 12 mesi, mese per mese. La linea tratteggiata è il tuo «Euribor di equilibrio»: quando l’Euribor è sopra, il variabile ti costa più del fisso (<b style="color:var(--bad)">rosso</b>); quando è sotto, meno (<b style="color:var(--good)">verde</b>).',
+  'fv.peaksT': 'Quando è stato più caro',
+  'fv.histSrc': 'Medie mensili dell’Euribor a 12 mesi pubblicate dal Banco de España, da gennaio 2000 a ottobre 2026 (3,239 %). Ciò che è accaduto in passato non garantisce ciò che accadrà in futuro.',
+  'fv.sMin': 'Minimo', 'fv.sNow': 'Attuale', 'fv.sPlus': 'Attuale +{n} p.', 'fv.sMax': 'Massimo',
+  'fv.warn': 'Se l’Euribor tornasse al massimo di {d} ({e}), la tua rata variabile sarebbe di <b>{x}</b>: <b>{y} in più al mese</b> rispetto al fisso. Prima di scegliere il variabile, assicurati di poterla pagare.',
+  'fv.warnNo': 'Con queste offerte, anche con l’Euribor di {d} la rata variabile non supererebbe quella fissa. Controlla che il tasso fisso e lo spread siano corretti.',
+  'fv.tryOut': 'Con l’Euribor al <b>{e}</b>, la tua rata variabile sarebbe di <b>{v}</b> (fissa: {f}).',
+  'fv.more': '{x} in più al mese', 'fv.less': '{x} in meno al mese',
+  'fv.eqLabel': 'Il tuo Euribor di equilibrio',
+  'fv.eqNote': 'Il tuo <b>Euribor di equilibrio</b> è il <b>{e}</b> (tasso fisso meno spread). Se l’Euribor medio durante il tuo mutuo resta al di sotto, il variabile ti costerà meno; se lo supera, il fisso. Dal 2000 l’Euribor è stato sopra quel livello per il <b>{p}</b> del tempo. La sua media è stata del {a}, e quella degli ultimi dieci anni del {b}.',
+  'fv.thWhen': 'Quando', 'fv.thPay': 'La tua rata variabile', 'fv.thVsFix': 'Rispetto al fisso',
+  'fv.pk2000': 'Picco della bolla di Internet', 'fv.pk2008': 'Massimo storico, prima della crisi finanziaria', 'fv.pk2023': 'Rialzo dopo l’inflazione del 2022'
+});
+
 </script>
 <script>
 (() => {
@@ -1791,9 +2288,16 @@ function applyLang() {
 
 /* ---------- Estado ---------- */
 const today = new Date();
-const EJEMPLO = { C: 200000, n: 300, tipo: 'fijo', tin: 0.029, tipoIni: 0.0225, mesesIni: 12, dif: 0.0075, euribor: 0.03303, apertura: 0, fecha: today.toISOString().slice(0, 10) };
+const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const endOfMonth = (s) => { const d = new Date(s + 'T12:00:00'); return iso(new Date(d.getFullYear(), d.getMonth() + 1, 0, 12)); };
+const EJEMPLO = { C: 200000, n: 300, tipo: 'fijo', tin: 0.029, tipoIni: 0.0225, mesesIni: 12, dif: 0.0075, euribor: 0.03239, apertura: 0, fecha: iso(today), base: '30/360', carencia: true, carFin: endOfMonth(iso(today)) };
 let D = store.get('datos');
-const loan = () => ({ ...D, fecha: new Date(D.fecha + 'T12:00:00') });
+const loan = () => {
+  const firma = new Date(D.fecha + 'T12:00:00');
+  const carFin = D.carencia && D.carFin ? new Date(D.carFin + 'T12:00:00') : null;
+  return { ...D, base: D.base || '30/360', firma, carFin, fecha: carFin || firma };
+};
+const carOf = (extra = 0) => H.carencia(loan(), extra);
 
 /* ---------- Banderas ---------- */
 const FLAGS = [
@@ -1825,6 +2329,10 @@ function fillForm(d) {
   $(d.apertura > 0 ? '#aSi' : '#aNo').checked = true;
   $('#fApert').value = numF((d.apertura || 0.005) * 100);
   $('#fFecha').value = d.fecha;
+  $('#fBase').value = d.base || '30/360';
+  $(d.carencia ? '#cSi' : '#cNo').checked = true;
+  $('#fCarFin').value = d.carFin || endOfMonth(d.fecha);
+  delete $('#fCarFin').dataset.user;
   syncForm();
 }
 function syncForm() {
@@ -1834,7 +2342,18 @@ function syncForm() {
   const n = parse($('#fN').value); $('#fNhint').textContent = n > 0 ? '= ' + anyos(n) : '';
   const c = parse($('#fC').value), a = parse($('#fApert').value);
   $('#fApertHint').textContent = c > 0 && a >= 0 ? t('d.feeOn', { x: eur.format(c * a / 100) }) : '';
+  const car = $('#cSi').checked;
+  $('#boxCar').hidden = !car;
+  const f = $('#fFecha').value;
+  if (f && !$('#fCarFin').dataset.user) $('#fCarFin').value = endOfMonth(f);
+  const fin = $('#fCarFin').value;
+  const r = ($('#tVar').checked ? parse($('#fIni').value) : parse($('#fTin').value)) / 100;
+  if (car && f && fin && c > 0 && r >= 0) {
+    const ci = H.carencia({ carencia: true, C: c, tipo: 'fijo', tin: r, base: $('#fBase').value, firma: new Date(f + 'T12:00:00'), carFin: new Date(fin + 'T12:00:00') });
+    $('#fCarHint').innerHTML = ci.days > 0 ? t('d.carCalc', { x: eur.format(ci.int), d: ci.days }) : '';
+  } else $('#fCarHint').textContent = '';
 }
+$('#fCarFin').addEventListener('input', () => { $('#fCarFin').dataset.user = 1; });
 $('#formDatos').addEventListener('input', syncForm);
 $('#formDatos').addEventListener('change', syncForm);
 $('#formDatos').addEventListener('submit', (e) => {
@@ -1846,7 +2365,10 @@ $('#formDatos').addEventListener('submit', (e) => {
     mesesIni: Math.round(parse($('#fMesesIni').value)), dif: parse($('#fDif').value) / 100,
     euribor: parse($('#fEur').value) / 100,
     apertura: $('#aSi').checked ? parse($('#fApert').value) / 100 : 0,
-    fecha: $('#fFecha').value || EJEMPLO.fecha
+    fecha: $('#fFecha').value || EJEMPLO.fecha,
+    base: $('#fBase').value || '30/360',
+    carencia: $('#cSi').checked,
+    carFin: $('#fCarFin').value
   };
   const errs = [];
   if (!(d.C >= 1000)) errs.push(t('e.capital', { x: eur0.format(1000) }));
@@ -1859,6 +2381,11 @@ $('#formDatos').addEventListener('submit', (e) => {
     if (!(d.euribor > -0.05 && d.euribor < 0.2)) errs.push(t('e.euribor'));
   }
   if (!(d.apertura >= 0 && d.apertura < 0.1)) errs.push(t('e.fee'));
+  if (d.carencia) {
+    const a = new Date(d.fecha + 'T12:00:00'), b = new Date((d.carFin || '') + 'T12:00:00');
+    const days = (b - a) / 864e5;
+    if (!(days > 0 && days <= 92)) errs.push(t('e.car'));
+  }
   const er = $('#formErr');
   if (errs.length) { er.textContent = t('e.check', { x: errs.join(', ') }); er.hidden = false; return; }
   er.hidden = true;
@@ -1886,7 +2413,8 @@ function renderIndice() {
     <div><small>${t('s.capital')}</small><b>${eur0.format(D.C)}</b></div>
     <div><small>${t('s.term')}</small><b>${anyos(D.n)}</b></div>
     <div><small>${t(D.tipo === 'fijo' ? 's.fixed' : 's.variable')}</small><b>${D.tipo === 'fijo' ? pctF(D.tin) : pctF(D.tipoIni) + ' → Eur. + ' + pctF(D.dif)}</b></div>
-    <div><small>${t('s.payment')}</small><b>${eur.format(s.cuotaInicial)}</b></div>`;
+    <div><small>${t('s.payment')}</small><b>${eur.format(s.cuotaInicial)}</b></div>
+    ${D.carencia ? `<div><small>${t('s.car')}</small><b>${eur.format(carOf().int)}</b></div>` : ''}`;
 }
 
 /* ---------- 1. Mi préstamo ---------- */
@@ -1900,7 +2428,7 @@ function renderPrestamo() {
     const ys = rows.slice(y * 12, y * 12 + 12);
     labels.push(t('yearN', { n: y + 1 }));
     cap.push(ys.reduce((a, r) => a + r.princ, 0));
-    int.push(ys.reduce((a, r) => a + r.int, 0));
+    int.push(ys.reduce((a, r) => a + r.int, 0) + (y === 0 ? carOf().int : 0));
     bal.push(ys[ys.length - 1].bal);
   }
   mkChart('chA', {
@@ -1923,21 +2451,24 @@ function renderPrestamo() {
   updSlider();
 
   // Pestaña B
-  const total = D.C + simBase.totInt;
+  const car = carOf();
+  const totInt = simBase.totInt + car.int;
+  const total = D.C + totInt;
   const cruce = rows.find(r => r.princ > r.int);
   const mid = Math.floor(rows.length / 2);
   const amortMid = D.C - rows[mid - 1].bal;
-  const intMid = rows.slice(0, mid).reduce((a, r) => a + r.int, 0);
+  const intMid = rows.slice(0, mid).reduce((a, r) => a + r.int, 0) + car.int;
   const cuotaTxt = D.tipo === 'variable'
     ? `${eur.format(rows[0].pago)} <small>${t('b.after', { x: eur.format(rows[Math.min(D.mesesIni, rows.length - 1)].pago) })}</small>`
     : eur.format(rows[0].pago);
   $('#statsB').innerHTML = `
     <div class="stat"><small>${t('b.payment')}</small><b>${cuotaTxt}</b></div>
-    <div class="stat bad"><small>${t('b.interest')}</small><b>${eur.format(simBase.totInt)}</b></div>
+    ${D.carencia ? `<div class="stat bad"><small>${t('b.car')}</small><b>${eur.format(car.int)}</b><small>${t('b.carSub', { d: car.days })}</small></div>` : ''}
+    <div class="stat bad"><small>${t('b.interest')}</small><b>${eur.format(totInt)}</b>${D.carencia ? `<small>${t('b.intCar', { x: eur.format(car.int) })}</small>` : ''}</div>
     <div class="stat"><small>${t('b.total')}</small><b>${eur.format(total)}</b><small>${t('b.totalSub')}</small></div>`;
   $('#notesB').innerHTML = `
     <div class="note">${!cruce ? t('b.noCross') : cruce.m === 1 ? t('b.cross1') : t('b.cross', { m: cruce.m, y: anyos(cruce.m) })}</div>
-    <div class="note">${t('b.mid', { m: mid, a: eur.format(amortMid), p: pctF(amortMid / D.C, 1), i: eur.format(intMid), q: pctF(intMid / simBase.totInt, 0) })}</div>
+    <div class="note">${t('b.mid', { m: mid, a: eur.format(amortMid), p: pctF(amortMid / D.C, 1), i: eur.format(intMid), q: pctF(intMid / totInt, 0) })}</div>
     ${D.tipo === 'variable' ? `<div class="note">${t('b.var', { n: D.mesesIni, r: pctF(D.tipoIni), e: pctF(D.euribor, 3), d: pctF(D.dif), s: pctF(D.euribor + D.dif, 3) })}</div>` : ''}`;
 }
 function updSlider() {
@@ -2129,6 +2660,103 @@ function renderPF() {
   });
 }
 
+const EURIBOR = { start: [2000, 0], v: [3.949,4.111,4.267,4.365,4.849,4.965,5.105,5.248,5.219,5.218,5.193,4.87,4.574,4.591,4.471,4.481,4.52,4.312,4.311,4.108,3.77,3.369,3.198,3.298,3.483,3.594,3.816,3.86,3.963,3.869,3.645,3.44,3.236,3.126,3.017,2.872,2.705,2.504,2.411,2.447,2.252,2.014,2.076,2.279,2.258,2.303,2.41,2.381,2.216,2.163,2.055,2.163,2.297,2.405,2.361,2.302,2.377,2.316,2.328,2.301,2.312,2.31,2.335,2.265,2.193,2.103,2.168,2.223,2.22,2.414,2.684,2.786,2.833,2.914,3.105,3.221,3.308,3.401,3.539,3.615,3.715,3.799,3.864,3.928,4.064,4.094,4.106,4.253,4.37,4.505,4.564,4.666,4.725,4.647,4.607,4.793,4.498,4.349,4.59,4.82,4.994,5.361,5.393,5.323,5.384,5.248,4.35,3.452,2.622,2.135,1.909,1.771,1.644,1.61,1.412,1.334,1.261,1.243,1.231,1.242,1.232,1.225,1.215,1.224,1.249,1.281,1.373,1.421,1.42,1.495,1.541,1.526,1.55,1.714,1.924,2.089,2.147,2.144,2.183,2.097,2.067,2.11,2.044,2.003,1.837,1.678,1.499,1.368,1.266,1.219,1.061,0.877,0.74,0.65,0.588,0.549,0.574,0.594,0.545,0.528,0.484,0.507,0.525,0.542,0.543,0.541,0.506,0.544,0.562,0.549,0.577,0.604,0.592,0.513,0.488,0.469,0.362,0.338,0.335,0.329,0.298,0.255,0.212,0.182,0.166,0.163,0.167,0.161,0.154,0.128,0.079,0.059,0.043,-0.008,-0.012,-0.01,-0.013,-0.028,-0.056,-0.048,-0.057,-0.069,-0.074,-0.08,-0.095,-0.106,-0.11,-0.119,-0.127,-0.149,-0.154,-0.156,-0.168,-0.18,-0.189,-0.19,-0.189,-0.191,-0.191,-0.19,-0.188,-0.181,-0.18,-0.169,-0.166,-0.154,-0.147,-0.129,-0.116,-0.108,-0.109,-0.112,-0.134,-0.19,-0.283,-0.356,-0.339,-0.304,-0.272,-0.261,-0.253,-0.288,-0.266,-0.108,-0.081,-0.147,-0.279,-0.359,-0.415,-0.466,-0.481,-0.497,-0.504,-0.501,-0.487,-0.484,-0.481,-0.484,-0.491,-0.498,-0.492,-0.477,-0.487,-0.502,-0.477,-0.335,-0.237,0.013,0.287,0.852,0.992,1.249,2.233,2.629,2.828,3.018,3.337,3.534,3.647,3.757,3.862,4.007,4.149,4.073,4.149,4.16,4.022,3.679,3.605,3.671,3.718,3.703,3.68,3.65,3.526,3.166,2.936,2.691,2.506,2.436,2.525,2.407,2.398,2.143,2.081,2.081,2.079,2.114,2.172,2.187,2.217,2.267,2.245,2.221,2.565,2.747,2.804,2.798,2.855,2.954,3.247,3.239] };
+
+/* Momentos señalados: [año, mes (0-11), clave de texto] */
+const PEAKS = [[2000, 7, 'fv.pk2000'], [2008, 6, 'fv.pk2008'], [2023, 9, 'fv.pk2023']];
+const MINP = [2021, 0];
+const euAt = (y, m) => EURIBOR.v[(y - EURIBOR.start[0]) * 12 + m - EURIBOR.start[1]];
+const EU_NOW = euAt(2026, 9) / 100;
+const monthName = (y, m) => new Intl.DateTimeFormat(LOCALE[L], { month: 'long', year: 'numeric' }).format(new Date(y, m, 15));
+const monthShort = (y, m) => new Intl.DateTimeFormat(LOCALE[L], { month: 'short', year: 'numeric' }).format(new Date(y, m, 15));
+
+function setFvTab(x) {
+  $('#fvTabA').setAttribute('aria-selected', x === 'A'); $('#fvTabB').setAttribute('aria-selected', x === 'B');
+  $('#fvPaneA').hidden = x !== 'A'; $('#fvPaneB').hidden = x !== 'B';
+  if (x === 'B') renderFV();
+}
+$('#fvTabA').addEventListener('click', () => setFvTab('A'));
+$('#fvTabB').addEventListener('click', () => setFvTab('B'));
+let fvKey = '';
+function fvInit() {
+  const key = JSON.stringify([D.tipo, D.tin, D.dif, L]);
+  if (key === fvKey) return;
+  fvKey = key;
+  if (!$('#fvFix').dataset.user) $('#fvFix').value = numF((D.tipo === 'fijo' ? D.tin : 0.029) * 100);
+  if (!$('#fvDif').dataset.user) $('#fvDif').value = numF((D.tipo === 'variable' ? D.dif : 0.0075) * 100);
+  if (!$('#fvEur').dataset.init) { $('#fvEur').value = EURIBOR.v[EURIBOR.v.length - 1]; $('#fvEur').dataset.init = 1; }
+}
+['fvFix', 'fvDif'].forEach(id => $('#' + id).addEventListener('input', () => { $('#' + id).dataset.user = 1; renderFV(); }));
+$('#fvEur').addEventListener('input', updFvSlider);
+
+function fvRates() {
+  const fix = parse($('#fvFix').value) / 100, dif = parse($('#fvDif').value) / 100;
+  return { fix: isNaN(fix) ? 0.029 : fix, dif: isNaN(dif) ? 0.0075 : dif };
+}
+const payAt = (r) => H.cuota(D.C, r / 12, D.n);
+
+function updFvSlider() {
+  if (!D) return;
+  const { fix, dif } = fvRates();
+  const e = parse($('#fvEur').value) / 100;
+  const pv = payAt(e + dif), pf = payAt(fix), dlt = pv - pf;
+  $('#fvEurOut').innerHTML = t('fv.tryOut', { e: pctN(e * 100, 2), v: eur.format(pv), f: eur.format(pf) }) +
+    ` <b class="${dlt > 0.005 ? 'neg' : 'pos'}">${t(dlt > 0.005 ? 'fv.more' : 'fv.less', { x: eur.format(Math.abs(dlt)) })}</b>`;
+}
+
+function renderFV() {
+  if (!D) return;
+  const { fix, dif } = fvRates();
+  const pf = payAt(fix);
+  const sc = [
+    { k: t('fv.sMin'), d: monthShort(MINP[0], MINP[1]), e: euAt(MINP[0], MINP[1]) / 100 },
+    { k: t('fv.sNow'), d: monthShort(2026, 9), e: EU_NOW },
+    { k: t('fv.sPlus', { n: 1 }), d: '', e: EU_NOW + 0.01 },
+    { k: t('fv.sPlus', { n: 2 }), d: '', e: EU_NOW + 0.02 },
+    { k: t('fv.sMax'), d: monthShort(2008, 6), e: euAt(2008, 6) / 100 }
+  ].map(s => ({ ...s, p: payAt(s.e + dif) }));
+  mkChart('chFV1', {
+    data: { labels: sc.map(s => [s.k, s.d, pctN(s.e * 100, 2)]), datasets: [
+      { type: 'line', label: t('fv.lgFix'), data: sc.map(() => pf), borderColor: css('--navy'), borderWidth: 2.5, pointRadius: 0, order: 0 },
+      { type: 'bar', label: t('fv.lgVar'), data: sc.map(s => s.p), backgroundColor: sc.map(s => s.p > pf + 0.005 ? css('--bad') : css('--good')), order: 1 }
+    ] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + eur.format(c.parsed.y) } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 0, autoSkip: false } }, y: { beginAtZero: true, ticks: { callback: (v) => eur0.format(v) } } } }
+  });
+  const mx = sc[4];
+  $('#fvWarn').innerHTML = mx.p > pf + 0.005
+    ? `<div class="note bad">${t('fv.warn', { d: monthName(2008, 6), e: pctN(mx.e * 100, 3), x: eur.format(mx.p), y: eur.format(mx.p - pf) })}</div>`
+    : `<div class="note">${t('fv.warnNo', { d: monthName(2008, 6) })}</div>`;
+  updFvSlider();
+
+  // Histórico con el Euríbor de equilibrio
+  const eq = (fix - dif) * 100;
+  const labels = EURIBOR.v.map((_, i) => { const y = EURIBOR.start[0] + Math.floor(i / 12); return `${y}-${String(i % 12 + 1).padStart(2, '0')}`; });
+  const above = EURIBOR.v.filter(x => x > eq).length / EURIBOR.v.length;
+  const avg = EURIBOR.v.reduce((a, b) => a + b, 0) / EURIBOR.v.length;
+  const avg10 = EURIBOR.v.slice(-120).reduce((a, b) => a + b, 0) / 120;
+  const pkIdx = PEAKS.map(([y, m]) => (y - 2000) * 12 + m);
+  mkChart('chFV2', {
+    type: 'line',
+    data: { labels, datasets: [
+      { label: 'Euríbor', data: EURIBOR.v, borderWidth: 2, pointRadius: (c) => pkIdx.includes(c.dataIndex) ? 5 : 0, pointBackgroundColor: css('--bad'),
+        segment: { borderColor: (c) => (c.p0.parsed.y > eq || c.p1.parsed.y > eq) ? css('--bad') : css('--good') } },
+      { label: t('fv.eqLabel'), data: EURIBOR.v.map(() => eq), borderColor: css('--blue'), borderDash: [6, 4], borderWidth: 1.5, pointRadius: 0 }
+    ] },
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: false }, tooltip: { callbacks: {
+        title: (c) => { const [y, m] = c[0].label.split('-').map(Number); return monthName(y, m - 1); },
+        label: (c) => ' ' + c.dataset.label + ': ' + pctN(c.parsed.y, 3) } } },
+      scales: { x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0, callback: (v, i) => (i % 60 === 0 ? labels[i].slice(0, 4) : '') } },
+        y: { ticks: { callback: (v) => pctN(v, 0) } } } }
+  });
+  $('#fvEq').innerHTML = `<div class="note">${t('fv.eqNote', { e: pctN(eq, 2), p: pctF(above, 0), a: pctN(avg, 2), b: pctN(avg10, 2) })}</div>`;
+  $('#fvPeaks').innerHTML = `<thead><tr><th>${t('fv.thWhen')}</th><th>Euríbor</th><th>${t('fv.thPay')}</th><th>${t('fv.thVsFix')}</th></tr></thead><tbody>` +
+    PEAKS.map(([y, m, k]) => { const e = euAt(y, m), p = payAt(e / 100 + dif), d = p - pf;
+      return `<tr><td>${monthName(y, m)}<br><small class="hint">${t(k)}</small></td><td>${pctN(e, 3)}</td><td>${eur.format(p)}</td><td class="${d > 0.005 ? 'bad' : 'good'}">${(d > 0 ? '+' : '−') + eur.format(Math.abs(d))}</td></tr>`; }).join('') + '</tbody>';
+}
+
 /* ---------- Instalación en el móvil ---------- */
 let deferredInstall = null;
 const ua = navigator.userAgent;
@@ -2152,10 +2780,11 @@ function renderDias() {
   const Lo = loan();
   const bases = ['30/360', 'real/365', 'real/real', 'real/360'];
   const names = { '30/360': t('dy.n30'), 'real/365': 'Real/365', 'real/real': 'Real/Real', 'real/360': 'Real/360' };
-  const res = bases.map(b => { const s = H.simulate(Lo, { basis: b }); return { b, int: s.totInt, eff: H.irrAnnual([-D.C, ...s.rows.map(r => r.pago)]) }; });
+  const res = bases.map(b => { const s = H.simulate(Lo, { basis: b }); return { b, int: s.totInt + H.carencia({ ...Lo, base: b }).int, eff: H.irrAnnual([-D.C, ...s.rows.map(r => r.pago)]) }; });
+  const mine = Lo.base;
   const min = Math.min(...res.map(r => r.int));
   $('#tblDias').innerHTML = `<thead><tr><th>${t('dy.thBase')}</th><th>${t('dy.thInt')}</th><th>${t('dy.thDiff')}</th><th>${t('dy.thEff')}</th></tr></thead><tbody>${
-    res.map(r => { const dif = r.int - min; return `<tr class="${dif < 0.005 ? 'best' : ''}"><td>${names[r.b]}</td><td>${eur.format(r.int)}</td><td class="${dif < 0.005 ? 'good' : 'bad'}">${dif < 0.005 ? t('dy.min') : '+' + eur.format(dif)}</td><td>${pctN(r.eff * 100, 4)}</td></tr>`; }).join('')}</tbody>`;
+    res.map(r => { const dif = r.int - min; return `<tr class="${dif < 0.005 ? 'best' : ''}${r.b === mine ? ' mine' : ''}"><td>${names[r.b]}${r.b === mine ? `<span class="pill">${t('dy.yours')}</span>` : ''}</td><td>${eur.format(r.int)}</td><td class="${dif < 0.005 ? 'good' : 'bad'}">${dif < 0.005 ? t('dy.min') : '+' + eur.format(dif)}</td><td>${pctN(r.eff * 100, 4)}</td></tr>`; }).join('')}</tbody>`;
   $('#diasNote').innerHTML = `<div class="note bad">${t('dy.note', { x: eur.format(res[3].int - res[0].int) })}</div>
     <p class="hint">${t('dy.hint')}</p>`;
 }
@@ -2198,8 +2827,8 @@ function renderCoste() {
   const incluye = $('#tbSi').checked;
   const sinB = H.simulate(Lo, { extraRate: incluye ? bonif : 0 });
   const conB = H.simulate(Lo, { extraRate: incluye ? 0 : -bonif });
-  const totSin = sinB.rows.reduce((a, r) => a + r.pago, 0);
-  const totCon = conB.rows.reduce((a, r) => a + r.pago, 0) + costeMes * conB.meses;
+  const totSin = sinB.rows.reduce((a, r) => a + r.pago, 0) + carOf(incluye ? bonif : 0).int;
+  const totCon = conB.rows.reduce((a, r) => a + r.pago, 0) + costeMes * conB.meses + carOf(incluye ? 0 : -bonif).int;
   const anualSin = sinB.rows.slice(0, 12).reduce((a, r) => a + r.pago, 0);
   const anualCon = conB.rows.slice(0, 12).reduce((a, r) => a + r.pago, 0) + costeMes * 12;
   const mesSin = sinB.rows[0].pago, mesCon = conB.rows[0].pago + costeMes;
@@ -2220,7 +2849,7 @@ function renderCoste() {
 }
 
 /* ---------- Router ---------- */
-const VIEWS = ['idioma', 'datos', 'indice', 'prestamo', 'anticipos', 'dias', 'coste', 'documentacion'];
+const VIEWS = ['idioma', 'datos', 'indice', 'prestamo', 'anticipos', 'dias', 'coste', 'fijovariable', 'documentacion'];
 function route() {
   let v = location.hash.replace('#', '');
   if (!VIEWS.includes(v)) v = !chosen() ? 'idioma' : D ? 'indice' : 'datos';
@@ -2235,6 +2864,7 @@ function route() {
   if (v === 'anticipos') { antInit(); syncAnt(); renderAnticipos(false); if (!$('#antPane2').hidden) renderPF(); }
   if (v === 'dias') renderDias();
   if (v === 'coste') renderCoste();
+  if (v === 'fijovariable') { fvInit(); if (!$('#fvPaneB').hidden) renderFV(); }
   window.scrollTo(0, 0);
 }
 $('#backBtn').addEventListener('click', () => location.hash = 'indice');
