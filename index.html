@@ -226,7 +226,7 @@ b.neg { color: var(--bad); } b.pos { color: var(--good); }
 <!-- ============ IDIOMA ============ -->
 <section class="screen" data-view="idioma">
   <div style="display:grid;gap:10px">
-    <p class="eyebrow">Bienvenida · Benvinguda · Welcome · Bienvenue · Willkommen · Benvenuti</p>
+    <p class="eyebrow">Bienvenida · Benvinguda · Benvida · Welcome · Bienvenue · Willkommen · Benvenuti</p>
     <h1 data-t="lang.title">Elige tu idioma</h1>
     <p class="lead" data-t="lang.lead">Toca la bandera de tu idioma. <b>Tu acta de transparencia</b> es una herramienta que te ofrecemos María Eugenia Roa Nonide y Javier González Granado, notarios de Eivissa, para ayudarte a comprender las condiciones de tu préstamo antes, durante y después de la firma del acta de transparencia. Gracias por confiar en nosotros.</p>
   </div>
@@ -589,7 +589,7 @@ b.neg { color: var(--bad); } b.pos { color: var(--good); }
         <li>En enero de 2024, casi <b>la mitad</b> de las aportaciones al Euríbor a 12 meses (el 44,5 %) no salía de operaciones, sino de los <b>modelos internos de cada banco</b>.</li></ul>
         <p>Son datos publicados por la propia entidad que calcula el Euríbor, el European Money Markets Institute (<a href="https://www.emmi-benchmarks.eu/benchmarks/euribor/transparency/transparency-indicator-reports/" target="_blank" rel="noopener">EMMI</a>).</p>
       </div></details>
-      <details class="doc"><summary><span data-t="fv.manT">¿Se ha manipulado el Euríbor?</span></summary><div class="body"><p data-t="fv.manB">Ese sistema permitió manipularlo. Entre 2005 y 2008, varios bancos del panel se concertaron para alterarlo. La Comisión Europea los sancionó en 2013 y 2016, y los tribunales de la Unión Europea confirmaron las sanciones. En el Reino Unido y en Estados Unidos se impusieron multas millonarias y hubo condenas a operadores. En Italia, los clientes afectados han llevado el asunto hasta su Tribunal Supremo, que está pendiente de lo que diga el Tribunal de Justicia de la UE. En España, en cambio, los tribunales no han admitido en general las reclamaciones de los consumidores, aunque la cuestión sigue abierta en los juzgados. <b>Que la manipulación existió está demostrado; lo difícil ha sido probar cuánto afectó a cada préstamo concreto.</b></p></div></details>
+      <details class="doc"><summary><span data-t="fv.manT">¿Se ha manipulado el Euríbor?</span></summary><div class="body"><p data-t="fv.manB">Ese sistema permitió manipularlo. Entre 2005 y 2008, varios bancos del panel se concertaron para alterarlo. La Comisión Europea los sancionó en 2013 y 2016, y los tribunales de la Unión Europea confirmaron las sanciones. En el Reino Unido y en Estados Unidos se impusieron multas millonarias y hubo condenas a operadores. En Italia, los clientes afectados han llevado el asunto hasta su Tribunal Supremo. El Tribunal de Justicia de la Unión Europea ha determinado que la manipulación del Euríbor no acarrea automáticamente la nulidad de las cláusulas de los préstamos hipotecarios. Para los juzgados españoles, la manipulación está demostrada; sin embargo, sus sentencias sostienen hasta la fecha que de ello no se deriva un perjuicio concreto para los prestatarios. Ahora bien, más allá de la existencia de ese perjuicio concreto, debería valorarse si un índice de referencia manipulable cumple las exigencias del artículo 21 de la Ley 5/2019, de 15 de marzo, reguladora de los contratos de crédito inmobiliario, que excluye los tipos de interés susceptibles de «influencia por el propio prestamista, o en virtud de acuerdos con otros prestamistas o prácticas conscientemente paralelas» y que no resulten «agregados de acuerdo con un procedimiento matemático objetivo». <b>Es una regla clásica de nuestro Derecho: una vez firmado el contrato, su eficacia no puede depender de la voluntad de una sola de las partes.</b></p></div></details>
       <details class="doc"><summary><span data-t="fv.mktT">Un índice de los mercados financieros</span></summary><div class="body"><p data-t="fv.mktB">El Euríbor no sirve solo para las hipotecas. Es la referencia de un mercado muchísimo mayor: fondos de inversión, futuros, permutas de tipos de interés (swaps) y otros productos financieros muy complejos, en los que se mueve mucho más dinero que en todos los préstamos a consumidores. Por eso, más que un simple tipo de interés, un préstamo variable puede verse como un instrumento financiero complejo, cuyo precio depende de mercados que no controlas y que no están pensados para ti.</p></div></details>
       <p class="decide" data-t="fv.decide">Con todo esto sobre la mesa, la decisión es tuya. Nuestro trabajo es que la tomes sabiendo lo que firmas.</p>
     </div>
@@ -677,7 +677,7 @@ b.neg { color: var(--bad); } b.pos { color: var(--good); }
   <p data-t="f.p1"><b>Tu acta de transparencia</b> es una herramienta orientativa y gratuita ofrecida por la notaría de María Eugenia Roa Nonide y Javier González Granado. Las cifras vinculantes son las de tu FEIN y tu escritura.</p>
   <p data-t="f.p2">Todos los cálculos se hacen en tu dispositivo. No se recoge ni se envía ningún dato.</p>
   <p><a href="#idioma" id="langLink"><span data-t="f.lang">Cambiar idioma</span> · <span id="langName">Español</span></a></p>
-  <p><span id="version">Versión 7 · noviembre de 2026</span> · <span data-t="f.credit">Idea, diseño y desarrollo de Javier González Granado con Claude.</span></p>
+  <p><span id="version">Versión 8 · noviembre de 2026</span> · <span data-t="f.credit">Idea, diseño y desarrollo de Javier González Granado con Claude.</span></p>
 </footer>
 </main>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -874,10 +874,10 @@ const H = (() => {
 
 </script>
 <script>
-const I18N = {es:{}, ca:{}, en:{}, fr:{}, de:{}, it:{}};
+const I18N = {es:{}, ca:{}, gl:{}, en:{}, fr:{}, de:{}, it:{}};
 I18N.es = {
   'pct': ' %', 'yr1': 'año', 'yrN': 'años', 'mo1': 'mes', 'moN': 'meses', 'and': 'y',
-  'f.ver': 'Versión 7 · noviembre de 2026',
+  'f.ver': 'Versión 8 · noviembre de 2026',
   'yearN': 'Año {n}', 'kEur': '{n} mil €',
   'chartErr': 'No se ha podido cargar el gráfico. Comprueba la conexión y vuelve a abrir la app.',
   'd.feeOn': 'Sobre el capital: {x}',
@@ -948,7 +948,6 @@ I18N.es = {
   'b.car': 'Carencia técnica (primer pago)', 'b.carSub': 'solo intereses, por {d} días', 'b.intCar': 'incluye {x} de la carencia técnica',
   'd.carCalc': 'Pagarás unos <b>{x}</b> de intereses por {d} días de carencia.',
   'e.car': 'la fecha de fin de la carencia (posterior a la firma y como máximo tres meses después)',
-  'dy.yours': 'la tuya',
   'fv.lgVar': 'Cuota con tipo variable',
   'fv.sMin': 'Mínimo', 'fv.sNow': 'Actual', 'fv.sPlus': 'Actual +{n} p.', 'fv.sMax': 'Máximo',
   'fv.warn': 'Si el Euríbor volviera al máximo de {d} ({e}), tu cuota variable sería <b>{x}</b>: <b>{y} más al mes</b> que con el fijo. Antes de elegir variable, asegúrate de que podrías pagarla.',
@@ -1156,7 +1155,7 @@ Object.assign(I18N.ca, {
   'doc.acta.p1': "És una reunió amb el notari, com a molt tard el dia abans de la signatura. És una actuació <b>totalment gratuïta</b> per a tu i tu tries amb quin notari la vols fer. El banc no et pot imposar ni suggerir-ne un altre. Gràcies per triar-nos.",
   'doc.acta.p2': "Un de nosaltres, María Eugenia Roa Nonide o Javier González Granado, comprovarà que has rebut tota la documentació a temps, resoldrà els teus dubtes i t'explicarà les clàusules una per una. Després respondràs un breu test que serveix per confirmar que has entès l'essencial.",
   'doc.avi.p1': "El banc t'ha d'indicar per escrit que tens dret a anar a un notari de la teva elecció perquè t'assessori gratuïtament sobre el préstec. No permetis que t'imposin ni et suggereixin un notari determinat. És decisió teva.",
-  'f.ver': 'Versió 7 · novembre de 2026',
+  'f.ver': 'Versió 8 · novembre de 2026',
   'f.credit': 'Idea, disseny i desenvolupament de Javier González Granado amb Claude.',
   'd.base': 'Base de càlcul del teu préstec', 'd.b30': '30/360 (comercial)', 'd.b365': 'Real/365', 'd.bRR': 'Real/Real', 'd.b360': 'Real/360',
   'd.baseHint': "La trobaràs a la teva FEIN o al projecte d'escriptura. Si no la saps, deixa 30/360. A «Quants dies té un any?» t'expliquem què vol dir cadascuna.",
@@ -1170,7 +1169,6 @@ Object.assign(I18N.ca, {
   'b.car': 'Carència tècnica (primer pagament)', 'b.carSub': 'només interessos, per {d} dies', 'b.intCar': 'inclou {x} de la carència tècnica',
   'm6.t': 'Fix o variable?', 'm6.d': "Què vol dir cadascun, què és de debò l'Euríbor i què passaria amb la teva quota si puja.",
   'dy.courts': 'Hi ha sentències que han declarat abusives algunes d’aquestes pràctiques bancàries. Te ho explicarem a la notaria.',
-  'dy.yours': 'la teva',
   'fv.lead': "Triar entre tipus fix i variable és una de les decisions més importants del teu préstec. La decisió és teva, però el nostre deure com a notaris és ajudar-te a prendre-la sabent bé a què t'exposes. Per això et mostrem, amb les teves pròpies xifres, què passaria si les coses van bé i, sobretot, si van malament.",
   'fv.tabA': 'Què és cadascun', 'fv.tabB': "I si canvia l'Euríbor?",
   'fv.fixT': 'Fix', 'fv.fixD': "Pagues el mateix tipus durant tota la vida del préstec, i la teva quota no canvia passi el que passi al mercat. A canvi, el tipus sol ser més alt que l'inicial d'un variable, i si els tipus baixen no te'n beneficies. Pagues per la tranquil·litat.",
@@ -1211,6 +1209,243 @@ Object.assign(I18N.ca, {
   'fv.thWhen': 'Quan', 'fv.thPay': 'La teva quota variable', 'fv.thVsFix': 'Davant el fix',
   'fv.pk2000': 'Màxim de la bombolla tecnològica', 'fv.pk2008': 'Màxim històric, abans de la crisi financera', 'fv.pk2023': 'Pujada després de la inflació de 2022'
 });
+Object.assign(I18N.ca, {
+  'fv.manB': "Aquest sistema va permetre manipular-lo. Entre 2005 i 2008, diversos bancs del panel es van concertar per alterar-lo. La Comissió Europea els va sancionar el 2013 i el 2016, i els tribunals de la Unió Europea van confirmar les sancions. Al Regne Unit i als Estats Units es van imposar multes milionàries i hi va haver condemnes a operadors. A Itàlia, els clients afectats han portat l'assumpte fins al seu Tribunal Suprem. El Tribunal de Justícia de la Unió Europea ha determinat que la manipulació de l'Euríbor no comporta automàticament la nul·litat de les clàusules dels préstecs hipotecaris. Per als jutjats espanyols, la manipulació està demostrada; tanmateix, les seves sentències sostenen fins ara que d'això no se'n deriva un perjudici concret per als prestataris. Ara bé, més enllà de l'existència d'aquest perjudici concret, caldria valorar si un índex de referència manipulable compleix les exigències de l'article 21 de la Llei 5/2019, de 15 de març, reguladora dels contractes de crèdit immobiliari, que exclou els tipus d'interès susceptibles d'«influència pel mateix prestador, o en virtut d'acords amb altres prestadors o pràctiques conscientment paral·leles» i que no resultin «agregats d'acord amb un procediment matemàtic objectiu». <b>És una regla clàssica del nostre Dret: un cop signat el contracte, la seva eficàcia no pot dependre de la voluntat d'una sola de les parts.</b>"
+});
+
+I18N.gl = {
+  /* ---- Textos fixos ---- */
+  'nav.back': '‹ Índice', 'aria.nav.backAria': 'Volver ao índice',
+  'app.name': 'A túa acta de transparencia', 'corp.sub': 'Notarios asociados',
+  'lang.title': 'Elixe a túa lingua',
+  'lang.lead': 'Toca a bandeira da túa lingua. <b>A túa acta de transparencia</b> é unha ferramenta que che ofrecemos María Eugenia Roa Nonide e Javier González Granado, notarios de Eivissa, para axudarte a comprender as condicións do teu préstamo antes, durante e despois da sinatura da acta de transparencia. Grazas por confiar en nós.',
+  'd.eyebrow': 'Paso 1 · Os teus datos', 'd.title': 'Cóntanos como é o teu préstamo',
+  'd.lead': 'Atoparás todos estes datos na túa <b>FEIN</b> (a ficha que che entregou o banco). Os números que ves son un exemplo: cámbiaos polos teus.',
+  'd.capital': 'Capital do préstamo', 'd.term': 'Prazo', 'u.months': 'meses', 'u.month': 'mes',
+  'd.rateType': 'Tipo de xuro', 'aria.d.rateType': 'Tipo de xuro', 'd.fixed': 'Fixo', 'd.variable': 'Variable',
+  'd.fixedRate': 'Tipo de xuro fixo (TIN anual)', 'd.fixedHint': 'Con dous decimais, por exemplo 2,90.',
+  'd.initRate': 'Tipo inicial', 'd.initFor': 'Tipo inicial durante', 'd.margin': 'Diferencial sobre o Euríbor',
+  'd.euribor': 'Euríbor para o cálculo',
+  'd.euriborHint': 'Euríbor a 12 meses de outubro de 2026: 3,239 % (Banco de España). Supoñemos que se mantén igual; podes probar outros valores.',
+  'd.feeQ': 'Hai comisión de apertura?', 'aria.d.fee': 'Comisión de apertura', 'd.fee': 'Comisión de apertura',
+  'w.no': 'Non', 'w.yes': 'Si',
+  'd.date': 'Data prevista de sinatura', 'd.dateHint': 'Úsase para calcular a carencia técnica e para contar os días reais de cada mes.',
+  'd.base': 'Base de cálculo do teu préstamo', 'd.b30': '30/360 (comercial)', 'd.b365': 'Real/365', 'd.bRR': 'Real/Real', 'd.b360': 'Real/360',
+  'd.baseHint': 'Atoparala na túa FEIN ou no proxecto de escritura. Se non a sabes, deixa 30/360. En «Cantos días ten un ano?» explicámosche que significa cada unha.',
+  'd.carQ': 'O teu préstamo ten carencia técnica?', 'aria.d.carQ': 'O teu préstamo ten carencia técnica?',
+  'd.carExpl': 'As cotas dun préstamo cóntanse por meses completos, normalmente a partir do día 1 do mes seguinte á sinatura. Por iso, <b>seguramente o primeiro mes do teu préstamo só pagarás os xuros polos días que falten desde o día da sinatura ata a fin dese primeiro mes</b>. É o que se chama carencia técnica: durante eses días non devolves capital, só pagas xuros. Verálo na túa FEIN.',
+  'd.carEnd': 'Fin da carencia (inicio das cotas ordinarias)',
+  'd.carEndHint': 'Normalmente, o último día do mes da sinatura. Cámbiao só se a túa FEIN di outra cousa.',
+  'd.submit': 'Ver o meu préstamo',
+  'd.privacy': 'Os teus datos non saen deste dispositivo: non se envían á notaría, ao banco nin a ninguén.',
+  'i.eyebrow': 'Índice', 'i.title': 'As contas claras', 'i.edit': 'Cambiar os meus datos',
+  'inst.title': 'Leva esta app no teu móbil', 'inst.btn': 'Instalar', 'inst.later': 'Agora non',
+  'aria.i.navAria': 'Apartados',
+  'm1.t': 'O meu préstamo', 'm1.d': 'Dunha ollada e en cifras: cota, xuros e como baixa a débeda.',
+  'm2.t': 'Pagamentos anticipados', 'm2.d': 'Canto aforras se adiantas diñeiro, e que opción che convén.',
+  'm3.t': 'Cantos días ten un ano?', 'm3.d': 'As bases de cálculo que usan os bancos e o que cambian.',
+  'm4.t': 'Custo real', 'm4.d': 'TIN, TAE e o que custan de verdade as bonificacións.',
+  'm6.t': 'Fixo ou variable?', 'm6.d': 'Que significa cada un, que é de verdade o Euríbor e que pasaría coa túa cota se sobe.',
+  'm5.t': 'Documentación', 'm5.d': 'FEIN, FiAE, minuta… que é cada papel e cando o recibes.',
+  'p.tabA': 'Dunha ollada', 'p.tabB': 'En cifras', 'p.hA': 'O meu préstamo dunha ollada',
+  'p.explA': 'Cada barra é un ano. A parte <b style="color:var(--good)">verde</b> é o que devolves da túa débeda (capital); a <b style="color:var(--bad)">vermella</b> son os xuros que cobra o banco. A liña azul mostra canto che queda por pagar: toca calquera punto para velo.',
+  'lg.capPaid': 'Capital devolto', 'lg.interest': 'Xuros', 'lg.capPending': 'Capital pendente',
+  'aria.p.chAria': 'Gráfico anual de capital e xuros', 'p.month': 'Elixe un mes concreto', 'p.hB': 'O meu préstamo en cifras',
+  'a.lead': 'Adiantar diñeiro ao banco é unha forma de aforrar: cada euro que devolves antes deixa de xerar xuros durante o resto do préstamo. Podes velo como un investimento no que a rendibilidade é o mesmo tipo de xuro que pagas polo teu préstamo. Proba coas túas cifras.',
+  'a.tab1': 'Calcular o meu aforro', 'a.tab2': 'Sempre pago compensación?',
+  'a.amount': 'Canto queres anticipar?', 'a.month': 'En que mes do préstamo?',
+  'a.freq': 'Con que frecuencia?', 'a.fqOnce': 'Unha soa vez', 'a.fqYear': 'Cada ano desde entón', 'a.fqMonth': 'Cada mes desde entón',
+  'a.comp': 'Que compensación cobra o banco?', 'a.cpNone': 'Sen compensación', 'a.cpLegal': '2 % ata o ano 10, 1,5 % despois', 'a.cpOther': 'Outra',
+  'a.compHint': 'A compensación pactada figura na túa FEIN. Con tipo variable a lei permite como máximo un 0,25 % (primeiros 3 anos) ou un 0,15 % (primeiros 5 anos); usa «Outra» nese caso.',
+  'a.compAgreed': 'Compensación pactada',
+  'a.hA': 'a) Canto aforro en xuros?',
+  'a.explA': 'Comparamos tres camiños: non adiantar nada, usar o diñeiro para <b>pagar menos meses</b> (mesma cota, o préstamo remata antes) ou para <b>pagar menos cada mes</b> (mesmo prazo, cota máis baixa).',
+  'lg.comp': 'Compensación ao banco', 'lg.saving': 'O teu aforro neto', 'aria.a.chAAria': 'Comparativa de xuros',
+  'a.hB': 'b) A que tipo de xuro equivale?',
+  'a.explB': 'O tipo de xuro do contrato non cambia, pero ao adiantar pagas menos xuros. Aquí traducímolo a un <b>tipo equivalente</b>: o tipo que, co teu capital e o teu prazo iniciais, che custaría o mesmo (contando a compensación).',
+  'aria.a.chBAria': 'Comparativa de tipo equivalente',
+  'pf.h1': 'Sempre hai que pagar a compensación?',
+  'pf.p1': 'Non. Aínda que o teu contrato prevexa unha compensación por pagamento anticipado, o banco <b>só pode cobrarcha se, no momento en que pagas, sofre unha perda financeira</b>. E nunca pode cobrarche máis ca esa perda, nin máis có máximo pactado.',
+  'pf.p2': 'Que é a perda financeira? Cando adiantas diñeiro, o banco deixa de cobrar os xuros que tiña pactados contigo por ese diñeiro. Ten que volver prestalo a outra persoa, e farao ao prezo que teña o mercado ese día.',
+  'pf.quote': 'Independentemente do tipo de xuro do teu préstamo, hai veces en que no mercado os préstamos «están máis caros» e outras en que «están máis baratos».',
+  'pf.lgYour': 'O tipo do teu préstamo', 'pf.lgMarket': 'O tipo ao que o banco pode volver prestar',
+  'aria.pf.ch1Aria': 'Exemplo de evolución do mercado fronte ao teu tipo',
+  'pf.illus': 'Exemplo ilustrativo: ninguén sabe como se moverá o mercado.',
+  'pf.zoneBad': '<b>Mercado máis barato que o teu préstamo</b><br>O banco recoloca o teu diñeiro a un tipo máis baixo e gaña menos do pactado. Hai perda financeira: pode cobrarche compensación, como máximo esa perda.',
+  'pf.zoneGood': '<b>Mercado máis caro que o teu préstamo</b><br>O banco volve prestar o teu diñeiro a un tipo igual ou maior. Non perde nada, así que non pode cobrarche compensación.',
+  'pf.h2': 'Como se sabe se hai perda? O diferencial',
+  'pf.p3': 'A lei non deixa a resposta en mans do banco. O día da sinatura calcúlase a diferenza entre o teu tipo de xuro e un tipo oficial de mercado que publica o Banco de España: o <b>IRS</b>. Esa diferenza é o <b>diferencial</b>, e queda fixada na túa escritura.',
+  'pf.p4': 'O día que anticipes, tómase o IRS dese momento e súmaselle o mesmo diferencial. O resultado é o tipo ao que, segundo a lei, o banco pode volver prestar o teu diñeiro. Se é máis baixo que o teu tipo, hai perda. Se é igual ou máis alto, non a hai.',
+  'pf.difLabel': 'Diferencial da túa escritura', 'pf.irsLabel': 'IRS o día que anticipas',
+  'pf.irsHint': 'Move a barra para probar un mercado máis caro ou máis barato.',
+  'pf.lgPact': 'Xuros pactados contigo', 'pf.lgReinv': 'Xuros ao volver prestalo',
+  'aria.pf.ch2Aria': 'Xuros pactados fronte a xuros de mercado',
+  'pf.h3': 'Onde está a fronteira?',
+  'pf.p5': 'Esta liña mostra canto pagarías segundo o IRS que haxa o día en que anticipes. A fronteira é o IRS do día da túa sinatura: por debaixo hai perda e podes pagar compensación (<b style="color:var(--bad)">vermello</b>); por riba non pagas nada (<b style="color:var(--good)">verde</b>).',
+  'pf.lgPay': 'Compensación que pagarías', 'pf.lgNone': 'Sen compensación', 'pf.lgLoss': 'Perda financeira calculada', 'pf.lgThr': 'Fronteira e caso elixido',
+  'aria.pf.ch3Aria': 'Compensación segundo o IRS',
+  'pf.pvHint': 'A perda financeira calcúlase en valor actual: o que o banco deixaría de cobrar no futuro, traducido a euros de hoxe. Por iso é algo menor cá simple diferenza de xuros.',
+  'dy.lead': 'Parece unha pregunta de broma, pero non o é. Para calcular os xuros de cada mes, o banco divide o tipo anual entre os días do ano, e non todos os bancos contan igual. A túa escritura di cal se usa: busca a «base de cálculo».',
+  'dy.b1t': 'Comercial', 'dy.b1d': 'Todos os meses teñen 30 días e o ano 360. Cada mes pagas exactamente 1/12 do tipo anual. É a referencia máis sinxela.',
+  'dy.b2t': 'Días reais sobre 365', 'dy.b2d': 'Cóntanse os días reais de cada mes (28, 30 ou 31) e divídense entre 365, tamén nos anos bisestos.',
+  'dy.b3t': 'Días reais sobre días reais', 'dy.b3d': 'Días reais do mes divididos entre os días reais do ano: 365, ou 366 se é bisesto. É a máis exacta.',
+  'dy.b4t': 'Días reais sobre 360', 'dy.b4d': 'Cóntanse os días reais pero o ano queda en 360. Así un ano «paga» 365 días de xuros sobre 360: é a máis cara para ti.',
+  'dy.h2': 'O que supón no teu préstamo',
+  'dy.p': 'Mesmo capital, mesmo tipo e mesma cota; só cambia como se contan os días. A diferenza axústase na última cota.',
+  'dy.courts': 'Hai sentenzas que declararon abusivas algunhas destas prácticas bancarias. Explicarémoscho na notaría.',
+  'c.h2': 'De verdade me bonifican as bonificacións?',
+  'c.bonP': 'Os bancos rebaixan o tipo se contratas outros produtos. A túa cota baixa, pero pagas eses produtos cada mes. Indica que rebaixa che ofrecen por cada un e canto custa ao mes.',
+  'c.bonQ': 'O tipo que indicaches ao principio…', 'c.bonIncl': 'xa inclúe as bonificacións', 'c.bonExcl': 'é sen bonificar',
+  'c.h1': 'TIN e TAE: dous números, dúas preguntas',
+  'c.tin': 'O <b>TIN</b> (tipo de xuro nominal) é o prezo do diñeiro: a porcentaxe coa que se calculan os xuros de cada cota.',
+  'c.tae': 'A <b>TAE</b> (taxa anual equivalente) responde a outra pregunta: canto me custa de verdade, ao ano, todo xunto? Suma ao TIN a comisión de apertura e outros gastos obrigatorios, e ten en conta que pagas cada mes e non unha vez ao ano. Serve para comparar ofertas de bancos distintos.',
+  'fv.lead': 'Elixir entre tipo fixo e variable é unha das decisións máis importantes do teu préstamo. A decisión é túa, pero o noso deber como notarios é axudarte a tomala sabendo ben a que te expós. Por iso amosámosche, coas túas propias cifras, que pasaría se as cousas van ben e, sobre todo, se van mal.',
+  'fv.tabA': 'Que é cada un', 'fv.tabB': 'E se cambia o Euríbor?',
+  'fv.fixT': 'Fixo', 'fv.fixD': 'Pagas o mesmo tipo durante toda a vida do préstamo, e a túa cota non cambia pase o que pase no mercado. A cambio, o tipo adoita ser máis alto có inicial dun variable, e se os tipos baixan non te beneficias. Pagas pola tranquilidade.',
+  'fv.varT': 'Variable', 'fv.varD': 'O teu tipo é un índice, case sempre o Euríbor, máis un diferencial que non cambia. Revísase cada certo tempo (normalmente cada 6 ou 12 meses): se o Euríbor sobe, sobe a túa cota; se baixa, baixa. O risco de que os tipos suban asúmelo ti.',
+  'fv.mixT': 'Mixto', 'fv.mixD': 'Un tipo fixo durante os primeiros anos e variable despois. Dáche tranquilidade ao principio e déixache a incerteza para máis adiante.',
+  'fv.trap': '<b>Coidado coas comparacións enganosas.</b> O tipo inicial dun préstamo variable ou mixto adoita ser baixo durante uns meses ou anos. Non compares só a primeira cota: compara o que pagarías durante todo o préstamo se o Euríbor sobe.',
+  'fv.qT': 'Preguntas que che poden axudar',
+  'fv.q1': 'Os teus ingresos son estables ou poden cambiar?', 'fv.q2': 'Poderías seguir pagando se a túa cota subise 200 € ao mes?',
+  'fv.q3': 'Cantos anos dura o teu préstamo? Canto máis longo, máis incerteza.', 'fv.q4': 'Prefires pagar algo máis a cambio de saber sempre o que vas pagar?',
+  'fv.eurT': 'Que é realmente o Euríbor?',
+  'fv.eur1': 'O Euríbor parece un dato sinxelo, pero non o é. Reflicte o que lle custa a un grupo reducido de grandes bancos europeos, chamado «panel», conseguir diñeiro nos mercados financeiros, e tanto a súa definición legal como a súa forma de cálculo cambiaron co paso dos anos. Ata 2019 non se calculaba con operacións reais, senón coas estimacións que comunicaban eses mesmos bancos. Hoxe baséase en operacións, pero completadas con interpolacións e axustes cando non hai abondas, e iso ocorre con moita frecuencia.',
+  'fv.exT': 'Exemplos de como se calcula',
+  'fv.exB': '<ul class="plain"><li>En xaneiro de 2026, no Euríbor a 12 meses, o que se usa en case todas as hipotecas, <b>só o 20 %</b> das achegas dos bancos procedía de operacións reais a ese prazo. <b>O 73 %</b> calculouse a partir de datos de días anteriores, axustados.</li><li>Ese mesmo mes, no Euríbor a 3 meses, as operacións reais foron <b>só o 15 %</b>.</li><li>En xaneiro de 2024, case <b>a metade</b> das achegas ao Euríbor a 12 meses (o 44,5 %) non saía de operacións, senón dos <b>modelos internos de cada banco</b>.</li></ul><p>Son datos publicados pola propia entidade que calcula o Euríbor, o European Money Markets Institute (<a href="https://www.emmi-benchmarks.eu/benchmarks/euribor/transparency/transparency-indicator-reports/" target="_blank" rel="noopener">EMMI</a>).</p>',
+  'fv.manT': 'Manipulouse o Euríbor?',
+  'fv.manB': 'Ese sistema permitiu manipulalo. Entre 2005 e 2008, varios bancos do panel concertáronse para alteralo. A Comisión Europea sancionounos en 2013 e 2016, e os tribunais da Unión Europea confirmaron as sancións. No Reino Unido e nos Estados Unidos impuxéronse multas millonarias e houbo condenas a operadores. En Italia, os clientes afectados levaron o asunto ata o seu Tribunal Supremo. O Tribunal de Xustiza da Unión Europea determinou que a manipulación do Euríbor non leva automaticamente consigo a nulidade das cláusulas dos préstamos hipotecarios. Para os xulgados españois, a manipulación está demostrada; porén, as súas sentenzas sosteñen ata a data que diso non se deriva un prexuízo concreto para os prestatarios. Agora ben, máis alá da existencia dese prexuízo concreto, debería valorarse se un índice de referencia manipulable cumpre as esixencias do artigo 21 da Lei 5/2019, do 15 de marzo, reguladora dos contratos de crédito inmobiliario, que exclúe os tipos de xuro susceptibles de «influencia polo propio prestamista, ou en virtude de acordos con outros prestamistas ou prácticas conscientemente paralelas» e que non resulten «agregados de acordo cun procedemento matemático obxectivo». <b>É unha regra clásica do noso Dereito: unha vez asinado o contrato, a súa eficacia non pode depender da vontade dunha soa das partes.</b>',
+  'fv.mktT': 'Un índice dos mercados financeiros',
+  'fv.mktB': 'O Euríbor non serve só para as hipotecas. É a referencia dun mercado moitísimo maior: fondos de investimento, futuros, permutas de tipos de xuro (swaps) e outros produtos financeiros moi complexos, nos que se move moito máis diñeiro que en todos os préstamos a consumidores. Por iso, máis ca un simple tipo de xuro, un préstamo variable pode verse como un instrumento financeiro complexo, cuxo prezo depende de mercados que non controlas e que non están pensados para ti.',
+  'fv.decide': 'Con todo isto enriba da mesa, a decisión é túa. O noso traballo é que a tomes sabendo o que asinas.',
+  'fv.conv': '<b>Se elixes variable, non é para sempre.</b> Máis adiante poderás pasar a tipo fixo, co teu banco (novación) ou con outro banco (subrogación). A lei limita o que che poden cobrar por ese cambio: durante os tres primeiros anos, como máximo o 0,15 % do capital pendente e nunca máis cá perda financeira do banco; despois, nada.',
+  'fv.simT': 'A túa cota se cambia o Euríbor',
+  'fv.simP': 'Compara as dúas ofertas coas túas cifras: o tipo fixo que che ofrecen e o diferencial que che sumarían ao Euríbor se elixes variable. Usamos o capital e o prazo que indicaches.',
+  'fv.fixLabel': 'Tipo fixo que che ofrecen', 'fv.difLabel': 'Diferencial do variable que che ofrecen',
+  'fv.offHint': 'Se só tes unha das dúas ofertas, pídelle a outra ao teu banco ou proba con valores orientativos.',
+  'fv.lgFix': 'Cota con tipo fixo', 'fv.lgVarLo': 'Variable: pagarías menos', 'fv.lgVarHi': 'Variable: pagarías máis', 'fv.lgVar': 'Cota con tipo variable',
+  'aria.fv.ch1Aria': 'Cota segundo distintos niveis do Euríbor', 'aria.fv.ch2Aria': 'Evolución mensual do Euríbor desde 2000',
+  'fv.tryLabel': 'Proba outro Euríbor',
+  'fv.histT': 'O Euríbor desde o ano 2000',
+  'fv.histP': 'Así se moveu o Euríbor a 12 meses, mes a mes. A liña descontinua é o teu «Euríbor de equilibrio»: cando o Euríbor está por riba, o variable cústache máis có fixo (<b style="color:var(--bad)">vermello</b>); cando está por debaixo, menos (<b style="color:var(--good)">verde</b>).',
+  'fv.peaksT': 'Cando estivo máis caro',
+  'fv.histSrc': 'Medias mensuais do Euríbor a 12 meses publicadas polo Banco de España, desde xaneiro de 2000 ata outubro de 2026 (3,239 %). O que pasou no pasado non garante o que pasará no futuro.',
+  'doc.lead': 'A Lei 5/2019, de contratos de crédito inmobiliario, obriga o banco a entregarche unha serie de documentos antes de asinar. Na notaría imos comprobar que os tes e que os entendes. Se hai algo que non teñas claro, durante a sinatura da acta de transparencia explicarémoscho. Toca cada un para ver que é.',
+  'doc.before': 'Antes: polo menos 10 días naturais antes de asinar',
+  'doc.fein.t': 'Ficha Europea de Información Normalizada',
+  'doc.fein.p1': 'É a «ficha técnica» do teu préstamo, co mesmo formato en toda a Unión Europea para que poidas comparar. Recolle o importe, o prazo, o tipo de xuro, a TAE, a cota, as comisións e o que custa amortizar anticipadamente.',
+  'doc.fein.p2': 'Ten valor de <b>oferta vinculante</b> durante o prazo que indique (polo menos ata a sinatura): o banco non pode cambiarche as condicións a peor.',
+  'doc.fiae.t': 'Ficha de Advertencias Estandarizadas',
+  'doc.fiae.p1': 'Avísate das cláusulas que máis convén entender: o índice de referencia se é variable, os límites á variación do tipo, que pasa se deixas de pagar (vencemento anticipado) e como se reparten os gastos entre ti e o banco.',
+  'doc.esc.a': 'Escenarios', 'doc.esc.t': 'Documento de cotas en distintos escenarios',
+  'doc.esc.p1': 'Só se o teu tipo é variable, total ou parcialmente. Un documento separado mostra canto pagarías de cota se o índice sobe ou baixa, para que vexas o risco antes de asinar.',
+  'doc.min.a': 'Minuta', 'doc.min.t': 'Copia do proxecto de escritura',
+  'doc.min.p1': 'É o borrador do contrato que vas asinar diante de notario. Podes lelo con calma e preguntar todo o que non entendas. Debe coincidir coa FEIN.',
+  'doc.gas.a': 'Gastos', 'doc.gas.t': 'Información sobre a distribución de gastos',
+  'doc.gas.p1': 'Explica quen paga cada gasto. Por lei, o banco paga a xestoría, a notaría da escritura de préstamo, a inscrición no Rexistro e o imposto (AJD). Ti pagas a taxación e as copias da escritura que pidas para ti.',
+  'doc.seg.a': 'Seguros', 'doc.seg.t': 'Condicións dos seguros e garantías',
+  'doc.seg.p1': 'Se o banco esixe un seguro de danos do inmoble ou che ofrece outros con bonificación, debe informarte das súas condicións. O seguro de danos é obrigatorio, pero podes contratalo coa compañía que prefiras, sen que o banco poida impoñer a súa se a cobertura é equivalente.',
+  'doc.avi.a': 'Aviso', 'doc.avi.t': 'Advertencia de que debes recibir asesoramento notarial',
+  'doc.avi.p1': 'O banco debe indicarche por escrito que tes dereito a acudir a un notario da túa elección para que te asesore de balde sobre o préstamo. Non permitas que che impoñan nin che suxiran un notario determinado. É a túa decisión.',
+  'doc.during': 'Durante: a acta de transparencia',
+  'doc.acta.a': 'Acta', 'doc.acta.t': 'Acta notarial de transparencia',
+  'doc.acta.p1': 'É unha reunión co notario, como moi tarde o día anterior á sinatura. É unha actuación <b>totalmente gratuíta</b> para ti e ti elixes con que notario queres facela. O banco non pode impoñerche nin suxerirche outro. Grazas por escollernos.',
+  'doc.acta.p2': 'Un de nós, María Eugenia Roa Nonide ou Javier González Granado, comprobará que recibiches toda a documentación a tempo, resolverá as túas dúbidas e explicarache as cláusulas unha a unha. Despois diso responderás un breve test que serve para confirmar que entendiches o esencial.',
+  'doc.after': 'Despois de asinar',
+  'doc.escr.a': 'Escritura', 'doc.escr.t': 'Copia da túa escritura de préstamo',
+  'doc.escr.p1': 'Pide a túa copia: é o contrato definitivo e a referencia para calquera dúbida futura, como unha revisión do tipo ou unha amortización anticipada.',
+  'doc.reg.a': 'Rexistro', 'doc.reg.t': 'Inscrición no Rexistro da Propiedade',
+  'doc.reg.p1': 'A hipoteca inscríbese no Rexistro. Cando remates de pagar, o préstamo extínguese, pero a hipoteca segue aparecendo no Rexistro ata que se asina a súa cancelación.',
+  'doc.der.a': 'Dereitos', 'doc.der.t': 'O que podes facer máis adiante',
+  'doc.der.p1': 'Amortizar anticipadamente (total ou parcialmente), cambiar de banco (subrogación) ou renegociar condicións (novación). Volve ao apartado 2 para calcular un anticipo.',
+  'f.p1': '<b>A túa acta de transparencia</b> é unha ferramenta orientativa e gratuíta ofrecida pola notaría de María Eugenia Roa Nonide e Javier González Granado. As cifras vinculantes son as da túa FEIN e da túa escritura.',
+  'f.p2': 'Todos os cálculos fanse no teu dispositivo. Non se recolle nin se envía ningún dato.',
+  'f.lang': 'Cambiar a lingua',
+  'f.credit': 'Idea, deseño e desenvolvemento de Javier González Granado con Claude.',
+
+  /* ---- Textos dinámicos ---- */
+  'pct': ' %', 'yr1': 'ano', 'yrN': 'anos', 'mo1': 'mes', 'moN': 'meses', 'and': 'e',
+  'f.ver': 'Versión 8 · novembro de 2026',
+  'yearN': 'Ano {n}', 'kEur': '{n} mil €',
+  'chartErr': 'Non se puido cargar o gráfico. Comproba a conexión e volve abrir a app.',
+  'd.feeOn': 'Sobre o capital: {x}',
+  'e.capital': 'o capital (mínimo {x})', 'e.term': 'o prazo (entre 12 e 600 meses)', 'e.rate': 'o tipo de xuro',
+  'e.init': 'o tipo inicial', 'e.initFor': 'os meses de tipo inicial (menos có prazo)', 'e.margin': 'o diferencial',
+  'e.euribor': 'o Euríbor', 'e.fee': 'a comisión de apertura', 'e.check': 'Revisa {x}.',
+  's.capital': 'Capital', 's.term': 'Prazo', 's.fixed': 'Tipo fixo', 's.variable': 'Tipo variable', 's.payment': 'Cota',
+  'ax.year': 'Ano do préstamo', 'ax.paidYear': 'Pagado no ano', 'ax.left': 'Quédache por pagar',
+  'b.after': 'despois: {x}', 'b.payment': 'Cota mensual', 'b.interest': 'Xuros totais',
+  'b.total': 'Total que lle pagarás ao banco', 'b.totalSub': 'capital + xuros, sen outros gastos',
+  'b.cross': 'A partir do <b>mes {m}</b> ({y}), a maior parte da túa cota xa é capital e non xuros. Ata entón, o banco cobra máis do que ti devolves de débeda.',
+  'b.cross1': 'Desde a primeira cota, a maior parte do que pagas xa é capital e non xuros.',
+  'b.noCross': 'Durante todo o préstamo a maior parte da cota destínase a xuros.',
+  'b.mid': 'Á metade do prazo (mes {m}) terás devolto <b>{a}</b>, o <b>{p}</b> do capital. Nese tempo terás pagado {i} de xuros, o {q} de todos os xuros do préstamo.',
+  'b.var': 'Tipo variable: os primeiros {n} meses ao {r}; despois, Euríbor ({e}) + {d} = {s}. Se o Euríbor cambia, cambiarán estas cifras.',
+  'sl.left': 'Mes <b>{m}</b> ({y}): quédanche <b>{x}</b> por pagar.', 'sl.total': 'Cota total', 'sl.cap': 'Capital',
+  'a.between': 'Entre 1 e {n}.', 'a.err': 'Indica un importe maior ca cero e un mes entre 1 e {n}.',
+  'a.sNone': 'Sen anticipar', 'a.sTerm': 'Menos meses', 'a.sPay': 'Cota máis baixa',
+  'a.wOnce': 'no mes {m}', 'a.wYear': 'cada 12 meses desde o mes {m}', 'a.wMonth': 'cada mes desde o mes {m}',
+  'a.total': 'Total anticipado', 'a.saveTerm': 'Menos meses: aforras', 'a.savePay': 'Cota máis baixa: aforras',
+  'a.endsIn': 'rematas en {a} en vez de {b}', 'a.newPay': 'cota tras o anticipo: {x}',
+  'a.rAgreed': 'Tipo pactado', 'a.rAgreedAvg': 'Tipo medio pactado', 'a.rEquiv': 'Tipo equivalente',
+  'a.eqNote': 'O teu préstamo ao {b}{v} comportaríase como un ao <b>{p}</b> se reduces prazo, ou ao <b>{q}</b> se reduces cota. No teu caso aforras máis se elixes <b>{best}</b>.',
+  'a.eqVar': ' (tipo fixo equivalente)', 'a.bestTerm': 'reducir o número de cotas', 'a.bestPay': 'reducir a cota',
+  'a.both': 'Reducir prazo adoita aforrar máis xuros; reducir cota déixache máis marxe cada mes. As dúas opcións son válidas: depende do que necesites.',
+  'a.maxNote': 'Calculamos coa compensación máxima pactada. Pode ser menor, ou mesmo cero: <a href="#" id="toPF">mira cando hai que pagala</a>.',
+  'pf.difHint': 'Se non o tes á man, calculámolo como o teu tipo inicial ({r}) menos o IRS a {y} de setembro de 2026 ({i}). Pode ser negativo.',
+  'pf.fIrs': 'IRS ao anticipar', 'pf.fDif': 'Diferencial', 'pf.fRes': 'Pode volver prestar ao',
+  'pf.cmpLoss': '{a} é menor có teu tipo do {b}: <b>hai perda financeira</b>.',
+  'pf.cmpNo': '{a} non é menor có teu tipo do {b}: <b>non hai perda financeira</b>.',
+  'pf.caso': 'Usamos o que indicaches en «Calcular o meu aforro»: {x} no mes {m}.',
+  'pf.casoVar': 'Como o teu tipo é variable, a perda só se conta ata a próxima revisión do tipo ({h}).',
+  'pf.casoFix': 'A perda cóntase ata o final do préstamo ({y}).',
+  'pf.bPact': 'Pactados contigo', 'pf.bReinv': 'Ao volver prestalo',
+  'pf.sLoss': 'Perda financeira do banco', 'pf.sMax': 'Compensación máxima do teu contrato',
+  'pf.sMaxNone': 'o teu contrato non prevé compensación', 'pf.sMaxPct': '{p} do que anticipas',
+  'pf.sPay': 'O que pagarías', 'pf.sPaySub': 'a menor das dúas cifras',
+  'pf.nNoLoss': 'Cun IRS do {i}, o mercado está igual ou máis caro que cando asinaches. O banco non perde nada e <b>non pode cobrarche compensación</b>.',
+  'pf.nNoClause': 'O banco tería unha perda, pero o teu contrato non prevé compensación: <b>non pagas nada</b>.',
+  'pf.nLess': 'Hai perda, pero é menor có máximo pactado. O banco só pode cobrarche <b>{x}</b>, non os {y} do contrato.',
+  'pf.nMax': 'A perda supera o máximo pactado, así que pagarías o máximo: <b>{x}</b>.',
+  'pf.signing': 'Sinatura', 'pf.thr': 'Fronteira (IRS da sinatura)', 'pf.case': 'O teu caso',
+  'inst.ios': 'En iPhone ou iPad: preme o botón <b>Compartir</b> (o cadrado cunha frecha cara arriba) e elixe <b>«Engadir á pantalla de inicio»</b>. Se non o ves, abre esta páxina en Safari.',
+  'inst.prompt': 'Preme <b>Instalar</b> e terala xunto ás túas outras apps. Funciona tamén sen conexión.',
+  'inst.android': 'En Android: abre o menú <b>⋮</b> do navegador e elixe <b>«Instalar aplicación»</b> ou <b>«Engadir á pantalla de inicio»</b>.',
+  'inst.other': 'Abre esta páxina no teu móbil. <b>iPhone:</b> Compartir → «Engadir á pantalla de inicio». <b>Android:</b> menú ⋮ → «Instalar aplicación».',
+  'dy.n30': '30/360 comercial', 'dy.thBase': 'Base de cálculo', 'dy.thInt': 'Xuros totais', 'dy.thDiff': 'Diferenza', 'dy.thEff': 'Tipo efectivo', 'dy.min': 'mínimo',
+  'dy.note': 'Coa base Real/360 pagarías <b>{x}</b> máis de xuros que coa 30/360, polo mesmo préstamo e o mesmo tipo nominal.',
+  'dy.hint': 'O tipo efectivo é o custo anual real de capital e xuros, sen comisións, con catro decimais. Usamos os días de cada mes a partir da data de sinatura que indicaches.',
+  'pr.cuenta': 'Mantemento da conta', 'pr.hogar': 'Seguro do inmoble', 'pr.salud': 'Seguro médico', 'pr.vida': 'Seguro de vida', 'pr.otros': 'Outros',
+  'c.example': 'Valores de exemplo: cámbiaos polos da túa oferta. Deixa a 0 o que non teñas.', 'c.cut': 'Rebaixa do tipo', 'c.cost': 'Custo ao mes',
+  'c.taeIntro': '<b>A túa TAE é a que figura na túa FEIN.</b> Para calculala, ademais do tipo de xuro, a lei obriga o banco a ter en conta:',
+  'c.li1': '<b>As comisións</b> que cobra o banco polo préstamo, como a de apertura{x}.', 'c.li1x': ' (no teu caso, {x})',
+  'c.li2': '<b>A taxación</b> do inmoble, cando é necesaria para conceder o préstamo.',
+  'c.li3': '<b>O seguro de danos do inmoble</b>, que é obrigatorio.',
+  'c.li4': '<b>Os demais seguros, como o de vida, só se son condición do préstamo.</b> Se o banco non o esixe, o seguro de vida non entra na TAE. Se o pide para rebaixarche o tipo, o seu custo inclúese na <b>TAE bonificada</b> (a que se calcula cos produtos contratados), pero non na TAE sen bonificar.',
+  'c.li5': '<b>Outros produtos e servizos obrigatorios</b> ligados ao préstamo, como o mantemento da conta onde se cargan as cotas ou unha tarxeta.',
+  'c.li6': '<b>Calquera outro gasto</b> que teñas que pagar ti polo préstamo e que o banco coñeza.',
+  'c.li7': '<b>O calendario de pagamentos:</b> canto pagas e cando. Non custa o mesmo pagar cada mes ca unha vez ao ano.',
+  'c.excl': '<b>Non se inclúen</b> os gastos de notaría, a inscrición da compra da vivenda no Rexistro da Propiedade nin o que terías que pagar se non cumpres o contrato (por exemplo, xuros de demora).',
+  'c.var': 'Como o teu préstamo é variable, a TAE supón que o Euríbor se mantén igual durante toda a vida do préstamo. Se o Euríbor cambia, o teu custo real tamén cambiará.',
+  'c.thWithout': 'Sen produtos', 'c.thWith': 'Con produtos', 'c.rRate': 'Tipo de xuro', 'c.rPay': 'Cota do préstamo',
+  'c.rProd': 'Custo dos produtos ao mes', 'c.rMonth': 'Pagamento total ao mes', 'c.rYear': 'Pagamento total ao ano', 'c.rTotal': 'Total en todo o préstamo',
+  'c.empty': 'Introduce as rebaixas e os custos da túa oferta para ver a comparación.',
+  'c.noPay': 'Con estes datos, as bonificacións <b>non che compensan</b>: baixan a túa cota {a} ao mes, pero os produtos custan {b}. En total pagarías <b>{c}</b> máis.',
+  'c.pays': 'Con estes datos, as bonificacións <b>compénsanche</b>: aforras <b>{x}</b> en todo o préstamo.',
+  's.car': 'Carencia técnica (1.º pagamento)',
+  'b.car': 'Carencia técnica (primeiro pagamento)', 'b.carSub': 'só xuros, por {d} días', 'b.intCar': 'inclúe {x} da carencia técnica',
+  'd.carCalc': 'Pagarás uns <b>{x}</b> de xuros por {d} días de carencia.',
+  'e.car': 'a data de fin da carencia (posterior á sinatura e como máximo tres meses despois)',
+  'fv.sMin': 'Mínimo', 'fv.sNow': 'Actual', 'fv.sPlus': 'Actual +{n} p.', 'fv.sMax': 'Máximo',
+  'fv.warn': 'Se o Euríbor volvese ao máximo de {d} ({e}), a túa cota variable sería <b>{x}</b>: <b>{y} máis ao mes</b> que co fixo. Antes de elixir variable, asegúrate de que poderías pagala.',
+  'fv.warnNo': 'Con estas ofertas, mesmo co Euríbor de {d} o variable non superaría a cota fixa. Revisa que o tipo fixo e o diferencial sexan correctos.',
+  'fv.tryOut': 'Co Euríbor ao <b>{e}</b>, a túa cota variable sería <b>{v}</b> (fixa: {f}).',
+  'fv.more': '{x} máis ao mes', 'fv.less': '{x} menos ao mes',
+  'fv.eqLabel': 'O teu Euríbor de equilibrio',
+  'fv.eqNote': 'O teu <b>Euríbor de equilibrio</b> é o <b>{e}</b> (tipo fixo menos diferencial). Se o Euríbor medio durante o teu préstamo queda por debaixo, o variable sairache máis barato; se o supera, o fixo. Desde o ano 2000, o Euríbor estivo por riba dese nivel o <b>{p}</b> do tempo. A súa media foi {a}, e a dos últimos dez anos, {b}.',
+  'fv.thWhen': 'Cando', 'fv.thPay': 'A túa cota variable', 'fv.thVsFix': 'Fronte ao fixo',
+  'fv.pk2000': 'Máximo da burbulla tecnolóxica', 'fv.pk2008': 'Máximo histórico, antes da crise financeira', 'fv.pk2023': 'Subida tras a inflación de 2022',
+  'c.assume': 'Supoñemos que mantés os produtos e o seu prezo durante todo o préstamo. Ollo: o prezo dalgúns seguros sobe coa idade.'
+};
 
 I18N.en = {
   /* ---- Static texts ---- */
@@ -1406,7 +1641,7 @@ Object.assign(I18N.en, {
   'doc.acta.p1': 'It is a meeting with the notary, at the latest the day before signing. It is <b>completely free</b> for you, and you choose which notary to do it with. The bank cannot impose or suggest another one. Thank you for choosing us.',
   'doc.acta.p2': 'One of us, María Eugenia Roa Nonide or Javier González Granado, will check that you received all the documents in time, answer your questions and explain the clauses one by one. Afterwards you will answer a short test to confirm you have understood the essentials.',
   'doc.avi.p1': 'The bank must tell you in writing that you are entitled to go to a notary of your choice for free advice on the loan. Do not let anyone impose or suggest a particular notary. It is your decision.',
-  'f.ver': 'Version 7 · November 2026',
+  'f.ver': 'Version 8 · November 2026',
   'f.credit': 'Idea, design and development by Javier González Granado with Claude.',
   'd.base': 'Day-count basis of your loan', 'd.b30': '30/360 (commercial)', 'd.b365': 'Actual/365', 'd.bRR': 'Actual/Actual', 'd.b360': 'Actual/360',
   'd.baseHint': 'You will find it in your FEIN or in the draft deed. If you don’t know it, leave 30/360. “How many days are there in a year?” explains what each one means.',
@@ -1420,7 +1655,6 @@ Object.assign(I18N.en, {
   'b.car': 'Broken-period interest (first payment)', 'b.carSub': 'interest only, for {d} days', 'b.intCar': 'includes {x} of broken-period interest',
   'm6.t': 'Fixed or variable?', 'm6.d': 'What each one means, what Euribor really is and what would happen to your payment if it rises.',
   'dy.courts': 'Some court rulings have declared some of these banking practices unfair. We will explain it to you at the notary office.',
-  'dy.yours': 'yours',
   'fv.lead': 'Choosing between a fixed and a variable rate is one of the most important decisions about your loan. The decision is yours, but our duty as notaries is to help you make it knowing exactly what you are exposed to. That is why we show you, with your own figures, what would happen if things go well and, above all, if they go badly.',
   'fv.tabA': 'What each one is', 'fv.tabB': 'What if Euribor changes?',
   'fv.fixT': 'Fixed', 'fv.fixD': 'You pay the same rate for the whole life of the loan, and your payment does not change whatever happens in the market. In exchange, the rate is usually higher than the initial rate of a variable loan, and if rates fall you do not benefit. You pay for peace of mind.',
@@ -1460,6 +1694,9 @@ Object.assign(I18N.en, {
   'fv.eqNote': 'Your <b>break-even Euribor</b> is <b>{e}</b> (fixed rate minus margin). If average Euribor over your loan stays below it, variable will turn out cheaper; if it goes above, fixed will. Since 2000, Euribor has been above that level <b>{p}</b> of the time. Its average has been {a}, and over the last ten years, {b}.',
   'fv.thWhen': 'When', 'fv.thPay': 'Your variable payment', 'fv.thVsFix': 'Versus fixed',
   'fv.pk2000': 'Peak of the dot-com bubble', 'fv.pk2008': 'All-time high, before the financial crisis', 'fv.pk2023': 'Rise after the 2022 inflation'
+});
+Object.assign(I18N.en, {
+  'fv.manB': 'That system made it possible to manipulate it. Between 2005 and 2008, several panel banks colluded to alter it. The European Commission fined them in 2013 and 2016, and the EU courts upheld the fines. In the United Kingdom and the United States, fines running into millions were imposed and traders were convicted. In Italy, affected customers have taken the matter to the Supreme Court. The Court of Justice of the European Union has ruled that the manipulation of Euribor does not automatically make mortgage loan clauses void. For the Spanish courts, the manipulation has been proven; however, their judgments have so far held that it does not cause borrowers any specific loss. Even so, beyond whether there is a specific loss, it should be considered whether a reference index that can be manipulated meets the requirements of Article 21 of Spanish Law 5/2019 of 15 March on real estate credit agreements, which excludes interest rates that are open to “influence by the lender itself, or by virtue of agreements with other lenders or consciously parallel practices” and that are not “aggregated according to an objective mathematical procedure”. <b>It is a classic rule of Spanish law: once a contract has been signed, its effect cannot depend on the will of only one of the parties.</b>'
 });
 
 I18N.fr = {
@@ -1656,7 +1893,7 @@ Object.assign(I18N.fr, {
   'doc.acta.p1': 'C’est un rendez-vous avec le notaire, au plus tard la veille de la signature. Il est <b>entièrement gratuit</b> pour vous et c’est vous qui choisissez le notaire. La banque ne peut ni vous en imposer ni vous en suggérer un autre. Merci de nous avoir choisis.',
   'doc.acta.p2': 'L’un de nous, María Eugenia Roa Nonide ou Javier González Granado, vérifiera que vous avez reçu tous les documents à temps, répondra à vos questions et vous expliquera les clauses une par une. Vous répondrez ensuite à un court questionnaire pour confirmer que vous avez compris l’essentiel.',
   'doc.avi.p1': 'La banque doit vous indiquer par écrit que vous avez le droit de consulter gratuitement le notaire de votre choix au sujet du prêt. Ne laissez personne vous imposer ou vous suggérer un notaire en particulier. C’est votre décision.',
-  'f.ver': 'Version 7 · novembre 2026',
+  'f.ver': 'Version 8 · novembre 2026',
   'f.credit': 'Idée, conception et développement : Javier González Granado avec Claude.',
   'd.base': 'Base de calcul de votre prêt', 'd.b30': '30/360 (commerciale)', 'd.b365': 'Réel/365', 'd.bRR': 'Réel/Réel', 'd.b360': 'Réel/360',
   'd.baseHint': 'Vous la trouverez dans votre FEIN ou dans le projet d’acte. Si vous ne la connaissez pas, laissez 30/360. « Combien de jours compte une année ? » explique ce que signifie chacune.',
@@ -1670,7 +1907,6 @@ Object.assign(I18N.fr, {
   'b.car': 'Intérêts intercalaires (premier paiement)', 'b.carSub': 'intérêts seuls, pour {d} jours', 'b.intCar': 'dont {x} d’intérêts intercalaires',
   'm6.t': 'Fixe ou variable ?', 'm6.d': 'Ce que signifie chacun, ce qu’est vraiment l’Euribor et ce que deviendrait votre mensualité s’il monte.',
   'dy.courts': 'Des décisions de justice ont déclaré abusives certaines de ces pratiques bancaires. Nous vous l’expliquerons à l’étude notariale.',
-  'dy.yours': 'la vôtre',
   'fv.lead': 'Choisir entre un taux fixe et un taux variable est l’une des décisions les plus importantes de votre prêt. La décision vous appartient, mais notre devoir de notaires est de vous aider à la prendre en sachant bien à quoi vous vous exposez. C’est pourquoi nous vous montrons, avec vos propres chiffres, ce qui se passerait si tout va bien et, surtout, si les choses tournent mal.',
   'fv.tabA': 'Ce qu’est chacun', 'fv.tabB': 'Et si l’Euribor change ?',
   'fv.fixT': 'Fixe', 'fv.fixD': 'Vous payez le même taux pendant toute la durée du prêt, et votre mensualité ne change pas, quoi qu’il arrive sur le marché. En contrepartie, le taux est généralement plus élevé que le taux initial d’un prêt variable, et si les taux baissent vous n’en profitez pas. Vous payez pour la tranquillité.',
@@ -1710,6 +1946,9 @@ Object.assign(I18N.fr, {
   'fv.eqNote': 'Votre <b>Euribor d’équilibre</b> est de <b>{e}</b> (taux fixe moins marge). Si l’Euribor moyen pendant votre prêt reste en dessous, le variable vous reviendra moins cher ; s’il le dépasse, ce sera le fixe. Depuis 2000, l’Euribor a été au-dessus de ce niveau <b>{p}</b> du temps. Sa moyenne a été de {a}, et sur les dix dernières années, de {b}.',
   'fv.thWhen': 'Quand', 'fv.thPay': 'Votre mensualité variable', 'fv.thVsFix': 'Par rapport au fixe',
   'fv.pk2000': 'Sommet de la bulle Internet', 'fv.pk2008': 'Record historique, avant la crise financière', 'fv.pk2023': 'Hausse après l’inflation de 2022'
+});
+Object.assign(I18N.fr, {
+  'fv.manB': 'Ce système a permis de le manipuler. Entre 2005 et 2008, plusieurs banques du panel se sont entendues pour l’altérer. La Commission européenne les a sanctionnées en 2013 et en 2016, et les juridictions de l’Union européenne ont confirmé ces sanctions. Au Royaume-Uni et aux États-Unis, des amendes de plusieurs millions ont été infligées et des opérateurs ont été condamnés. En Italie, les clients concernés ont porté l’affaire jusqu’à la Cour de cassation. La Cour de justice de l’Union européenne a jugé que la manipulation de l’Euribor n’entraîne pas automatiquement la nullité des clauses des prêts immobiliers. Pour les tribunaux espagnols, la manipulation est démontrée ; toutefois, leurs décisions considèrent jusqu’à présent qu’il n’en découle pas de préjudice concret pour les emprunteurs. Cela dit, au-delà de l’existence de ce préjudice concret, il faudrait examiner si un indice de référence manipulable satisfait aux exigences de l’article 21 de la loi espagnole 5/2019 du 15 mars sur les contrats de crédit immobilier, qui exclut les taux d’intérêt susceptibles d’« influence par le prêteur lui-même, ou en vertu d’accords avec d’autres prêteurs ou de pratiques consciemment parallèles » et qui ne seraient pas « agrégés selon une procédure mathématique objective ». <b>C’est une règle classique de notre droit : une fois le contrat signé, son efficacité ne peut dépendre de la volonté d’une seule des parties.</b>'
 });
 
 I18N.de = {
@@ -1906,7 +2145,7 @@ Object.assign(I18N.de, {
   'doc.acta.p1': 'Es ist ein Termin beim Notar, spätestens am Tag vor der Unterzeichnung. Er ist für Sie <b>völlig kostenlos</b>, und Sie entscheiden, bei welchem Notar Sie ihn wahrnehmen. Die Bank darf Ihnen keinen anderen vorschreiben oder vorschlagen. Vielen Dank, dass Sie sich für uns entschieden haben.',
   'doc.acta.p2': 'Einer von uns, María Eugenia Roa Nonide oder Javier González Granado, prüft, dass Sie alle Unterlagen rechtzeitig erhalten haben, beantwortet Ihre Fragen und erklärt Ihnen die Klauseln einzeln. Danach beantworten Sie einen kurzen Test, der bestätigt, dass Sie das Wesentliche verstanden haben.',
   'doc.avi.p1': 'Die Bank muss Ihnen schriftlich mitteilen, dass Sie das Recht haben, sich von einem Notar Ihrer Wahl kostenlos zum Darlehen beraten zu lassen. Lassen Sie sich keinen bestimmten Notar vorschreiben oder vorschlagen. Es ist Ihre Entscheidung.',
-  'f.ver': 'Version 7 · November 2026',
+  'f.ver': 'Version 8 · November 2026',
   'f.credit': 'Idee, Gestaltung und Entwicklung: Javier González Granado mit Claude.',
   'd.base': 'Zinsberechnungsmethode Ihres Darlehens', 'd.b30': '30/360 (kaufmännisch)', 'd.b365': 'Act/365', 'd.bRR': 'Act/Act', 'd.b360': 'Act/360',
   'd.baseHint': 'Sie finden sie in Ihrer FEIN oder im Urkundenentwurf. Wenn Sie sie nicht kennen, lassen Sie 30/360 stehen. In „Wie viele Tage hat ein Jahr?“ erklären wir, was jede bedeutet.',
@@ -1920,7 +2159,6 @@ Object.assign(I18N.de, {
   'b.car': 'Zinsen erster Teilmonat (erste Zahlung)', 'b.carSub': 'nur Zinsen, für {d} Tage', 'b.intCar': 'davon {x} für den ersten Teilmonat',
   'm6.t': 'Fest oder variabel?', 'm6.d': 'Was beides bedeutet, was der Euribor wirklich ist und was mit Ihrer Rate geschähe, wenn er steigt.',
   'dy.courts': 'Gerichte haben einige dieser Bankpraktiken für missbräuchlich erklärt. Wir erklären es Ihnen im Notariat.',
-  'dy.yours': 'Ihre',
   'fv.lead': 'Die Wahl zwischen festem und variablem Zins ist eine der wichtigsten Entscheidungen bei Ihrem Darlehen. Die Entscheidung liegt bei Ihnen, aber unsere Pflicht als Notare ist es, Ihnen zu helfen, sie in voller Kenntnis der Risiken zu treffen. Deshalb zeigen wir Ihnen mit Ihren eigenen Zahlen, was passieren würde, wenn alles gut läuft, und vor allem, wenn es schlecht läuft.',
   'fv.tabA': 'Was beides ist', 'fv.tabB': 'Und wenn sich der Euribor ändert?',
   'fv.fixT': 'Fest', 'fv.fixD': 'Sie zahlen während der gesamten Laufzeit denselben Zins, und Ihre Rate ändert sich nicht, was auch immer am Markt geschieht. Dafür ist der Zins meist höher als der Anfangszins eines variablen Darlehens, und wenn die Zinsen fallen, profitieren Sie nicht. Sie bezahlen für Ihre Ruhe.',
@@ -1960,6 +2198,9 @@ Object.assign(I18N.de, {
   'fv.eqNote': 'Ihr <b>Gleichgewichts-Euribor</b> liegt bei <b>{e}</b> (Festzins minus Aufschlag). Bleibt der durchschnittliche Euribor während Ihres Darlehens darunter, ist variabel günstiger; liegt er darüber, fest. Seit 2000 lag der Euribor <b>{p}</b> der Zeit über diesem Niveau. Sein Durchschnitt lag bei {a}, in den letzten zehn Jahren bei {b}.',
   'fv.thWhen': 'Wann', 'fv.thPay': 'Ihre variable Rate', 'fv.thVsFix': 'Gegenüber fest',
   'fv.pk2000': 'Höhepunkt der Dotcom-Blase', 'fv.pk2008': 'Allzeithoch vor der Finanzkrise', 'fv.pk2023': 'Anstieg nach der Inflation 2022'
+});
+Object.assign(I18N.de, {
+  'fv.manB': 'Dieses System machte seine Manipulation möglich. Zwischen 2005 und 2008 sprachen sich mehrere Panel-Banken ab, um ihn zu verändern. Die Europäische Kommission verhängte 2013 und 2016 Geldbußen, und die Gerichte der Europäischen Union bestätigten sie. Im Vereinigten Königreich und in den USA wurden Millionenstrafen verhängt und Händler verurteilt. In Italien haben betroffene Kunden die Frage bis vor den Obersten Gerichtshof gebracht. Der Gerichtshof der Europäischen Union hat entschieden, dass die Manipulation des Euribor nicht automatisch zur Nichtigkeit der Klauseln von Hypothekendarlehen führt. Für die spanischen Gerichte ist die Manipulation erwiesen; ihre Urteile vertreten jedoch bislang, dass daraus kein konkreter Schaden für die Darlehensnehmer folgt. Allerdings sollte über die Frage eines konkreten Schadens hinaus geprüft werden, ob ein manipulierbarer Referenzindex die Anforderungen von Artikel 21 des spanischen Gesetzes 5/2019 vom 15. März über Immobiliarkreditverträge erfüllt, das Zinssätze ausschließt, die der „Beeinflussung durch den Darlehensgeber selbst oder aufgrund von Absprachen mit anderen Darlehensgebern oder bewusst parallelen Verhaltensweisen“ zugänglich sind und nicht „nach einem objektiven mathematischen Verfahren aggregiert“ werden. <b>Es ist ein klassischer Grundsatz unseres Rechts: Ist der Vertrag einmal unterzeichnet, darf seine Wirksamkeit nicht vom Willen nur einer der Parteien abhängen.</b>'
 });
 
 I18N.it = {
@@ -2156,7 +2397,7 @@ Object.assign(I18N.it, {
   'doc.acta.p1': 'È un incontro con il notaio, al più tardi il giorno prima della firma. È un servizio <b>completamente gratuito</b> per te e sei tu a scegliere con quale notaio farlo. La banca non può imporne né suggerirne un altro. Grazie per averci scelto.',
   'doc.acta.p2': 'Uno di noi, María Eugenia Roa Nonide o Javier González Granado, verificherà che tu abbia ricevuto tutta la documentazione in tempo, risolverà i tuoi dubbi e ti spiegherà le clausole una per una. Dopodiché risponderai a un breve test che serve a confermare che hai capito l’essenziale.',
   'doc.avi.p1': 'La banca deve indicarti per iscritto che hai diritto a rivolgerti gratuitamente a un notaio di tua scelta per una consulenza sul mutuo. Non permettere che ti impongano o ti suggeriscano un notaio in particolare. È una tua decisione.',
-  'f.ver': 'Versione 7 · novembre 2026',
+  'f.ver': 'Versione 8 · novembre 2026',
   'f.credit': 'Idea, design e sviluppo di Javier González Granado con Claude.',
   'd.base': 'Base di calcolo del tuo mutuo', 'd.b30': '30/360 (commerciale)', 'd.b365': 'Reale/365', 'd.bRR': 'Reale/Reale', 'd.b360': 'Reale/360',
   'd.baseHint': 'La trovi nella tua FEIN o nella bozza dell’atto. Se non la conosci, lascia 30/360. In «Quanti giorni ha un anno?» ti spieghiamo cosa significa ciascuna.',
@@ -2170,7 +2411,6 @@ Object.assign(I18N.it, {
   'b.car': 'Preammortamento tecnico (primo pagamento)', 'b.carSub': 'solo interessi, per {d} giorni', 'b.intCar': 'di cui {x} di preammortamento tecnico',
   'm6.t': 'Fisso o variabile?', 'm6.d': 'Cosa significa ciascuno, cos’è davvero l’Euribor e cosa succederebbe alla tua rata se salisse.',
   'dy.courts': 'Alcune sentenze hanno dichiarato abusive alcune di queste pratiche bancarie. Te lo spiegheremo nello studio notarile.',
-  'dy.yours': 'la tua',
   'fv.lead': 'Scegliere tra tasso fisso e variabile è una delle decisioni più importanti del tuo mutuo. La decisione è tua, ma il nostro dovere di notai è aiutarti a prenderla sapendo bene a cosa ti esponi. Per questo ti mostriamo, con le tue cifre, cosa succederebbe se le cose vanno bene e, soprattutto, se vanno male.',
   'fv.tabA': 'Cos’è ciascuno', 'fv.tabB': 'E se cambia l’Euribor?',
   'fv.fixT': 'Fisso', 'fv.fixD': 'Paghi lo stesso tasso per tutta la durata del mutuo, e la tua rata non cambia qualunque cosa accada sul mercato. In cambio, il tasso è di solito più alto di quello iniziale di un variabile, e se i tassi scendono non ne approfitti. Paghi per la tranquillità.',
@@ -2211,6 +2451,9 @@ Object.assign(I18N.it, {
   'fv.thWhen': 'Quando', 'fv.thPay': 'La tua rata variabile', 'fv.thVsFix': 'Rispetto al fisso',
   'fv.pk2000': 'Picco della bolla di Internet', 'fv.pk2008': 'Massimo storico, prima della crisi finanziaria', 'fv.pk2023': 'Rialzo dopo l’inflazione del 2022'
 });
+Object.assign(I18N.it, {
+  'fv.manB': 'Quel sistema ha permesso di manipolarlo. Tra il 2005 e il 2008 diverse banche del panel si sono accordate per alterarlo. La Commissione europea le ha sanzionate nel 2013 e nel 2016, e i tribunali dell’Unione europea hanno confermato le sanzioni. Nel Regno Unito e negli Stati Uniti sono state inflitte multe milionarie e ci sono state condanne di operatori. In Italia, i clienti coinvolti hanno portato la questione fino alla Corte di Cassazione. La Corte di giustizia dell’Unione europea ha stabilito che la manipolazione dell’Euribor non comporta automaticamente la nullità delle clausole dei mutui ipotecari. Per i tribunali spagnoli la manipolazione è dimostrata; tuttavia, le loro sentenze sostengono finora che da essa non deriva un danno concreto per i mutuatari. Detto questo, al di là dell’esistenza di quel danno concreto, andrebbe valutato se un indice di riferimento manipolabile soddisfi i requisiti dell’articolo 21 della legge spagnola 5/2019 del 15 marzo sui contratti di credito immobiliare, che esclude i tassi di interesse suscettibili di «influenza da parte dello stesso mutuante, o in virtù di accordi con altri mutuanti o pratiche consapevolmente parallele» e che non risultino «aggregati secondo una procedura matematica obiettiva». <b>È una regola classica del nostro diritto: una volta firmato il contratto, la sua efficacia non può dipendere dalla volontà di una sola delle parti.</b>'
+});
 
 </script>
 <script>
@@ -2219,8 +2462,9 @@ Object.assign(I18N.it, {
 const $ = (s) => document.querySelector(s);
 
 /* ---------- Idiomas ---------- */
-const LANGS = ['es', 'ca', 'en', 'fr', 'de', 'it'];
-const LOCALE = { es: 'es-ES', ca: 'ca-ES', en: 'en-IE', fr: 'fr-FR', de: 'de-DE', it: 'it-IT' };
+const LANGS = ['es', 'ca', 'gl', 'en', 'fr', 'de', 'it'];
+/* El gallego usa las mismas convenciones numéricas que el español; algunos navegadores no traen datos de formato para «gl» */
+const LOCALE = { es: 'es-ES', ca: 'ca-ES', gl: 'es-ES', en: 'en-IE', fr: 'fr-FR', de: 'de-DE', it: 'it-IT' };
 const store = {
   get(k) { try { return JSON.parse(localStorage.getItem('mhc_' + k)); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem('mhc_' + k, JSON.stringify(v)); } catch (e) {} }
@@ -2303,6 +2547,7 @@ const carOf = (extra = 0) => H.carencia(loan(), extra);
 const FLAGS = [
   { code: 'es', name: 'Español', svg: '<svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg>' },
   { code: 'ca', name: 'Català', svg: '<svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#FCDD09"/><g fill="#DA121A"><rect y=".667" width="9" height=".667"/><rect y="2" width="9" height=".667"/><rect y="3.333" width="9" height=".667"/><rect y="4.667" width="9" height=".667"/></g></svg>' },
+  { code: 'gl', name: 'Galego', svg: '<svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#fff"/><path d="M0,0 L0.42,0 L3,1.72 L3,2 L2.58,2 L0,0.28 Z" fill="#0099CC"/></svg>' },
   { code: 'en', name: 'English', svg: '<svg viewBox="0 0 60 30"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>' },
   { code: 'fr', name: 'Français', svg: '<svg viewBox="0 0 3 2"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>' },
   { code: 'de', name: 'Deutsch', svg: '<svg viewBox="0 0 5 3"><rect width="5" height="1" fill="#000"/><rect y="1" width="5" height="1" fill="#DD0000"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg>' },
@@ -2667,8 +2912,9 @@ const PEAKS = [[2000, 7, 'fv.pk2000'], [2008, 6, 'fv.pk2008'], [2023, 9, 'fv.pk2
 const MINP = [2021, 0];
 const euAt = (y, m) => EURIBOR.v[(y - EURIBOR.start[0]) * 12 + m - EURIBOR.start[1]];
 const EU_NOW = euAt(2026, 9) / 100;
-const monthName = (y, m) => new Intl.DateTimeFormat(LOCALE[L], { month: 'long', year: 'numeric' }).format(new Date(y, m, 15));
-const monthShort = (y, m) => new Intl.DateTimeFormat(LOCALE[L], { month: 'short', year: 'numeric' }).format(new Date(y, m, 15));
+const MESES_GL = ['xaneiro', 'febreiro', 'marzo', 'abril', 'maio', 'xuño', 'xullo', 'agosto', 'setembro', 'outubro', 'novembro', 'decembro'];
+const monthName = (y, m) => L === 'gl' ? `${MESES_GL[m]} de ${y}` : new Intl.DateTimeFormat(LOCALE[L], { month: 'long', year: 'numeric' }).format(new Date(y, m, 15));
+const monthShort = (y, m) => L === 'gl' ? `${MESES_GL[m].slice(0, 3)}. ${y}` : new Intl.DateTimeFormat(LOCALE[L], { month: 'short', year: 'numeric' }).format(new Date(y, m, 15));
 
 function setFvTab(x) {
   $('#fvTabA').setAttribute('aria-selected', x === 'A'); $('#fvTabB').setAttribute('aria-selected', x === 'B');
@@ -2781,10 +3027,9 @@ function renderDias() {
   const bases = ['30/360', 'real/365', 'real/real', 'real/360'];
   const names = { '30/360': t('dy.n30'), 'real/365': 'Real/365', 'real/real': 'Real/Real', 'real/360': 'Real/360' };
   const res = bases.map(b => { const s = H.simulate(Lo, { basis: b }); return { b, int: s.totInt + H.carencia({ ...Lo, base: b }).int, eff: H.irrAnnual([-D.C, ...s.rows.map(r => r.pago)]) }; });
-  const mine = Lo.base;
   const min = Math.min(...res.map(r => r.int));
   $('#tblDias').innerHTML = `<thead><tr><th>${t('dy.thBase')}</th><th>${t('dy.thInt')}</th><th>${t('dy.thDiff')}</th><th>${t('dy.thEff')}</th></tr></thead><tbody>${
-    res.map(r => { const dif = r.int - min; return `<tr class="${dif < 0.005 ? 'best' : ''}${r.b === mine ? ' mine' : ''}"><td>${names[r.b]}${r.b === mine ? `<span class="pill">${t('dy.yours')}</span>` : ''}</td><td>${eur.format(r.int)}</td><td class="${dif < 0.005 ? 'good' : 'bad'}">${dif < 0.005 ? t('dy.min') : '+' + eur.format(dif)}</td><td>${pctN(r.eff * 100, 4)}</td></tr>`; }).join('')}</tbody>`;
+    res.map(r => { const dif = r.int - min; return `<tr class="${dif < 0.005 ? 'best' : ''}"><td>${names[r.b]}</td><td>${eur.format(r.int)}</td><td class="${dif < 0.005 ? 'good' : 'bad'}">${dif < 0.005 ? t('dy.min') : '+' + eur.format(dif)}</td><td>${pctN(r.eff * 100, 4)}</td></tr>`; }).join('')}</tbody>`;
   $('#diasNote').innerHTML = `<div class="note bad">${t('dy.note', { x: eur.format(res[3].int - res[0].int) })}</div>
     <p class="hint">${t('dy.hint')}</p>`;
 }
